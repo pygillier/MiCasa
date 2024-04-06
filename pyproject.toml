@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "micasa"
+version = "0.1.0"
+description = ""
+authors = ["Pierre-Yves Gillier <github@pygillier.me>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.2"
+python-dotenv = "^1.0.1"
+flask-sqlalchemy = "^3.1.1"
+flask-talisman = "^1.1.0"
+flask-migrate = "^4.0.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,114 @@
+[
+    {
+      "name": "blackboard",
+        "background": "#1a1a1a",
+        "primary": "#FFFDEA",
+        "accent": "#5c5c5c",
+      "is_custom": false
+    },
+    {
+      "name": "gazette",
+        "background": "#F2F7FF",
+        "primary": "#000000",
+        "accent": "#5c5c5c",
+      "is_custom": false
+    },
+    {
+      "name": "espresso",
+        "background": "#21211F",
+        "primary": "#D1B59A",
+        "accent": "#4E4E4E",
+      "is_custom": false
+    },
+    {
+      "name": "cab",
+        "background": "#F6D305",
+        "primary": "#1F1F1F",
+        "accent": "#424242",
+      "is_custom": false
+    },
+    {
+      "name": "cloud",
+        "background": "#f1f2f0",
+        "primary": "#35342f",
+        "accent": "#37bbe4",
+      "is_custom": false
+    },
+    {
+      "name": "lime",
+        "background": "#263238",
+        "primary": "#AABBC3",
+        "accent": "#aeea00",
+      "is_custom": false
+    },
+    {
+      "name": "white",
+        "background": "#ffffff",
+        "primary": "#222222",
+        "accent": "#dddddd",
+      "is_custom": false
+    },
+    {
+      "name": "tron",
+        "background": "#242B33",
+        "primary": "#EFFBFF",
+        "accent": "#6EE2FF",
+      "is_custom": false
+    },
+    {
+      "name": "blues",
+        "background": "#2B2C56",
+        "primary": "#EFF1FC",
+        "accent": "#6677EB",
+      "is_custom": false
+    },
+    {
+      "name": "passion",
+        "background": "#f5f5f5",
+        "primary": "#12005e",
+        "accent": "#8e24aa",
+      "is_custom": false
+    },
+    {
+      "name": "chalk",
+        "background": "#263238",
+        "primary": "#AABBC3",
+        "accent": "#FF869A",
+      "is_custom": false
+    },
+    {
+      "name": "paper",
+        "background": "#F8F6F1",
+        "primary": "#4C432E",
+        "accent": "#AA9A73",
+      "is_custom": false
+    },
+    {
+      "name": "neon",
+        "background": "#091833",
+        "primary": "#EFFBFF",
+        "accent": "#ea00d9",
+      "is_custom": false
+    },
+    {
+      "name": "pumpkin",
+        "background": "#2d3436",
+        "primary": "#EFFBFF",
+        "accent": "#ffa500",
+      "is_custom": false
+    },
+    {
+      "name": "onedark",
+        "background": "#282c34",
+        "primary": "#dfd9d6",
+        "accent": "#98c379",
+      "is_custom": false
+    },
+    {
+      "name": "mint",
+        "background": "#282525",
+        "primary": "#d9d9d9",
+        "accent": "#50fbc2",
+      "is_custom": false
+    }
+  ]

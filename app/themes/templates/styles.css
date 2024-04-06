@@ -1,0 +1,5 @@
+{% for theme in themes %}
+div#{{ theme.name }}-background { background-color: {{ theme.background }}; }
+div#{{ theme.name }}-primary { background-color: {{ theme.primary }}; }
+div#{{ theme.name }}-accent { background-color: {{ theme.accent }}; }
+{% endfor %}

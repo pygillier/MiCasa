@@ -12,6 +12,8 @@ python-dotenv = "^1.0.1"
 flask-sqlalchemy = "^3.1.1"
 flask-talisman = "^1.1.0"
 flask-migrate = "^4.0.7"
+flask-wtf = "^1.2.1"
+flask-security-too = {extras = ["common", "fsqla"], version = "^5.4.3"}
 
 
 [build-system]

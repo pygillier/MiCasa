@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{{ themes }}
-</body>
-</html>
+{% extends "layout.html" %}
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for("themes.stylesheet") }}" />
+{% endblock %}
+{% block content %}
+    <div style="background-color: #9C1A1C;">toto</div>
+    <dl id="theme-selector">
+    {% for theme in themes %}
+        <dt>{{ theme.name }}</dt>
+        <dd>
+            <a href="{{ url_for("themes.select_theme", theme_id=theme.id) }}">
+                <div id="{{ theme.name }}-background">&nbsp;</div>
+                <div id="{{ theme.name }}-primary">&nbsp;</div>
+                <div id="{{ theme.name }}-accent">&nbsp;</div>
+            </a>
+        </dd>
+    {% endfor %}
+    </dl>
+    <hr/>
+    <h3>Create custom theme</h3>
+    <a href="#">New theme</a>
+{% endblock content %}

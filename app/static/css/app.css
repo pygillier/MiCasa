@@ -1,0 +1,11 @@
+/* theme selector */
+dl#theme-selector dd {
+    border: 1px solid red;
+    display: inline;
+    width: 3em;
+}
+dl#theme-selector div {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+}

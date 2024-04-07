@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+    <section>
+        <header class="grid">
+            <aside class="column is-12">{{ now }}</aside>
+            <h1 class="column is-10">{{ greeting }}</h1>
+            <div class="column is-2">Weather</div>
+        </header>
+        <article id="apps" class="grid">
+            <header class="column is-12">
+                <h2>
+                    <a href="{{ url_for("apps.index") }}">Applications</a>
+                </h2>
+            </header>
+            <div class="content"></div>
+        </article>
+        <article id="bookmarks" class="grid">
+            <header class="column is-12">
+                <h2>
+                    <a href="#">Bookmarks</a>
+                </h2>
+            </header>
+            <div class="content"></div>
+        </article>
+    </section>
+{% endblock content %}

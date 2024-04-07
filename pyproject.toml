@@ -14,7 +14,13 @@ flask-talisman = "^1.1.0"
 flask-migrate = "^4.0.7"
 flask-wtf = "^1.2.1"
 flask-security-too = {extras = ["common", "fsqla"], version = "^5.4.3"}
+babel = "^2.14.0"
 
+
+[tool.poetry.group.dev.dependencies]
+flask-debugtoolbar = "^0.14.1"
+ruff = "^0.3.5"
+black = "^24.3.0"
 
 [build-system]
 requires = ["poetry-core"]

@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "micasa"
+version = "0.1.0"
+description = ""
+authors = ["Pierre-Yves Gillier <github@pygillier.me>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.4"
+django-environ = "^0.11.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.7.0"
+ruff = "^0.3.7"
+black = "^24.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+target-version = ['py312']
+include = '\.pyi?$'
+
+
+[tool.ruff]
+line-length = 120
+
+[tool.djlint]
+profile="django"

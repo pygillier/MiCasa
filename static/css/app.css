@@ -1,0 +1,33 @@
+/*
+      "colors": {
+        "background": "#242B33",
+        "primary": "#EFFBFF",
+        "accent": "#6EE2FF"
+      },
+ */
+:root {
+    --bs-body-bg: #242B33;
+    --bs-body-color: #EFFBFF;
+
+    /* Extended overrides */
+    --bs-link-color:  #EFFBFF;
+}
+
+main#page {
+    margin-top: 4em;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 1.4em;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+}
+
+h3 {
+    color: #6EE2FF;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    padding-bottom: 0.5em;
+}

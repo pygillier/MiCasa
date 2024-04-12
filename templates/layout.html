@@ -9,11 +9,12 @@
         <title>{% block title %}My title{% endblock title %}</title>
         <!-- Halfmoon CSS -->
         <link href="{% static "css/halfmoon.css" %}" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="{% static "css/app.css" %}" />
         <script src="{% static 'js/htmx.min.js' %}"></script>
         {% django_htmx_script %}
     </head>
     <body>
-        <main class="container">
+        <main class="container" id="page">
             {% block content %}{% endblock content %}
         </main>
         <aside class="sticky-bottom">SETTINGS</aside>

@@ -4,7 +4,7 @@
         <h3>{{ category }}</h3>
         <ul>
             {% for bookmark in category.bookmark_set.all %}
-                <li><a class="text-body link-underline link-underline-opacity-0 link-underline-opacity-50-hover" href="#" target="_blank">{{ bookmark.name }}</a></li>
+                <li><a class="link-underline link-underline-opacity-0 link-underline-opacity-50-hover" href="#" target="_blank">{{ bookmark.name }}</a></li>
             {% endfor %}
         </ul>
     </article>

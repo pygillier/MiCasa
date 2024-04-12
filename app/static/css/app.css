@@ -3,6 +3,9 @@
   --max-width: 1600px;
 }
 
+body {
+    color: var(--font-color);
+}
 footer {
     padding-top: 3em;
 }

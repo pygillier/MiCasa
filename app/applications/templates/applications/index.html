@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+    <section class="section is-small">
+        <article class="">
+            <header>
+                <h2><a href="{{ url_for("home.index") }}">&larr;</a> All applications</h2>
+                {% if current_user.is_authenticated %}
+                    <ul>
+                        <li><a href="{{ url_for("apps.add") }}">Add</a></li>
+                        <li><a href="#">Edit</a></li>
+                    </ul>
+                {% endif %}
+            </header>
+        </article>
+    </section>
+
+    {% for app in apps %}
+        <li>{{ app.name }}</li>
+    {% endfor %}
+{% endblock content %}

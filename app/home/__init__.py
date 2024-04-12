@@ -2,7 +2,7 @@ from flask import Blueprint, current_app
 from datetime import datetime, time
 from babel.dates import format_date, get_timezone
 
-home = Blueprint("Home", __name__, template_folder="templates")
+home = Blueprint("home", __name__, template_folder="templates")
 
 from . import views  # noqa: E402,F401
 

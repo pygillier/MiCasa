@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form method="POST" class="grid" action="{{ url_for("apps.create") }}">
+    {{ form.csrf_token }}
+    <div class="column is-half">
+        <label>{{ form.name.label }}</label>
+        {{ form.name() }}
+    </div>
+    </form>
+{% endblock content %}

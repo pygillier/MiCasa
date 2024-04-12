@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% load current_time greeting %}
+{% block content %}
+    <h6>{% current_time "%A, %d %B %Y" %}</h6>
+    <h1>{% greeting %}</h1>
+    <section>
+        <h2>Applications</h2>
+        <article>Loading...</article>
+    </section>
+    <section>
+        <h2>Bookmarks</h2>
+        <div hx-get="{% url "bookmarks:home" %}" hx-trigger="revealed">Loading...</div>
+    </section>
+{% endblock content %}

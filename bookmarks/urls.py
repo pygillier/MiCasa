@@ -5,6 +5,7 @@ from . import views
 app_name = "bookmarks"
 
 urlpatterns = [
-    # path("", views.IndexView.as_view(), name="index"),
+    path("", views.IndexView.as_view(), name="index"),
     path("home/", views.HomeView.as_view(), name="home"),
+    path("category/add", views.CategoryAddView.as_view(), name="category_add"),
 ]

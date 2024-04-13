@@ -8,7 +8,7 @@
         <article>Loading...</article>
     </section>
     <section id="home-bookmarks">
-        <h2>Bookmarks</h2>
+        <h2><a href="{% url "bookmarks:index" %}">Bookmarks</a></h2>
         <div hx-get="{% url "bookmarks:home" %}" hx-trigger="revealed">Loading...</div>
     </section>
 {% endblock content %}

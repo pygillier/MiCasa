@@ -16,7 +16,7 @@
 }
 
 body {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 main#page {
@@ -68,6 +68,13 @@ a.app_link span {
     text-transform: uppercase;
 }
 
-div#bookmarks li {
+div#bookmarks ul {
+    padding-left: 0;
     list-style: none;
+}
+
+div#bookmarks li a {
+    color: var(--bs-body-color);
+    padding: .5em;
+    font-size: 1em;
 }

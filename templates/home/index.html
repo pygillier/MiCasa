@@ -1,14 +1,21 @@
 {% extends "layout.html" %}
-{% load current_time greeting %}
+{% load current_time greeting i18n %}
+{% block head_extra %}
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.0.0/dist/iconify-icon.min.js"></script>
+{% endblock head_extra %}
 {% block content %}
     <h6>{% current_time "%A, %d %B %Y" %}</h6>
-    <h1>{% greeting %}</h1>
+    <header class="hstack" id="greetings">
+        <h1>{% greeting %}</h1>
+        <div class="ms-auto"></div>
+        <div>Weather</div>
+    </header>
     <section>
-        <h2>Applications</h2>
-        <article>Loading...</article>
+        <h2><a href="#">{% trans "applications.h2" %}</a></h2>
+        <div hx-get="{% url "applications:home" %}" hx-trigger="revealed">Loading...</div>
     </section>
     <section id="home-bookmarks">
-        <h2><a href="{% url "bookmarks:index" %}">Bookmarks</a></h2>
+        <h2><a href="{% url "bookmarks:index" %}">{% trans "bookmarks.h2" %}</a></h2>
         <div hx-get="{% url "bookmarks:home" %}" hx-trigger="revealed">Loading...</div>
     </section>
 {% endblock content %}

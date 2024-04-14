@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "user.apps.UserConfig",
     "bookmarks.apps.BookmarksConfig",
     "home.apps.HomeConfig",
+    "applications.apps.ApplicationsConfig",
 ]
 
 MIDDLEWARE = [

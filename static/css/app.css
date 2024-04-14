@@ -9,24 +9,65 @@
     --bs-body-bg: #242B33;
     --bs-body-color: #EFFBFF;
 
+    --accent-color: #6EE2FF;
+
     /* Extended overrides */
     --bs-link-color:  #EFFBFF;
+}
+
+body {
+    font-size: 14px;
 }
 
 main#page {
     margin-top: 4em;
 }
+header#greetings {
+    margin-bottom: 2.5em;
+}
+h1 {
+    font-size: 4em;
+}
 
-h2 {
+h2 > a {
+    color: var(--bs-body-color) !important;
+    text-decoration: none;
     text-transform: uppercase;
-    font-size: 1.4em;
-    margin-top: 2em;
+    margin-bottom: 0.6em;
 }
 
 h3 {
-    color: #6EE2FF;
+    color: var(--accent-color);
     font-weight: normal;
     text-transform: uppercase;
     font-size: 1.2em;
     padding-bottom: 0.5em;
+}
+
+/* App stack */
+a.app_link {
+    padding: .3em;
+    margin-bottom: 1em;
+}
+a.app_link iconify-icon {
+    color: var(--bs-body-color);
+    font-size: 2.5em;
+}
+a.app_link h3 {
+    color: var(--bs-body-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+a.app_link span {
+    color: var(--accent-color);
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+
+div#bookmarks li {
+    list-style: none;
 }

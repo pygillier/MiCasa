@@ -7,6 +7,7 @@ env = environ.Env(
     DEBUG=(bool, False),
     DATABASE_URL=(str, "sqlite:////data/micasa.db"),
     TIMEZONE=(str, "Europe/Paris"),
+    APP_URL=(str, None),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,6 +27,9 @@ ALLOWED_HOSTS = ["*"]
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+if env("APP_URL") is not None:
+    CSRF_TRUSTED_ORIGINS = [env("APP_URL")]
 
 
 # Application definition

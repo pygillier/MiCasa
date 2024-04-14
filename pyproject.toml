@@ -13,6 +13,7 @@ django-htmx = "^1.17.3"
 django-debug-toolbar = "^4.3.0"
 django-bootstrap-icons = "^0.8.7"
 whitenoise = {extras = ["brotli"], version = "^6.6.0"}
+gunicorn = "^21.2.0"
 
 
 [tool.poetry.group.dev.dependencies]

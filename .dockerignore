@@ -1,0 +1,4 @@
+micasa.db
+staticfiles/
+.venv/
+.env

@@ -355,6 +355,23 @@ django = "*"
 requests = "*"
 
 [[package]]
+name = "django-constance"
+version = "3.1.0"
+description = "Django live settings with pluggable backends, including Redis."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "django-constance-3.1.0.tar.gz", hash = "sha256:2b96e51de63751ef63f8f92f74e0f6aea30fb6453f3a736c21e1f8b3f6cf0b4f"},
+    {file = "django_constance-3.1.0-py3-none-any.whl", hash = "sha256:6242486a346e396d765a9333d17f3101c8613cabc92e0b98dcb70c2a391bc53b"},
+]
+
+[package.dependencies]
+django-picklefield = "*"
+
+[package.extras]
+redis = ["redis"]
+
+[[package]]
 name = "django-debug-toolbar"
 version = "4.3.0"
 description = "A configurable set of panels that display various debug information about the current request/response."
@@ -399,6 +416,23 @@ files = [
 [package.dependencies]
 asgiref = ">=3.6"
 Django = ">=3.2"
+
+[[package]]
+name = "django-picklefield"
+version = "3.2"
+description = "Pickled object field for Django"
+optional = false
+python-versions = ">=3"
+files = [
+    {file = "django-picklefield-3.2.tar.gz", hash = "sha256:aa463f5d79d497dbe789f14b45180f00a51d0d670067d0729f352a3941cdfa4d"},
+    {file = "django_picklefield-3.2-py3-none-any.whl", hash = "sha256:e9a73539d110f69825d9320db18bcb82e5189ff48dbed41821c026a20497764c"},
+]
+
+[package.dependencies]
+Django = ">=3.2"
+
+[package.extras]
+tests = ["tox"]
 
 [[package]]
 name = "filelock"
@@ -728,6 +762,20 @@ docs = ["furo (>=2023.7.26)", "proselint (>=0.13)", "sphinx (>=7.1.2)", "sphinx-
 test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess (>=1)", "flaky (>=3.7)", "packaging (>=23.1)", "pytest (>=7.4)", "pytest-env (>=0.8.2)", "pytest-freezer (>=0.4.8)", "pytest-mock (>=3.11.1)", "pytest-randomly (>=3.12)", "pytest-timeout (>=2.1)", "setuptools (>=68)", "time-machine (>=2.10)"]
 
 [[package]]
+name = "weatherapi"
+version = "0.0.4"
+description = "weatherapi.com python access"
+optional = false
+python-versions = "*"
+files = [
+    {file = "weatherapi-0.0.4-py3-none-any.whl", hash = "sha256:07c4788757cb6f050df88884127fd29bf6f27fdd8ed0126c931aaa2e1e665048"},
+    {file = "weatherapi-0.0.4.tar.gz", hash = "sha256:a1809c70402b6d3dac49daf360b6bb7210beaa3eda1bfc226731c2b1b0171902"},
+]
+
+[package.dependencies]
+requests = ">=2.26.0"
+
+[[package]]
 name = "whitenoise"
 version = "6.6.0"
 description = "Radically simplified static file serving for WSGI applications"
@@ -747,4 +795,4 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "afe274c401a039b9953e7480ad81edaec1c4a14852fd032b14cf5eddbdd21e5a"
+content-hash = "eb6bc3ae0e98d27417f6a7eaceae2d807a2a3e21513ed0e06b48563e92c05498"

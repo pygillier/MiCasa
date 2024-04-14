@@ -8,7 +8,7 @@
     <header class="hstack" id="greetings">
         <h1>{% greeting %}</h1>
         <div class="ms-auto"></div>
-        <div>Weather</div>
+        <div hx-get="{% url "home:weather" %}" hx-trigger="revealed, every 3600s">Weather</div>
     </header>
     <section>
         <h2><a href="#">{% trans "applications.h2" %}</a></h2>

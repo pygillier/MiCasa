@@ -78,3 +78,13 @@ div#bookmarks li a {
     padding: .5em;
     font-size: 1em;
 }
+
+/* Weather */
+#weather iconify-icon {
+    font-size: 4em;
+    margin-right: .2em;
+    color: var(--accent-color);
+}
+#weather hr {
+    margin: 0.2em 0;
+}

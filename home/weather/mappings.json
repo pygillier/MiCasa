@@ -1,0 +1,338 @@
+[
+    {
+      "code": 1000,
+      "icon": {
+        "day": "day-sunny",
+        "night": "night-clear"
+      }
+    },
+    {
+      "code": 1003,
+      "icon": {
+        "day": "forecast-io-partly-cloudy-day",
+        "night": "forecast-io-partly-cloudy-night"
+      }
+    },
+    {
+      "code": 1006,
+      "icon": {
+        "day": "day-cloudy",
+        "night": "night-cloudy"
+      }
+    },
+    {
+      "code": 1009,
+      "icon": {
+        "day": "day-cloudy",
+        "night": "night-cloudy"
+      }
+    },
+    {
+      "code": 1030,
+      "icon": {
+        "day": "day-fog",
+        "night": "night-fog"
+      }
+    },
+    {
+      "code": 1063,
+      "icon": {
+        "day": "day-rain",
+        "night": "night-rain"
+      }
+    },
+    {
+      "code": 1066,
+      "icon": {
+        "day": "day-snow",
+        "night": "night-snow"
+      }
+    },
+    {
+      "code": 1069,
+      "icon": {
+        "day": "day-rain-mix",
+        "night": "night-rain-mix"
+      }
+    },
+    {
+      "code": 1072,
+      "icon": {
+        "day": "day-sleet",
+        "night": "night-sleet"
+      }
+    },
+    {
+      "code": 1087,
+      "icon": {
+        "day": "day-thunderstorm",
+        "night": "night-thunderstorm"
+      }
+    },
+    {
+      "code": 1114,
+      "icon": {
+        "day": "day-snow",
+        "night": "night-snow"
+      }
+    },
+    {
+      "code": 1117,
+      "icon": {
+        "day": "day-snow",
+        "night": "night-snow"
+      }
+    },
+    {
+      "code": 1135,
+      "icon": {
+        "day": "day-fog",
+        "night": "night-fog"
+      }
+    },
+    {
+      "code": 1147,
+      "icon": {
+        "day": "day-fog",
+        "night": "night-fog"
+      }
+    },
+    {
+      "code": 1150,
+      "icon": {
+        "day": "day-rain",
+        "night": "night-rain"
+      }
+    },
+    {
+      "code": 1153,
+      "icon": {
+        "day": "day-rain",
+        "night": "night-rain"
+      }
+    },
+    {
+      "code": 1168,
+      "icon": {
+        "day": "day-sleet",
+        "night": "night-sleet"
+      }
+    },
+    {
+      "code": 1171,
+      "icon": {
+        "day": "day-sleet",
+        "night": "night-sleet"
+      }
+    },
+    {
+      "code": 1180,
+      "icon": {
+        "day": "day-rain",
+        "night": "night-rain"
+      }
+    },
+    {
+      "code": 1183,
+      "icon": {
+        "day": "day-rain",
+        "night": "night-rain"
+      }
+    },
+    {
+      "code": 1186,
+      "icon": {
+        "day": "day-rain",
+        "night": "night-rain"
+      }
+    },
+    {
+      "code": 1189,
+      "icon": {
+        "day": "day-rain",
+        "night": "night-rain"
+      }
+    },
+    {
+      "code": 1192,
+      "icon": {
+        "day": "day-rain",
+        "night": "night-rain"
+      }
+    },
+    {
+      "code": 1195,
+      "icon": {
+        "day": "day-rain",
+        "night": "night-rain"
+      }
+    },
+    {
+      "code": 1198,
+      "icon": {
+        "day": "day-sleet",
+        "night": "night-sleet"
+      }
+    },
+    {
+      "code": 1201,
+      "icon": {
+        "day": "day-sleet",
+        "night": "night-sleet"
+      }
+    },
+    {
+      "code": 1204,
+      "icon": {
+        "day": "day-rain-mix",
+        "night": "night-rain-mix"
+      }
+    },
+    {
+      "code": 1207,
+      "icon": {
+        "day": "day-rain-mix",
+        "night": "night-rain-mix"
+      }
+    },
+    {
+      "code": 1210,
+      "icon": {
+        "day": "day-snow",
+        "night": "night-snow"
+      }
+    },
+    {
+      "code": 1213,
+      "icon": {
+        "day": "day-snow",
+        "night": "day-snow"
+      }
+    },
+    {
+      "code": 1216,
+      "icon": {
+        "day": "day-snow",
+        "night": "day-snow"
+      }
+    },
+    {
+      "code": 1219,
+      "icon": {
+        "day": "day-snow",
+        "night": "day-snow"
+      }
+    },
+    {
+      "code": 1222,
+      "icon": {
+        "day": "day-snow",
+        "night": "day-snow"
+      }
+    },
+    {
+      "code": 1225,
+      "icon": {
+        "day": "day-snow",
+        "night": "day-snow"
+      }
+    },
+    {
+      "code": 1237,
+      "icon": {
+        "day": "day-hail",
+        "night": "night-hail"
+      }
+    },
+    {
+      "code": 1240,
+      "icon": {
+        "day": "day-rain",
+        "night": "night-rain"
+      }
+    },
+    {
+      "code": 1243,
+      "icon": {
+        "day": "day-rain",
+        "night": "night-rain"
+      }
+    },
+    {
+      "code": 1246,
+      "icon": {
+        "day": "day-rain",
+        "night": "night-rain"
+      }
+    },
+    {
+      "code": 1249,
+      "icon": {
+        "day": "day-rain-mix",
+        "night": "night-rain-mix"
+      }
+    },
+    {
+      "code": 1252,
+      "icon": {
+        "day": "day-rain-mix",
+        "night": "night-rain-mix"
+      }
+    },
+    {
+      "code": 1255,
+      "icon": {
+        "day": "day-snow",
+        "night": "day-snow"
+      }
+    },
+    {
+      "code": 1258,
+      "icon": {
+        "day": "day-snow",
+        "night": "day-snow"
+      }
+    },
+    {
+      "code": 1261,
+      "icon": {
+        "day": "day-hail",
+        "night": "night-hail"
+      }
+    },
+    {
+      "code": 1264,
+      "icon": {
+        "day": "day-hail",
+        "night": "night-hail"
+      }
+    },
+    {
+      "code": 1273,
+      "icon": {
+        "day": "day-thunderstorm",
+        "night": "night-thunderstorm"
+      }
+    },
+    {
+      "code": 1276,
+      "icon": {
+        "day": "day-thunderstorm",
+        "night": "night-thunderstorm"
+      }
+    },
+    {
+      "code": 1279,
+      "icon": {
+        "day": "day-thunderstorm",
+        "night": "night-thunderstorm"
+      }
+    },
+    {
+      "code": 1282,
+      "icon": {
+        "day": "thunderstorm",
+        "night": "thunderstorm"
+      }
+    }
+  ]

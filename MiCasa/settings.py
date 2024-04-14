@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_htmx",
     "debug_toolbar",
+    "constance",
     "user.apps.UserConfig",
     "bookmarks.apps.BookmarksConfig",
     "home.apps.HomeConfig",
@@ -72,6 +73,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "home.context_processors.dynamic_settings",
             ],
         },
     },
@@ -142,3 +144,24 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Constance dynamic settings
+CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
+CONSTANCE_ADDITIONAL_FIELDS = {
+    "temperature": [
+        "django.forms.fields.ChoiceField",
+        {"widget": "django.forms.Select", "choices": (("celsius", "Celsius"), ("farenheit", "Farenheit"))},
+    ],
+    "extra": [
+        "django.forms.fields.ChoiceField",
+        {"widget": "django.forms.Select", "choices": (("cloud", "Cloud coverage"), ("humidity", "Humidity"))},
+    ],
+}
+CONSTANCE_CONFIG = {
+    "WEATHERAPI_KEY": ("", "API Key for weather API"),
+    "WEATHERAPI_LAT": (0.0, "Latitude", float),
+    "WEATHERAPI_LON": (0.0, "Latitude", float),
+    "WEATHERAPI_TEMP": ("celsius", "Temperature format", "temperature"),
+    "WEATHERAPI_COVERAGE": ("cloud", "Additional weather data", "extra"),
+    "PAGE_TITLE": ("MiCasa", "Page title", str),
+}

@@ -1,5 +1,35 @@
 from pathlib import Path
+from constance import config
+from weatherapi import WeatherPoint
 import json
+
+
+def get_weather():
+    weather = {}
+
+    try:
+        point = WeatherPoint(
+            lat=config.WEATHERAPI_LAT,
+            lon=config.WEATHERAPI_LON,
+        )
+        point.set_key(config.WEATHERAPI_KEY)
+        point.get_current_weather()
+
+        if config.WEATHERAPI_TEMP == "celsius":
+            weather["temp"] = f"{point.temp_c}°C"
+        else:
+            weather["temp"] = f"{point.temp_f}°F"
+
+        # Icon
+        moment = "day" if point.is_day else "night"
+        weather["icon"] = get_icon(point.condition_code, moment)
+
+        # Extra coverage
+        weather["extra"] = f"{getattr(point, config.WEATHERAPI_COVERAGE, 0)}%"
+    except:  # noqa
+        weather = {"icon": "na", "temp": 0, "extra": "Unknown"}
+    finally:
+        return weather
 
 
 def get_icon(code: int, moment: str) -> str:

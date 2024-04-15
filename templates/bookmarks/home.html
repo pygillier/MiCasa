@@ -1,6 +1,6 @@
 <div class="row" id="bookmarks">
     {% for category in categories %}
-    <article class="col-3">
+    <article class="col-sm-3">
         <h3>{{ category }}</h3>
         <ul>
             {% for bookmark in category.bookmark_set.all %}

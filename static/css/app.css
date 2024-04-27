@@ -8,25 +8,15 @@
 :root {
     --bs-body-bg: #242B33;
     --bs-body-color: #EFFBFF;
-
     --accent-color: #6EE2FF;
 
     /* Extended overrides */
     --bs-link-color:  #EFFBFF;
 }
-
-body {
-    font-size: 16px;
-}
-
-main#page {
-    margin-top: 4em;
-}
-header#greetings {
-    margin-bottom: 2.5em;
-}
-h1 {
-    font-size: 4em;
+html {
+    height: 100vh;
+    border: 1px solid red;
+    font-size: 14px;
 }
 
 h2 > a {
@@ -87,4 +77,11 @@ div#bookmarks li a {
 }
 #weather hr {
     margin: 0.2em 0;
+}
+
+/* FAB settings */
+a#fab-settings {
+    font-size: 2em;
+    color: var(--bs-body-color);
+    padding-left: .2em;
 }

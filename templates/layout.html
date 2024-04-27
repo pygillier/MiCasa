@@ -12,14 +12,15 @@
         <link href="{% static "css/halfmoon.css" %}" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="{% static "css/app.css" %}" />
         <script src="{% static 'js/htmx.min.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
         {% block head_extra %}{% endblock head_extra %}
         {% django_htmx_script %}
     </head>
     <body>
-        <main class="container" id="page">
+        <main class="container mt-5" id="page">
             {% block content %}{% endblock content %}
         </main>
-        <aside class="sticky-bottom">SETTINGS</aside>
+        <aside class="position-absolute bottom-0 start-0"><a href="#" id="fab-settings"><iconify-icon icon="mdi:settings" /></a></aside>
 
         <!-- Modal placeholder -->
         <div id="modal" class="modal fade">

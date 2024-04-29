@@ -42,11 +42,9 @@ class AboutView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
 
-        from MiCasa import __version__  # noqa
-
-        context["version"] = __version__
-
-        context["git_commit"] = os.getenv("GIT_COMMIT", "none")
+        context["version"] = os.getenv("VERSION", "develop")
+        context["commit_branch"] = os.getenv("COMMIT_BRANCH", "")
+        context["commit_sha"] = os.getenv("COMMIT_SHA", "")
 
         context["current"] = "about"
 

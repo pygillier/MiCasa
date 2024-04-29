@@ -1,5 +1,11 @@
 FROM python:3.12-slim-bookworm as python-base
+ARG BRANCH="main"
+ARG COMMIT=""
+ARG VERSION="develop"
 LABEL authors="Pierre-Yves Gillier <github@pygillier.me>"
+LABEL branch=${BRANCH}
+LABEL commit=${COMMIT}
+LABEL version=${VERSION}
 
 ENV PYTHONUNBUFFERED=1 \
     # prevents python creating .pyc files
@@ -51,6 +57,11 @@ FROM python-base as production
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 COPY . /app/
 WORKDIR /app
+
+# Image identifiers
+ENV COMMIT_SHA=${COMMIT}
+ENV COMMIT_BRANCH=${BRANCH}
+ENV VERSION=${VERSION}
 
 RUN apt-get update && apt-get install -y gettext libgettextpo-dev
 RUN chmod +x /app/entrypoint.sh

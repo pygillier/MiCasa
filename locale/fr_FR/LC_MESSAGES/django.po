@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-26 23:36+0200\n"
+"POT-Creation-Date: 2024-04-29 20:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,10 +49,72 @@ msgstr "Bonne nuit"
 msgid "greetings.hello"
 msgstr "Bonjour"
 
-#: templates/home/index.html:14
+#: templates/applications/home.html:14
+msgid "applications.none"
+msgstr "Aucune application définie."
+
+#: templates/bookmarks/home.html:13
+msgid "bookmarks.none"
+msgstr "Aucun marque-page défini."
+
+#: templates/home/index.html:11
 msgid "applications.h2"
 msgstr "Applications"
 
-#: templates/home/index.html:18
+#: templates/home/index.html:15
 msgid "bookmarks.h2"
-msgstr "Marque pages"
+msgstr "Marque-pages"
+
+#: templates/layout.html:24
+msgid "fab.settings"
+msgstr "Paramètres"
+
+#: templates/partials/nav.html:4
+msgid "settings.nav.general"
+msgstr "Général"
+
+#: templates/partials/nav.html:7
+msgid "settings.nav.language"
+msgstr "Langue"
+
+#: templates/partials/nav.html:10
+msgid "settings.nav.about"
+msgstr "A propos"
+
+#: templates/user/about.html:5
+msgid "settings.version.page.version"
+msgstr "Version"
+
+#: templates/user/about.html:7
+msgid "settings.version.page.git_commit"
+msgstr "Commit Git"
+
+#: templates/user/base.html:5
+msgid "settings.h1"
+msgstr "Paramètres"
+
+#: templates/user/base.html:6
+msgid "Back to home"
+msgstr "Retour"
+
+#: templates/user/index.html:4
+#, fuzzy
+#| msgid "greetings.evening"
+msgid "settings.general.nothing"
+msgstr "Rien à voir !"
+
+#: templates/user/language.html:10
+msgid "settings.language.form.option.default"
+msgstr "Choisissez une langue"
+
+#: templates/user/language.html:11
+msgid "settings.language.form.option.english"
+msgstr "Anglais"
+
+#: templates/user/language.html:12
+msgid "settings.language.form.option.french"
+msgstr "Français"
+
+#: templates/user/language.html:16
+msgid "settings.language.form.submit"
+msgstr "Changer de langue"

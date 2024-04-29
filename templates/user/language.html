@@ -1,0 +1,19 @@
+{% extends "user/base.html" %}
+{% load i18n %}
+{% block inner %}
+    {{ block.super }}
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ redirect_to }}" />
+        <div class="mb-3">
+            <select name="language" class="form-select">
+                <option selected disabled>{% trans "settings.language.form.option.default" %}</option>
+                <option value="en">{% trans "settings.language.form.option.english" %}</option>
+                <option value="fr">{% trans "settings.language.form.option.french" %}</option>
+            </select>
+        </div>
+        <div class="mb-3 pb-3 border-bottom">
+            <input type="submit" class="btn btn-success" value="{% trans "settings.language.form.submit" %}">
+        </div>
+    </form>
+{% endblock inner %}

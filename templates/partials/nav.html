@@ -1,0 +1,12 @@
+{% load i18n %}
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+        <a class="nav-link{% if current == "index" %} active{% endif %}" href="{% url "user:index" %}">{% trans "settings.nav.general" %}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link{% if current == "language" %} active{% endif %}" href="{% url "user:language" %}">{% trans "settings.nav.language" %}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link{% if current == "about" %} active{% endif %}" href="{% url "user:about" %}">{% trans "settings.nav.about" %}</a>
+    </li>
+</ul>

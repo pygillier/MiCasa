@@ -145,11 +145,11 @@ STORAGES = {
 LANGUAGE_CODE = "en-us"
 
 LANGUAGES = (
-    ('en-us', _('English')),
-    ('fr-fr', _('French')),
+    ("en-us", _("English")),
+    ("fr-fr", _("French")),
 )
 
-LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
+LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
 TIME_ZONE = env("TIMEZONE")
 

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% block content %}
+    <header class="hstack mb-3" id="greetings">
+        <h1 class="fs-1 fw-bolder">{% trans "settings.h1" %}</h1>
+        <aside class="back-to-home"><a href="{% url "home:index" %}">{% trans "Back to home" %}</a></aside>
+    </header>
+    <section class="container">
+        <div class="row">
+            <div class="col-2">
+                {% include "partials/nav.html" %}
+            </div>
+            <div class="col">
+                {% block inner %}{% endblock inner %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}

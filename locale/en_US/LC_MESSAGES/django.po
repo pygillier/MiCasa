@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-26 23:34+0200\n"
+"POT-Creation-Date: 2024-04-29 20:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: MiCasa/settings.py:147
+#: MiCasa/settings.py:148
 msgid "English"
 msgstr "English"
 
-#: MiCasa/settings.py:148
+#: MiCasa/settings.py:149
 msgid "French"
 msgstr "French"
 
@@ -49,10 +49,70 @@ msgstr "Good night"
 msgid "greetings.hello"
 msgstr "Hello"
 
-#: templates/home/index.html:14
+#: templates/applications/home.html:14
+msgid "applications.none"
+msgstr "No application defined."
+
+#: templates/bookmarks/home.html:13
+msgid "bookmarks.none"
+msgstr "No bookmark defined."
+
+#: templates/home/index.html:11
 msgid "applications.h2"
 msgstr "Applications"
 
-#: templates/home/index.html:18
+#: templates/home/index.html:15
 msgid "bookmarks.h2"
 msgstr "Bookmarks"
+
+#: templates/layout.html:24
+msgid "fab.settings"
+msgstr "Settings"
+
+#: templates/partials/nav.html:4
+msgid "settings.nav.general"
+msgstr "General"
+
+#: templates/partials/nav.html:7
+msgid "settings.nav.language"
+msgstr "Language"
+
+#: templates/partials/nav.html:10
+msgid "settings.nav.about"
+msgstr "About"
+
+#: templates/user/about.html:5
+msgid "settings.version.page.version"
+msgstr "Version"
+
+#: templates/user/about.html:7
+msgid "settings.version.page.git_commit"
+msgstr "Git commit"
+
+#: templates/user/base.html:5
+msgid "settings.h1"
+msgstr "Settings"
+
+#: templates/user/base.html:6
+msgid "Back to home"
+msgstr "Back to home"
+
+#: templates/user/index.html:4
+msgid "settings.general.nothing"
+msgstr "Nothing!"
+
+#: templates/user/language.html:10
+msgid "settings.language.form.option.default"
+msgstr "Choose a color"
+
+#: templates/user/language.html:11
+msgid "settings.language.form.option.english"
+msgstr "English"
+
+#: templates/user/language.html:12
+msgid "settings.language.form.option.french"
+msgstr "French"
+
+#: templates/user/language.html:16
+msgid "settings.language.form.submit"
+msgstr "Change language"

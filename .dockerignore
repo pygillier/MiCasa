@@ -2,3 +2,4 @@ micasa.db
 staticfiles/
 .venv/
 .env
+*.mo

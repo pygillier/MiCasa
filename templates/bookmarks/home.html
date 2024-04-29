@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="row" id="bookmarks">
     {% for category in categories %}
     <article class="col-sm-3">
@@ -8,5 +9,7 @@
             {% endfor %}
         </ul>
     </article>
+    {% empty %}
+        <p>{% trans "bookmarks.none" %}</p>
     {% endfor %}
 </div>

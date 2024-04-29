@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="row">
     {% for application in applications %}
         <a class="col-sm-3 app_link link-underline link-underline-opacity-0" href="{{ application.url }}" target="_blank">
@@ -9,5 +10,7 @@
                 </div>
             </div>
         </a>
+    {% empty %}
+        <p>{% trans "applications.none" %}</p>
     {% endfor %}
 </div>

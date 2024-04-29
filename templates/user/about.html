@@ -1,0 +1,10 @@
+{% extends "user/base.html" %}
+{% load i18n %}
+{% block inner %}
+    <dl>
+        <dt>{% trans "settings.version.page.version" %}</dt>
+        <dd>{{ version }}</dd>
+        <dt>{% trans "settings.version.page.git_commit" %}</dt>
+        <dd>{{ git_commit }}</dd>
+    </dl>
+{% endblock inner %}

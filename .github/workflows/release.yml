@@ -6,7 +6,9 @@ on:
 name: Create Release
 
 jobs:
-  build:
+  release:
+    # Only create release if image is correctly built
+    needs: docker
     name: Create Release
     runs-on: ubuntu-latest
     steps:

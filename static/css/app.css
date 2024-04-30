@@ -37,6 +37,7 @@ h3 {
 a.app_link {
     padding: .3em;
     margin-bottom: 1em;
+    font-size: 1.3em;
 }
 a.app_link iconify-icon {
     color: var(--bs-body-color);
@@ -57,25 +58,25 @@ a.app_link span {
     text-transform: uppercase;
 }
 
+/** Bookmarks **/
 div#bookmarks ul {
     padding-left: 0;
     list-style: none;
 }
-
+div#bookmarks li {
+    font-size: 1.2em;
+}
 div#bookmarks li a {
     color: var(--bs-body-color);
     padding: .5em;
-    font-size: 1em;
 }
 
 /* Weather */
-#weather iconify-icon {
-    font-size: 4em;
-    margin-right: .2em;
-    color: var(--accent-color);
+#weather {
+    font-size: 1.5em;
 }
-#weather hr {
-    margin: 0.2em 0;
+#weather iconify-icon {
+    color: var(--accent-color);
 }
 
 /* FAB settings */

@@ -1,9 +1,11 @@
 {% if weather_enabled %}
-    <aside class="hstack" id="weather">
-        <span><iconify-icon icon="wi:{{ icon }}"/></span>
+    <aside class="hstack fw-bolder" id="weather">
+        <span>
+            <iconify-icon  class="fs-1" icon="wi:{{ icon }}"></iconify-icon>
+        </span>
         <div class="vstack">
             <span>{{ temp }}</span>
-            <hr/>
+            <hr class="mt-1 mb-1"/>
             <span>{{ extra }}</span>
         </div>
     </aside>

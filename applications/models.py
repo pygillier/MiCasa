@@ -1,4 +1,5 @@
 from django.db import models
+from urllib.parse import urlparse
 
 
 class Application(models.Model):
@@ -17,7 +18,12 @@ class Application(models.Model):
 
     @property
     def subtitle(self):
-        return self.description if self.description else self.url
+        if self.description:
+            return self.description
+        else:
+            # Remove scheme from url
+            o = urlparse(self.url)
+            return o.hostname
 
     def clean(self):
         # Update default position

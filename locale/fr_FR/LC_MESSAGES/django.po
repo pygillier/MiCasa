@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-29 20:15+0200\n"
+"POT-Creation-Date: 2024-05-01 10:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr "Bonjour"
 msgid "applications.none"
 msgstr "Aucune application définie."
 
-#: templates/bookmarks/home.html:13
+#: templates/bookmarks/home.html:15
 msgid "bookmarks.none"
 msgstr "Aucun marque-page défini."
 
@@ -81,6 +81,10 @@ msgstr "Langue"
 msgid "settings.nav.about"
 msgstr "A propos"
 
+#: templates/partials/nav.html:15
+msgid "settings.nav.django_admin"
+msgstr "Admin Django"
+
 #: templates/user/about.html:5
 msgid "settings.version.page.version"
 msgstr "Version"
@@ -98,8 +102,6 @@ msgid "Back to home"
 msgstr "Retour"
 
 #: templates/user/index.html:4
-#, fuzzy
-#| msgid "greetings.evening"
 msgid "settings.general.nothing"
 msgstr "Rien à voir !"
 

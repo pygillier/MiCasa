@@ -19,6 +19,9 @@
     </li>
     {% if request.user.is_authenticated %}
     <li class="nav-item"><hr/></li>
+        <li class="nav-item">
+        <a class="nav-link{% if current == "backup" %} active{% endif %}" href="{% url "user:backup" %}">{% trans "settings.nav.backup" %}</a>
+    </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url "admin:index" %}">{% trans "settings.nav.django_admin" %}</a>
     </li>

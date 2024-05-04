@@ -1,0 +1,13 @@
+{% extends "user/base.html" %}
+{% load i18n %}
+{% block inner %}
+    {% blocktrans %}
+        <p>You can export all applications and bookmarks/categories in a JSON-formatted for backup purposes.</p>
+        <p>Soon, an import feature will allow you to move data between instances.</p>
+    {% endblocktrans %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary d-block w-75" value="Begin export">
+        </form>
+
+{% endblock inner %}

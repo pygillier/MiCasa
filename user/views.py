@@ -1,9 +1,12 @@
+from django.shortcuts import render
 from django.views.generic import FormView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .forms import SetupForm
+from applications.models import Application
+from bookmarks.models import BookmarkCategory
 from django.http import HttpResponseNotFound
 from django.contrib.auth import get_user_model
 import os
@@ -23,20 +26,16 @@ class SetupView(FormView):
 
 class IndexView(LoginRequiredMixin, TemplateView):
     template_name = "user/index.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        context["current"] = "index"
-        return context
+    extra_context = {"current": "index"}
 
 
 class LanguageSelectorView(TemplateView):
     template_name = "user/language.html"
+    extra_context = {"current": "language"}
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context["redirect_to"] = self.request.path
-        context["current"] = "language"
         return context
 
 
@@ -53,14 +52,23 @@ class UserLoginView(SuccessMessageMixin, LoginView):
 
 class AboutView(TemplateView):
     template_name = "user/about.html"
+    extra_context = {
+        "current": "about",
+        "versiob": os.getenv("VERSION", "develop"),
+        "commit_branch": os.getenv("COMMIT_BRANCH", ""),
+        "commit_sha": os.getenv("COMMIT_SHA", ""),
+    }
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data()
 
-        context["version"] = os.getenv("VERSION", "develop")
-        context["commit_branch"] = os.getenv("COMMIT_BRANCH", "")
-        context["commit_sha"] = os.getenv("COMMIT_SHA", "")
+class BackupView(LoginRequiredMixin, TemplateView):
+    template_name = "user/backup.html"
+    extra_context = {"current": "backup"}
 
-        context["current"] = "about"
+    def post(self, request, *args, **kwargs):
+        apps = Application.objects.all()
+        cats = BookmarkCategory.objects.all()
 
-        return context
+        response = render(request, "user/backup.json", {"applications": apps, "categories": cats})
+
+        response["Content-Disposition"] = 'attachment; filename="backup.json"'
+        return response

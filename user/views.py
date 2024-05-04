@@ -1,6 +1,7 @@
 from django.views.generic import FormView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .forms import SetupForm
 from django.http import HttpResponseNotFound
@@ -39,11 +40,15 @@ class LanguageSelectorView(TemplateView):
         return context
 
 
-class UserLoginView(LoginView):
+class UserLoginView(SuccessMessageMixin, LoginView):
     template_name = "user/login.html"
 
-    def get_success_url(self):
-        return reverse_lazy("user:index")
+    success_url = reverse_lazy("user:index")
+    success_message = "user.login.success %(name)s"
+
+    def get_success_message(self, cleaned_data):
+        user = self.request.user
+        return self.success_message % dict(cleaned_data, name=user.first_name if user.first_name else user.username)
 
 
 class AboutView(TemplateView):

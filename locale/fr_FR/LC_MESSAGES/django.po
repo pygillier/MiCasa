@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-01 10:43+0200\n"
+"POT-Creation-Date: 2024-05-04 16:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: MiCasa/settings.py:148
+#: MiCasa/settings.py:152
 msgid "English"
 msgstr "Anglais"
 
-#: MiCasa/settings.py:149
+#: MiCasa/settings.py:153
 msgid "French"
 msgstr "Français"
 
@@ -85,6 +85,10 @@ msgstr "A propos"
 msgid "settings.nav.django_admin"
 msgstr "Admin Django"
 
+#: templates/partials/nav.html:20
+msgid "settings.nav.logout"
+msgstr "Déconnexion"
+
 #: templates/user/about.html:5
 msgid "settings.version.page.version"
 msgstr "Version"
@@ -120,3 +124,7 @@ msgstr "Français"
 #: templates/user/language.html:16
 msgid "settings.language.form.submit"
 msgstr "Changer de langue"
+
+#: templates/user/login.html:17
+msgid "signin.form.submit_button"
+msgstr "Connexion"

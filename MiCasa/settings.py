@@ -131,6 +131,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "user.User"
 
+# Default auth routes
+LOGIN_URL = "user:login"
+LOGOUT_REDIRECT_URL = "home:index"
+
 # Storage
 STORAGES = {
     # ...

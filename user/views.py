@@ -1,4 +1,7 @@
 from django.views.generic import FormView, TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
 from .forms import SetupForm
 from django.http import HttpResponseNotFound
 from django.contrib.auth import get_user_model
@@ -17,7 +20,7 @@ class SetupView(FormView):
             return super().dispatch(request, *args, **kwargs)
 
 
-class IndexView(TemplateView):
+class IndexView(LoginRequiredMixin, TemplateView):
     template_name = "user/index.html"
 
     def get_context_data(self, **kwargs):
@@ -34,6 +37,13 @@ class LanguageSelectorView(TemplateView):
         context["redirect_to"] = self.request.path
         context["current"] = "language"
         return context
+
+
+class UserLoginView(LoginView):
+    template_name = "user/login.html"
+
+    def get_success_url(self):
+        return reverse_lazy("user:index")
 
 
 class AboutView(TemplateView):

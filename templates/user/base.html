@@ -11,7 +11,10 @@
                 {% include "partials/nav.html" %}
             </div>
             <div class="col">
-                {% block inner %}{% endblock inner %}
+                {% include "partials/messages.html" %}
+                <div class="container">
+                    {% block inner %}{% endblock inner %}
+                </div>
             </div>
         </div>
     </section>

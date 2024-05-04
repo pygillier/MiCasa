@@ -3,6 +3,14 @@
     <li class="nav-item">
         <a class="nav-link{% if current == "index" %} active{% endif %}" href="{% url "user:index" %}">{% trans "settings.nav.general" %}</a>
     </li>
+    {% if request.user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link{% if current == "applications" %} active{% endif %}" href="{% url "applications:manage" %}">{% trans "settings.nav.applications" %}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link{% if current == "bookmarks" %} active{% endif %}" href="#">{% trans "settings.nav.bookmarks" %}</a>
+    </li>
+    {% endif %}
     <li class="nav-item">
         <a class="nav-link{% if current == "language" %} active{% endif %}" href="{% url "user:language" %}">{% trans "settings.nav.language" %}</a>
     </li>

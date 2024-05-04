@@ -1,5 +1,12 @@
+from django.urls import reverse_lazy
 from django.views.generic import ListView
+from django.views.generic.base import ContextMixin
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from django.utils.translation import gettext as _
 from .models import Application
+from .forms import ApplicationForm
 
 
 class HomeView(ListView):
@@ -14,3 +21,58 @@ class HomeView(ListView):
             return qs.filter(is_public=True)
         else:
             return qs
+
+
+class ManageAppMixin(ContextMixin):
+    extra_context = {"current": "applications"}
+
+
+class ManageListView(LoginRequiredMixin, ManageAppMixin, ListView):
+    model = Application
+    template_name = "applications/manage.html"
+    context_object_name = "applications"
+
+
+class CreateApplicationView(LoginRequiredMixin, SuccessMessageMixin, ManageAppMixin, CreateView):
+    model = Application
+    template_name = "applications/create.html"
+    form_class = ApplicationForm
+
+    success_url = reverse_lazy("applications:manage")
+    success_message = _("app.manage.success.created %(name)s")
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            name=self.object.name,
+        )
+
+
+class UpdateApplicationView(LoginRequiredMixin, SuccessMessageMixin, ManageAppMixin, UpdateView):
+    model = Application
+    template_name = "applications/update.html"
+    form_class = ApplicationForm
+
+    success_url = reverse_lazy("applications:manage")
+    success_message = _("app.manage.success.updated %(name)s")
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            name=self.object.name,
+        )
+
+
+class DeleteApplicationView(LoginRequiredMixin, SuccessMessageMixin, ManageAppMixin, DeleteView):
+    template_name = "applications/delete.html"
+    context_object_name = "application"
+    model = Application
+
+    success_url = reverse_lazy("applications:manage")
+    success_message = _("app.manage.success.deleted %(name)s")
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            name=self.object.name,
+        )

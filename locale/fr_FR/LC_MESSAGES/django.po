@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-04 16:27+0200\n"
+"POT-Creation-Date: 2024-05-04 21:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,17 +17,76 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: MiCasa/settings.py:152
+#: MiCasa/settings.py:154
 msgid "English"
 msgstr "Anglais"
 
-#: MiCasa/settings.py:153
+#: MiCasa/settings.py:155
 msgid "French"
 msgstr "Français"
 
+#: applications/forms.py:11
+msgid "apps.manage.form.name.placeholder"
+msgstr "Mon application"
+
+#: applications/forms.py:20
+msgid "apps.manage.form.is_public.public"
+msgstr "Public"
+
+#: applications/forms.py:20
+msgid "apps.manage.form.is_public.private"
+msgstr "Privé"
+
+#: applications/forms.py:24
+msgid "apps.manager.form.name.label"
+msgstr "Nom"
+
+#: applications/forms.py:25
+msgid "apps.manager.form.description.label"
+msgstr "Description"
+
+#: applications/forms.py:26
+msgid "apps.manager.form.url.label"
+msgstr "URL"
+
+#: applications/forms.py:27
+msgid "apps.manager.form.icon.label"
+msgstr "Icône"
+
+#: applications/forms.py:28
+msgid "apps.manager.form.is_public.label"
+msgstr "Visibilité"
+
+#: applications/forms.py:31
+msgid "apps.manager.form.icon.help_text"
+msgstr "Une icône du set MDI sur icons.design"
+
+#: applications/forms.py:32
+msgid "apps.manager.form.description.help_text"
+msgstr "L'URL sera affichée en sous-texte si la description est vide"
+
+#: applications/forms.py:33
+msgid "apps.manager.form.is_public.help_text"
+msgstr "Afficher cette application aux anonymes"
+
+#: applications/views.py:42
+#, python-format
+msgid "app.manage.success.created %(name)s"
+msgstr "L'application %(name)s a été créée"
+
+#: applications/views.py:57
+#, python-format
+msgid "app.manage.success.updated %(name)s"
+msgstr "L'application %(name)s a été mise à jour"
+
+#: applications/views.py:72
+#, python-format
+msgid "app.manage.success.deleted %(name)s"
+msgstr "L'application %(name)s a été supprimée"
+
 #: bookmarks/models.py:49
 msgid "A bookmark can't be public if the category is private."
-msgstr "Un marque page ne peut être public si sa catégorie est privée."
+msgstr "Un marque-page ne peut être public si sa catégorie est privée."
 
 #: home/templatetags/greeting.py:12
 msgid "greetings.evening"
@@ -49,9 +108,37 @@ msgstr "Bonne nuit"
 msgid "greetings.hello"
 msgstr "Bonjour"
 
+#: templates/applications/create.html:10
+msgid "apps.manage.forms.submit.new"
+msgstr "Créer"
+
 #: templates/applications/home.html:14
 msgid "applications.none"
 msgstr "Aucune application définie."
+
+#: templates/applications/manage.html:8
+msgid "apps.manage.table.header.name"
+msgstr "Nom"
+
+#: templates/applications/manage.html:9
+msgid "apps.manage.table.header.url"
+msgstr "URL"
+
+#: templates/applications/manage.html:10
+msgid "apps.manage.table.header.visibility"
+msgstr "Visibilité"
+
+#: templates/applications/manage.html:11
+msgid "apps.manage.table.header.actions"
+msgstr "Actions"
+
+#: templates/applications/manage.html:17
+msgid "apps.manage.new_button"
+msgstr "Nouvelle application"
+
+#: templates/applications/update.html:10
+msgid "apps.manage.forms.update.new"
+msgstr "Mettre à jour"
 
 #: templates/bookmarks/home.html:15
 msgid "bookmarks.none"
@@ -73,19 +160,27 @@ msgstr "Paramètres"
 msgid "settings.nav.general"
 msgstr "Général"
 
-#: templates/partials/nav.html:7
+#: templates/partials/nav.html:8
+msgid "settings.nav.applications"
+msgstr "Applications"
+
+#: templates/partials/nav.html:11
+msgid "settings.nav.bookmarks"
+msgstr "Marque-pages"
+
+#: templates/partials/nav.html:15
 msgid "settings.nav.language"
 msgstr "Langue"
 
-#: templates/partials/nav.html:10
+#: templates/partials/nav.html:18
 msgid "settings.nav.about"
 msgstr "A propos"
 
-#: templates/partials/nav.html:15
+#: templates/partials/nav.html:23
 msgid "settings.nav.django_admin"
 msgstr "Admin Django"
 
-#: templates/partials/nav.html:20
+#: templates/partials/nav.html:28
 msgid "settings.nav.logout"
 msgstr "Déconnexion"
 

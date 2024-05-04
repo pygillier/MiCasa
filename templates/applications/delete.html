@@ -1,0 +1,13 @@
+{% extends "user/base.html" %}
+{% load i18n %}
+{% block inner %}
+    <div class="row justify-content-center">
+        <div class="col-10 mt-5">
+            <p>Are you sure you want to delete the application {{ application.name }}?</p>
+            <form method="post">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger d-block w-75" value="Yes, delete the application!">
+            </form>
+        </div>
+    </div>
+{% endblock inner %}

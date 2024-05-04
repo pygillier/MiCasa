@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# MiCasa en_US po file.
+# Copyright (C) 2024 Pierre-Yves Gillier
+# This file is distributed under the same license as the MiCasa package.
+# Pierre-Yves Gillier <github@pygillier.me>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-04 16:27+0200\n"
+"POT-Creation-Date: 2024-05-04 21:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,13 +17,71 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: MiCasa/settings.py:152
+#: MiCasa/settings.py:154
 msgid "English"
 msgstr "English"
 
-#: MiCasa/settings.py:153
+#: MiCasa/settings.py:155
 msgid "French"
 msgstr "French"
+
+#: applications/forms.py:11
+msgid "apps.manage.form.name.placeholder"
+msgstr "My application"
+
+#: applications/forms.py:20
+msgid "apps.manage.form.is_public.public"
+msgstr "Public"
+
+#: applications/forms.py:20
+msgid "apps.manage.form.is_public.private"
+msgstr "Private"
+
+#: applications/forms.py:24
+msgid "apps.manager.form.name.label"
+msgstr "Name"
+
+#: applications/forms.py:25
+msgid "apps.manager.form.description.label"
+msgstr "Description"
+
+#: applications/forms.py:26
+msgid "apps.manager.form.url.label"
+msgstr "URL"
+
+#: applications/forms.py:27
+msgid "apps.manager.form.icon.label"
+msgstr "App Icon"
+
+#: applications/forms.py:28
+msgid "apps.manager.form.is_public.label"
+msgstr "Visibility"
+
+#: applications/forms.py:31
+msgid "apps.manager.form.icon.help_text"
+msgstr "MDI icon from icon.design"
+
+#: applications/forms.py:32
+msgid "apps.manager.form.description.help_text"
+msgstr "If not description is set, the URL will be displayed instead"
+
+#: applications/forms.py:33
+msgid "apps.manager.form.is_public.help_text"
+msgstr "Whether to show the application to anonymous people"
+
+#: applications/views.py:42
+msgid "app.manage.success.created %(name)s"
+msgstr "Application %(name)s has been created"
+
+#: applications/views.py:57
+#, python-format
+msgid "app.manage.success.updated %(name)s"
+msgstr "Application %(name)s has been updated"
+
+#: applications/views.py:72
+#, python-format
+msgid "app.manage.success.deleted %(name)s"
+msgstr "Application %(name)s has been deleted"
 
 #: bookmarks/models.py:49
 msgid "A bookmark can't be public if the category is private."
@@ -49,9 +107,37 @@ msgstr "Good night"
 msgid "greetings.hello"
 msgstr "Hello"
 
+#: templates/applications/create.html:10
+msgid "apps.manage.forms.submit.new"
+msgstr "Create"
+
 #: templates/applications/home.html:14
 msgid "applications.none"
 msgstr "No application defined."
+
+#: templates/applications/manage.html:8
+msgid "apps.manage.table.header.name"
+msgstr "Name"
+
+#: templates/applications/manage.html:9
+msgid "apps.manage.table.header.url"
+msgstr "URL"
+
+#: templates/applications/manage.html:10
+msgid "apps.manage.table.header.visibility"
+msgstr "Visibility"
+
+#: templates/applications/manage.html:11
+msgid "apps.manage.table.header.actions"
+msgstr "Actions"
+
+#: templates/applications/manage.html:17
+msgid "apps.manage.new_button"
+msgstr "New application"
+
+#: templates/applications/update.html:10
+msgid "apps.manage.forms.update.new"
+msgstr "Update"
 
 #: templates/bookmarks/home.html:15
 msgid "bookmarks.none"
@@ -73,19 +159,27 @@ msgstr "Settings"
 msgid "settings.nav.general"
 msgstr "General"
 
-#: templates/partials/nav.html:7
+#: templates/partials/nav.html:8
+msgid "settings.nav.applications"
+msgstr "Applications"
+
+#: templates/partials/nav.html:11
+msgid "settings.nav.bookmarks"
+msgstr "Bookmarks"
+
+#: templates/partials/nav.html:15
 msgid "settings.nav.language"
 msgstr "Language"
 
-#: templates/partials/nav.html:10
+#: templates/partials/nav.html:18
 msgid "settings.nav.about"
 msgstr "About"
 
-#: templates/partials/nav.html:15
+#: templates/partials/nav.html:23
 msgid "settings.nav.django_admin"
 msgstr "Django Admin"
 
-#: templates/partials/nav.html:20
+#: templates/partials/nav.html:28
 msgid "settings.nav.logout"
 msgstr "Log out"
 

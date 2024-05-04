@@ -1,0 +1,35 @@
+{% extends "user/base.html" %}
+{% load i18n %}
+{% block inner %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th><iconify-icon icon="mdi:sort-numeric-ascending"></iconify-icon></th>
+                <th>{% trans "apps.manage.table.header.name" %}</th>
+                <th>{% trans "apps.manage.table.header.url" %}</th>
+                <th>{% trans "apps.manage.table.header.visibility" %}</th>
+                <th>{% trans "apps.manage.table.header.actions" %}</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    <a href="{% url "applications:create" %}" class="btn btn-primary">{% trans "apps.manage.new_button" %}</a>
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+        {% for application in applications %}
+            <tr>
+                <td><iconify-icon icon="mdi:{{ application.icon }}"></iconify-icon></td>
+                <td>{{ application.name }}</td>
+                <td><a class="link-light" href="{{ application.url }}" target="_blank">{{ application.url }}</a></td>
+                <td><iconify-icon icon="mdi:visibility-{% if not application.is_public %}off-{% endif %}outline"></iconify-icon> {{ application.is_public }}</td>
+                <td>
+                    <a href="{% url "applications:update" pk=application.id %}" class="link-secondary">Edit</a> |
+                    <a href="{% url "applications:delete" pk=application.id %}" class="link-secondary">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock inner %}

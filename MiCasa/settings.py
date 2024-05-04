@@ -2,6 +2,8 @@ from pathlib import Path
 import environ
 import os
 from django.utils.translation import gettext_lazy as _
+from django.contrib.messages import constants as messages
+
 
 env = environ.Env(
     # set casting, default value
@@ -161,6 +163,15 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+# Messages : mapping level to halfmoon classes for alerts
+MESSAGE_TAGS = {
+    messages.DEBUG: "alert-secondary",
+    messages.SUCCESS: "alert-success",
+    messages.WARNING: "alert-warning",
+    messages.ERROR: "alert-danger",
+    messages.INFO: "alert-info",
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     "django_htmx",
     "debug_toolbar",
     "dynamic_preferences",
-    "constance",
     "user.apps.UserConfig",
     "bookmarks.apps.BookmarksConfig",
     "home.apps.HomeConfig",

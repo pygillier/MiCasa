@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_htmx",
     "debug_toolbar",
+    "dynamic_preferences",
     "constance",
     "user.apps.UserConfig",
     "bookmarks.apps.BookmarksConfig",
@@ -81,7 +82,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "home.context_processors.dynamic_settings",
+                "dynamic_preferences.processors.global_preferences",
             ],
         },
     },
@@ -160,6 +161,7 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 TIME_ZONE = env("TIMEZONE")
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
 
@@ -188,6 +190,9 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# Dynamic preferences package
+DYNAMIC_PREFERENCES = {"ENABLE_CACHE": not env("DEBUG"), "REGISTRY_MODULE": "preferences"}
+
 # Constance dynamic settings
 CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
 CONSTANCE_ADDITIONAL_FIELDS = {
@@ -207,4 +212,5 @@ CONSTANCE_CONFIG = {
     "WEATHERAPI_TEMP": ("celsius", "Temperature format", "temperature"),
     "WEATHERAPI_COVERAGE": ("cloud", "Additional weather data", "extra"),
     "PAGE_TITLE": ("MiCasa", "Page title", str),
+    "DATE_FORMAT": ("l, j F Y", "Date format on homepage", str),
 }

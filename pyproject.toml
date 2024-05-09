@@ -16,6 +16,7 @@ whitenoise = {extras = ["brotli"], version = "^6.6.0"}
 gunicorn = "^21.2.0"
 weatherapi = "^0.0.4"
 django-constance = "^3.1.0"
+django-dynamic-preferences = "^1.16.0"
 
 
 [tool.poetry.group.dev.dependencies]

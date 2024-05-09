@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% load current_time greeting i18n %}
 {% block content %}
-    <h6>{% current_time "%A, %d %B %Y" %}</h6>
+    <h6>{% current_time %}</h6>
     <header class="hstack mb-3" id="greetings">
         <h1 class="fs-1 fw-bolder">{% greeting %}</h1>
         <div class="ms-auto"></div>

@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from .forms import SetupForm
 from applications.models import Application
 from bookmarks.models import BookmarkCategory
@@ -72,3 +73,21 @@ class BackupView(LoginRequiredMixin, TemplateView):
 
         response["Content-Disposition"] = 'attachment; filename="backup.json"'
         return response
+
+
+class WeatherView(LoginRequiredMixin, SuccessMessageMixin, FormView):
+    template_name = "user/weather.html"
+    extra_context = {"current": "weather"}
+
+    success_url = reverse_lazy("user:weather")
+    success_message = _("user.manage.weather.success")
+
+    def get_form_class(self):
+        from dynamic_preferences.forms import global_preference_form_builder
+
+        return global_preference_form_builder(section="weather")
+
+    def form_valid(self, form):
+        form.update_preferences()
+
+        return super().form_valid(form)

@@ -1,7 +1,10 @@
 from pathlib import Path
-from constance import config
+from dynamic_preferences.registries import global_preferences_registry
 from weatherapi import WeatherPoint
 import json
+
+
+registry = global_preferences_registry.manager()
 
 
 def get_weather():
@@ -9,13 +12,13 @@ def get_weather():
 
     try:
         point = WeatherPoint(
-            lat=config.WEATHERAPI_LAT,
-            lon=config.WEATHERAPI_LON,
+            lat=registry["weather__latitude"],
+            lon=registry["weather__longitude"],
         )
-        point.set_key(config.WEATHERAPI_KEY)
+        point.set_key(registry["weather__apikey"])
         point.get_current_weather()
 
-        if config.WEATHERAPI_TEMP == "celsius":
+        if registry["weather__temperature"] == "celsius":
             weather["temp"] = f"{point.temp_c}°C"
         else:
             weather["temp"] = f"{point.temp_f}°F"
@@ -25,7 +28,7 @@ def get_weather():
         weather["icon"] = get_icon(point.condition_code, moment)
 
         # Extra coverage
-        weather["extra"] = f"{getattr(point, config.WEATHERAPI_COVERAGE, 0)}%"
+        weather["extra"] = f"{getattr(point, registry['weather__coverage'], 0)}%"
     except:  # noqa
         weather = {"icon": "na", "temp": 0, "extra": "Unknown"}
     finally:

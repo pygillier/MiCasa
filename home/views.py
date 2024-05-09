@@ -1,6 +1,9 @@
 from django.views.generic import TemplateView
-from constance import config
+from dynamic_preferences.registries import global_preferences_registry
 from .weather import get_weather
+
+
+registry = global_preferences_registry.manager()
 
 
 class IndexView(TemplateView):
@@ -13,7 +16,7 @@ class WeatherView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
 
-        if config.WEATHERAPI_KEY != "":
+        if registry["weather__apikey"].strip() != "":
             enabled = True
             weather = get_weather()
             context.update(weather)

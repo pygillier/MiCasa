@@ -1,0 +1,23 @@
+{% extends "user/base.html" %}
+{% load i18n %}
+{% block inner %}
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <form method="post" action="{% url "user:weather" %}" class="container">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="row mb-4">
+                    <label for="{{ field.id_for_label }}" class="col-sm-3 col-form-label mb-1 mb-sm-0">{{ field.label }}</label>
+                    <div class="col-sm-9">
+                        {{ field }}
+                        <div id="{{ field.id_for_label }}-help-block" class="form-text">{{ field.help_text }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="d-flex align-items-center">
+                    <button type="submit" class="btn btn-primary ms-auto">{% trans "apps.manage.forms.submit.update" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock inner %}

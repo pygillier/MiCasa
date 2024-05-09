@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-04 21:21+0200\n"
+"POT-Creation-Date: 2024-05-09 23:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: MiCasa/settings.py:154
+#: MiCasa/settings.py:155
 msgid "English"
 msgstr "Anglais"
 
-#: MiCasa/settings.py:155
+#: MiCasa/settings.py:156
 msgid "French"
 msgstr "Français"
 
@@ -168,19 +168,27 @@ msgstr "Applications"
 msgid "settings.nav.bookmarks"
 msgstr "Marque-pages"
 
-#: templates/partials/nav.html:15
+#: templates/partials/nav.html:14
+msgid "settings.nav.weather"
+msgstr "Météo"
+
+#: templates/partials/nav.html:18
 msgid "settings.nav.language"
 msgstr "Langue"
 
-#: templates/partials/nav.html:18
+#: templates/partials/nav.html:21
 msgid "settings.nav.about"
 msgstr "A propos"
 
-#: templates/partials/nav.html:23
+#: templates/partials/nav.html:26
+msgid "settings.nav.backup"
+msgstr "Sauveagarde"
+
+#: templates/partials/nav.html:29
 msgid "settings.nav.django_admin"
 msgstr "Admin Django"
 
-#: templates/partials/nav.html:28
+#: templates/partials/nav.html:34
 msgid "settings.nav.logout"
 msgstr "Déconnexion"
 
@@ -191,6 +199,22 @@ msgstr "Version"
 #: templates/user/about.html:7
 msgid "settings.version.page.git_commit"
 msgstr "Commit Git"
+
+#: templates/user/backup.html:4
+msgid ""
+"\n"
+"        <p>You can export all applications and bookmarks/categories in a "
+"JSON-formatted for backup purposes.</p>\n"
+"        <p>Soon, an import feature will allow you to move data between "
+"instances.</p>\n"
+"    "
+msgstr ""
+"\n"
+"        <p>Vous pouvez exporter l'entièreté des applications, marque-pages "
+"et catégories dans un fichier au format JSON.</p>\n"
+"        <p>Une fonction d'import entre instances sera bientôt disponible.</"
+"p>\n"
+"    "
 
 #: templates/user/base.html:5
 msgid "settings.h1"
@@ -204,22 +228,86 @@ msgstr "Retour"
 msgid "settings.general.nothing"
 msgstr "Rien à voir !"
 
-#: templates/user/language.html:10
+#: templates/user/language.html:11
 msgid "settings.language.form.option.default"
 msgstr "Choisissez une langue"
 
-#: templates/user/language.html:11
+#: templates/user/language.html:12
 msgid "settings.language.form.option.english"
 msgstr "Anglais"
 
-#: templates/user/language.html:12
+#: templates/user/language.html:13
 msgid "settings.language.form.option.french"
 msgstr "Français"
 
-#: templates/user/language.html:16
+#: templates/user/language.html:17
 msgid "settings.language.form.submit"
 msgstr "Changer de langue"
 
-#: templates/user/login.html:17
+#: templates/user/login.html:15
 msgid "signin.form.submit_button"
 msgstr "Connexion"
+
+#: templates/user/weather.html:18
+msgid "apps.manage.forms.submit.update"
+msgstr "Mettre à jour"
+
+#: user/preferences.py:15
+msgid "pref.weather.apikey.verbose_name"
+msgstr "Clef API"
+
+#: user/preferences.py:18
+msgid "pref.weather.apikey.help"
+msgstr "La clef API de WeatherAPI"
+
+#: user/preferences.py:25
+msgid "pref.weather.latitude.verbose_name"
+msgstr "Latitude"
+
+#: user/preferences.py:28
+msgid "pref.weather.latitude.help"
+msgstr "La latitude de l'endroit choisi"
+
+#: user/preferences.py:39
+msgid "pref.weather.longitude.verbose_name"
+msgstr "Longitude"
+
+#: user/preferences.py:42
+msgid "pref.weather.longitude.help"
+msgstr "La longitude de l'endroit choisi"
+
+#: user/preferences.py:53
+msgid "pref.weather.temperature.verbose_name"
+msgstr "Température"
+
+#: user/preferences.py:54
+msgid "weather.temp.celsius"
+msgstr "Celsius"
+
+#: user/preferences.py:54
+msgid "weather.temp.farenheit"
+msgstr "Farenheit"
+
+#: user/preferences.py:57
+msgid "pref.weather.temperature.help"
+msgstr "Le format de température"
+
+#: user/preferences.py:64
+msgid "pref.weather.coverage.verbose_name"
+msgstr "Couverture"
+
+#: user/preferences.py:65
+msgid "weather.coverage.cloud"
+msgstr "Nuages"
+
+#: user/preferences.py:65
+msgid "weather.coverage.humidity"
+msgstr "Humidité"
+
+#: user/preferences.py:68
+msgid "pref.weather.coverage.help"
+msgstr "Données complémentaires à afficher"
+
+#: user/views.py:82
+msgid "user.manage.weather.success"
+msgstr "La configuration liée à la météo a été mise à jour !"

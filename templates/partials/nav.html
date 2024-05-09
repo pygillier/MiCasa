@@ -10,6 +10,9 @@
     <li class="nav-item">
         <a class="nav-link{% if current == "bookmarks" %} active{% endif %}" href="#">{% trans "settings.nav.bookmarks" %}</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link{% if current == "weather" %} active{% endif %}" href="{% url "user:weather" %}">{% trans "settings.nav.weather" %}</a>
+    </li>
     {% endif %}
     <li class="nav-item">
         <a class="nav-link{% if current == "language" %} active{% endif %}" href="{% url "user:language" %}">{% trans "settings.nav.language" %}</a>

@@ -205,7 +205,7 @@ msgstr "Nothing!"
 
 #: templates/user/language.html:10
 msgid "settings.language.form.option.default"
-msgstr "Choose a color"
+msgstr "Choose a language"
 
 #: templates/user/language.html:11
 msgid "settings.language.form.option.english"

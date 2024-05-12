@@ -1,0 +1,15 @@
+{% extends "user/base.html" %}
+{% load i18n %}
+{% block inner %}
+    <div class="row justify-content-center">
+        <div class="col-10 mt-5">
+            <p>
+                {% blocktrans with name=application.name %}bm.category.delete.message {{ name }}{% endblocktrans %}
+            </p>
+            <form method="post">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger d-block w-75" value="{% trans "bm.category.button.delete" %}">
+            </form>
+        </div>
+    </div>
+{% endblock inner %}

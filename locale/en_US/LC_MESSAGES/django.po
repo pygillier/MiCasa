@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-09 23:28+0200\n"
+"POT-Creation-Date: 2024-05-12 22:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: MiCasa/settings.py:155
+#: MiCasa/settings.py:154
 msgid "English"
 msgstr "English"
 
-#: MiCasa/settings.py:156
+#: MiCasa/settings.py:155
 msgid "French"
 msgstr "French"
 
@@ -84,9 +84,48 @@ msgstr "Application %(name)s has been updated"
 msgid "app.manage.success.deleted %(name)s"
 msgstr "Application %(name)s has been deleted"
 
+#: bookmarks/forms.py:11
+msgid "bm.category.form.name.placeholder"
+msgstr "Category"
+
+#: bookmarks/forms.py:18
+msgid "bm.category.form.is_public.public.text"
+msgstr "Public"
+
+#: bookmarks/forms.py:19
+msgid "bm.category.form.is_public.private.text"
+msgstr "Private"
+
+#: bookmarks/forms.py:24
+msgid "bm.category.form.name.label"
+msgstr "Name"
+
+#: bookmarks/forms.py:25
+msgid "bm.category.form.is_public.label"
+msgstr "Visibility"
+
+#: bookmarks/forms.py:28
+msgid "bm.category.form.is_public.help_text"
+msgstr "Whether to show the category to anonymous people"
+
 #: bookmarks/models.py:49
 msgid "A bookmark can't be public if the category is private."
 msgstr "A bookmark can't be public if the category is private."
+
+#: bookmarks/views.py:64
+#, python-format
+msgid "bm.category.create.success %(name)s"
+msgstr "Category %(name)s has been created!"
+
+#: bookmarks/views.py:79
+#, python-format
+msgid "bm.category.update.success %(name)s"
+msgstr "Category %(name)s has been updated!"
+
+#: bookmarks/views.py:94
+#, python-format
+msgid "bm.category.delete.success %(name)s"
+msgstr "Category %(name)s has been deleted"
 
 #: home/templatetags/greeting.py:12
 msgid "greetings.evening"
@@ -140,9 +179,52 @@ msgstr "New application"
 msgid "apps.manage.forms.update.new"
 msgstr "Update"
 
+#: templates/bookmarks/category/create.html:10
+msgid "bm.category.button.create"
+msgstr "Create category"
+
+#: templates/bookmarks/category/delete.html:7
+#, python-format
+msgid "bm.category.delete.message %(name)s"
+msgstr ""
+"Are you sure you want to delete the category %(name)s? All related bookmarks "
+"will also be deleted."
+
+#: templates/bookmarks/category/delete.html:11
+msgid "bm.category.button.delete"
+msgstr "Delete category"
+
+#: templates/bookmarks/category/update.html:10
+msgid "bm.category.button.update"
+msgstr "Update category"
+
 #: templates/bookmarks/home.html:15
 msgid "bookmarks.none"
 msgstr "No bookmark defined."
+
+#: templates/bookmarks/manage.html:4
+msgid "bm.manage.category.section.title"
+msgstr "Categories"
+
+#: templates/bookmarks/manage.html:9
+msgid "bm.manage.category.table.header.name"
+msgstr "Name"
+
+#: templates/bookmarks/manage.html:10
+msgid "bm.manage.category.table.header.visibility"
+msgstr "Visibility"
+
+#: templates/bookmarks/manage.html:11
+msgid "bm.manage.category.table.header.actions"
+msgstr "Actions"
+
+#: templates/bookmarks/manage.html:17
+msgid "bm.manage.category.button.new"
+msgstr "New category"
+
+#: templates/bookmarks/manage.html:34
+msgid "bm.manage.bookmarks.section.title"
+msgstr "Bookmarks"
 
 #: templates/home/index.html:11
 msgid "applications.h2"
@@ -308,6 +390,9 @@ msgstr "Humidity"
 msgid "pref.weather.coverage.help"
 msgstr "Extra coverage"
 
-#: user/views.py:82
+#: user/views.py:83
 msgid "user.manage.weather.success"
 msgstr "Weather configuration has been updated!"
+
+#~ msgid "bm.category.create.success"
+#~ msgstr "Category has been created!"

@@ -1,0 +1,38 @@
+{% extends "user/base.html" %}
+{% load i18n %}
+{% block head_extra %}
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+{% endblock head_extra %}
+{% block inner %}
+    <h4>{% trans "bm.manage.category.section.title" %}</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><iconify-icon icon="mdi:sort-numeric-ascending"></iconify-icon></th>
+                <th>{% trans "bm.manage.category.table.header.name" %}</th>
+                <th>{% trans "bm.manage.category.table.header.visibility" %}</th>
+                <th>{% trans "bm.manage.category.table.header.actions" %}</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    <a href="{% url "bookmarks:category_create" %}" class="btn btn-primary">{% trans "bm.manage.category.button.new" %}</a>
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+        {% for category in categories %}
+            <tr id="categories-sortable" class="sortable">
+                <td class="drag-handle"><iconify-icon icon="mdi:drag-vertical"></iconify-icon></td>
+                <td>{{ category.name }}</td>
+                <td><iconify-icon icon="mdi:visibility-{% if not category.is_public %}off-{% endif %}outline"></iconify-icon> {{ category.is_public }}</td>
+                <td>
+                    <a href="{% url "bookmarks:category_update" pk=category.id %}" class="link-secondary">Edit</a> |
+                    <a href="{% url "bookmarks:category_delete" pk=category.id %}" class="link-secondary">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h4>{% trans "bm.manage.bookmarks.section.title" %}</h4>
+{% endblock inner %}

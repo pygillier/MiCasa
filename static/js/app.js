@@ -6,3 +6,10 @@ htmx.on("htmx:afterSwap", (e) => {
     modal.show()
   }
 })
+
+/** Sortables **/
+const lists = document.getElementById("sortable")
+
+for(const el in lists) {
+  let sortable = Sortable.create(lists[el]);
+}

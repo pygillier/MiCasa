@@ -8,7 +8,7 @@
         <a class="nav-link{% if current == "applications" %} active{% endif %}" href="{% url "applications:manage" %}">{% trans "settings.nav.applications" %}</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link{% if current == "bookmarks" %} active{% endif %}" href="#">{% trans "settings.nav.bookmarks" %}</a>
+        <a class="nav-link{% if current == "bookmarks" %} active{% endif %}" href="{% url "bookmarks:manage" %}">{% trans "settings.nav.bookmarks" %}</a>
     </li>
     <li class="nav-item">
         <a class="nav-link{% if current == "weather" %} active{% endif %}" href="{% url "user:weather" %}">{% trans "settings.nav.weather" %}</a>

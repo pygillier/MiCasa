@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-09 23:28+0200\n"
+"POT-Creation-Date: 2024-05-12 22:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: MiCasa/settings.py:155
+#: MiCasa/settings.py:154
 msgid "English"
 msgstr "Anglais"
 
-#: MiCasa/settings.py:156
+#: MiCasa/settings.py:155
 msgid "French"
 msgstr "Français"
 
@@ -84,9 +84,49 @@ msgstr "L'application %(name)s a été mise à jour"
 msgid "app.manage.success.deleted %(name)s"
 msgstr "L'application %(name)s a été supprimée"
 
+#: bookmarks/forms.py:11
+msgid "bm.category.form.name.placeholder"
+msgstr "Catégorie"
+
+#: bookmarks/forms.py:18
+msgid "bm.category.form.is_public.public.text"
+msgstr "Public"
+
+#: bookmarks/forms.py:19
+msgid "bm.category.form.is_public.private.text"
+msgstr "Privé"
+
+#: bookmarks/forms.py:24
+msgid "bm.category.form.name.label"
+msgstr "Nom"
+
+#: bookmarks/forms.py:25
+msgid "bm.category.form.is_public.label"
+msgstr "Visibilité"
+
+#: bookmarks/forms.py:28
+msgid "bm.category.form.is_public.help_text"
+msgstr "Afficher cette catégorie aux anonymes"
+
 #: bookmarks/models.py:49
 msgid "A bookmark can't be public if the category is private."
 msgstr "Un marque-page ne peut être public si sa catégorie est privée."
+
+#: bookmarks/views.py:64
+#, fuzzy, python-format
+#| msgid "bm.category.update.success %(name)s"
+msgid "bm.category.create.success %(name)s"
+msgstr "La catégorie %(name)s a été mise à jour"
+
+#: bookmarks/views.py:79
+#, python-format
+msgid "bm.category.update.success %(name)s"
+msgstr "La catégorie %(name)s a été mise à jour"
+
+#: bookmarks/views.py:94
+#, python-format
+msgid "bm.category.delete.success %(name)s"
+msgstr "La catégorie %(name)s a été supprimée"
 
 #: home/templatetags/greeting.py:12
 msgid "greetings.evening"
@@ -140,9 +180,52 @@ msgstr "Nouvelle application"
 msgid "apps.manage.forms.update.new"
 msgstr "Mettre à jour"
 
+#: templates/bookmarks/category/create.html:10
+msgid "bm.category.button.create"
+msgstr "Créer la catégorie"
+
+#: templates/bookmarks/category/delete.html:7
+#, python-format
+msgid "bm.category.delete.message %(name)s"
+msgstr ""
+"Êtes-vous certain de vouloir supprimer la catégorie %(name)s ? Les marque-"
+"pages associés seront AUSSI supprimés."
+
+#: templates/bookmarks/category/delete.html:11
+msgid "bm.category.button.delete"
+msgstr "Supprimer la catégorie"
+
+#: templates/bookmarks/category/update.html:10
+msgid "bm.category.button.update"
+msgstr "Mettre la catégorie à jour"
+
 #: templates/bookmarks/home.html:15
 msgid "bookmarks.none"
 msgstr "Aucun marque-page défini."
+
+#: templates/bookmarks/manage.html:4
+msgid "bm.manage.category.section.title"
+msgstr "Catégories"
+
+#: templates/bookmarks/manage.html:9
+msgid "bm.manage.category.table.header.name"
+msgstr "Nom"
+
+#: templates/bookmarks/manage.html:10
+msgid "bm.manage.category.table.header.visibility"
+msgstr "Visibilité"
+
+#: templates/bookmarks/manage.html:11
+msgid "bm.manage.category.table.header.actions"
+msgstr "Actions"
+
+#: templates/bookmarks/manage.html:17
+msgid "bm.manage.category.button.new"
+msgstr "Nouvelle catégorie"
+
+#: templates/bookmarks/manage.html:34
+msgid "bm.manage.bookmarks.section.title"
+msgstr "Marque-pages"
 
 #: templates/home/index.html:11
 msgid "applications.h2"
@@ -308,6 +391,9 @@ msgstr "Humidité"
 msgid "pref.weather.coverage.help"
 msgstr "Données complémentaires à afficher"
 
-#: user/views.py:82
+#: user/views.py:83
 msgid "user.manage.weather.success"
 msgstr "La configuration liée à la météo a été mise à jour !"
+
+#~ msgid "bm.category.create.success"
+#~ msgstr "La catégorie a été créée !"

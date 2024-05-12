@@ -85,3 +85,13 @@ a#fab-settings {
     color: var(--bs-body-color);
     padding-left: .2em;
 }
+
+/** Drag & drop */
+td.drag-handle {
+    width: 1em;
+}
+td.drag-handle iconify-icon {
+    font-size: 1.8em;
+    vertical-align: middle;
+    cursor: grab;
+}

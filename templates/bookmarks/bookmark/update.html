@@ -1,0 +1,16 @@
+{% extends "user/base.html" %}
+{% load i18n %}
+{% block inner %}
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <form method="post" class="container">
+                {% csrf_token %}
+                {% include "applications/_form.html" with form=form %}
+                <div class="d-flex align-items-center">
+                    <button type="submit" class="btn btn-primary ms-auto">{% trans "bm.bookmark.button.update" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock inner %}

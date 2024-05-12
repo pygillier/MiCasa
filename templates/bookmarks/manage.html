@@ -35,4 +35,37 @@
         </tbody>
     </table>
     <h4>{% trans "bm.manage.bookmarks.section.title" %}</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><iconify-icon icon="mdi:sort-numeric-ascending"></iconify-icon></th>
+                <th>{% trans "bm.manage.bookmark.table.header.name" %}</th>
+                <th>{% trans "bm.manage.bookmark.table.header.url" %}</th>
+                <th>{% trans "bm.manage.bookmark.table.header.category" %}</th>
+                <th>{% trans "bm.manage.bookmark.table.header.visibility" %}</th>
+                <th>{% trans "bm.manage.bookmark.table.header.actions" %}</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    <a href="{% url "bookmarks:bookmark_create" %}" class="btn btn-primary">{% trans "bm.manage.bookmark.button.new" %}</a>
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+        {% for bookmark in bookmarks %}
+            <tr id="categories-sortable" class="sortable">
+                <td class="drag-handle"><iconify-icon icon="mdi:drag-vertical"></iconify-icon></td>
+                <td>{{ bookmark.name }}</td>
+                <td><a href="{{ bookmark.url }}" target="_blank">{{ bookmark.url }}</a></td>
+                <td>{{ bookmark.category.name }}</td>
+                <td><iconify-icon icon="mdi:visibility-{% if not category.is_public %}off-{% endif %}outline"></iconify-icon> {{ bookmark.is_public }}</td>
+                <td>
+                    <a href="{% url "bookmarks:bookmark_update" pk=bookmark.id %}" class="link-secondary">Edit</a> |
+                    <a href="{% url "bookmarks:bookmark_delete" pk=bookmark.id %}" class="link-secondary">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock inner %}

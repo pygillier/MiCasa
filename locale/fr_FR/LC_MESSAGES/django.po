@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-12 22:13+0200\n"
+"POT-Creation-Date: 2024-05-12 23:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,45 +88,95 @@ msgstr "L'application %(name)s a été supprimée"
 msgid "bm.category.form.name.placeholder"
 msgstr "Catégorie"
 
-#: bookmarks/forms.py:18
+#: bookmarks/forms.py:15
 msgid "bm.category.form.is_public.public.text"
 msgstr "Public"
 
-#: bookmarks/forms.py:19
+#: bookmarks/forms.py:16
 msgid "bm.category.form.is_public.private.text"
 msgstr "Privé"
 
-#: bookmarks/forms.py:24
+#: bookmarks/forms.py:21
 msgid "bm.category.form.name.label"
 msgstr "Nom"
 
-#: bookmarks/forms.py:25
+#: bookmarks/forms.py:22
 msgid "bm.category.form.is_public.label"
 msgstr "Visibilité"
 
-#: bookmarks/forms.py:28
+#: bookmarks/forms.py:25
 msgid "bm.category.form.is_public.help_text"
 msgstr "Afficher cette catégorie aux anonymes"
+
+#: bookmarks/forms.py:34
+msgid "bm.bookmark.form.name.placeholder"
+msgstr "Nom"
+
+#: bookmarks/forms.py:35
+msgid "bm.bookmark.form.url.placeholder"
+msgstr "URL"
+
+#: bookmarks/forms.py:42
+msgid "bm.bookmark.form.is_public.public.text"
+msgstr "Public"
+
+#: bookmarks/forms.py:43
+msgid "bm.bookmark.form.is_public.private.text"
+msgstr "Privé"
+
+#: bookmarks/forms.py:48
+msgid "bm.bookmark.form.name.label"
+msgstr "Nom"
+
+#: bookmarks/forms.py:49
+msgid "bm.bookmark.form.url.label"
+msgstr "URL"
+
+#: bookmarks/forms.py:50
+msgid "bm.bookmark.form.category.label"
+msgstr "Catégorie"
+
+#: bookmarks/forms.py:51
+msgid "bm.bookmark.form.is_public.label"
+msgstr "Visibilité"
+
+#: bookmarks/forms.py:54
+msgid "bm.bookmark.form.is_public.help_text"
+msgstr "Afficher ce marque-page aux anonymes"
 
 #: bookmarks/models.py:49
 msgid "A bookmark can't be public if the category is private."
 msgstr "Un marque-page ne peut être public si sa catégorie est privée."
 
-#: bookmarks/views.py:64
-#, fuzzy, python-format
-#| msgid "bm.category.update.success %(name)s"
+#: bookmarks/views.py:65
+#, python-format
 msgid "bm.category.create.success %(name)s"
-msgstr "La catégorie %(name)s a été mise à jour"
+msgstr "La catégorie %(name)s a été créée"
 
-#: bookmarks/views.py:79
+#: bookmarks/views.py:80
 #, python-format
 msgid "bm.category.update.success %(name)s"
 msgstr "La catégorie %(name)s a été mise à jour"
 
-#: bookmarks/views.py:94
+#: bookmarks/views.py:95
 #, python-format
 msgid "bm.category.delete.success %(name)s"
 msgstr "La catégorie %(name)s a été supprimée"
+
+#: bookmarks/views.py:111
+#, python-format
+msgid "bm.bookmark.create.success %(name)s"
+msgstr "Le marque-page %(name)s a été créé"
+
+#: bookmarks/views.py:126
+#, python-format
+msgid "bm.bookmark.update.success %(name)s"
+msgstr "Le marque-page %(name)s a été mis à jour"
+
+#: bookmarks/views.py:141
+#, python-format
+msgid "bm.bookmark.delete.success %(name)s"
+msgstr "Le marque-page %(name)s a été supprimé"
 
 #: home/templatetags/greeting.py:12
 msgid "greetings.evening"
@@ -180,6 +230,24 @@ msgstr "Nouvelle application"
 msgid "apps.manage.forms.update.new"
 msgstr "Mettre à jour"
 
+#: templates/bookmarks/bookmark/create.html:10
+msgid "bm.bookmark.button.create"
+msgstr "Créer le marque-page"
+
+#: templates/bookmarks/bookmark/delete.html:7
+#, python-format
+msgid "bm.bookmark.delete.message %(name)s"
+msgstr ""
+"Êtes-vous certain de vouloir supprimer le marque-page %(name)s ?"
+
+#: templates/bookmarks/bookmark/delete.html:11
+msgid "bm.bookmark.button.delete"
+msgstr "Supprimer le marque-page"
+
+#: templates/bookmarks/bookmark/update.html:10
+msgid "bm.bookmark.button.update"
+msgstr "Mettre  le marque-page à jour"
+
 #: templates/bookmarks/category/create.html:10
 msgid "bm.category.button.create"
 msgstr "Créer la catégorie"
@@ -203,29 +271,53 @@ msgstr "Mettre la catégorie à jour"
 msgid "bookmarks.none"
 msgstr "Aucun marque-page défini."
 
-#: templates/bookmarks/manage.html:4
+#: templates/bookmarks/manage.html:7
 msgid "bm.manage.category.section.title"
 msgstr "Catégories"
 
-#: templates/bookmarks/manage.html:9
+#: templates/bookmarks/manage.html:12
 msgid "bm.manage.category.table.header.name"
 msgstr "Nom"
 
-#: templates/bookmarks/manage.html:10
+#: templates/bookmarks/manage.html:13
 msgid "bm.manage.category.table.header.visibility"
 msgstr "Visibilité"
 
-#: templates/bookmarks/manage.html:11
+#: templates/bookmarks/manage.html:14
 msgid "bm.manage.category.table.header.actions"
 msgstr "Actions"
 
-#: templates/bookmarks/manage.html:17
+#: templates/bookmarks/manage.html:20
 msgid "bm.manage.category.button.new"
 msgstr "Nouvelle catégorie"
 
-#: templates/bookmarks/manage.html:34
+#: templates/bookmarks/manage.html:37
 msgid "bm.manage.bookmarks.section.title"
 msgstr "Marque-pages"
+
+#: templates/bookmarks/manage.html:42
+msgid "bm.manage.bookmark.table.header.name"
+msgstr "Nom"
+
+#: templates/bookmarks/manage.html:43
+msgid "bm.manage.bookmark.table.header.url"
+msgstr "URL"
+
+#: templates/bookmarks/manage.html:44
+msgid "bm.manage.bookmark.table.header.category"
+msgstr "Catégorie"
+
+#: templates/bookmarks/manage.html:45
+msgid "bm.manage.bookmark.table.header.visibility"
+msgstr "Visibilité"
+
+#: templates/bookmarks/manage.html:46
+msgid "bm.manage.bookmark.table.header.actions"
+msgstr "Actions"
+
+#: templates/bookmarks/manage.html:52
+msgid "bm.manage.bookmark.button.new"
+msgstr "Nouveau marque-page"
 
 #: templates/home/index.html:11
 msgid "applications.h2"

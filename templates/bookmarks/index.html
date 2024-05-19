@@ -1,15 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-    <section id="home-bookmarks">
-        <h2>All Bookmarks</h2>
-        <aside class="back-to-home"><a href="{% url "home:index" %}">Back to home</a></aside>
-        {% if request.user.is_authenticated %}
-            <div class="btn-group" role="group" aria-label="Link example">
-                <a hx-get="{% url "bookmarks:category_add" %}" hx-target="#dialog" class="btn btn-primary">Add a category</a>
-                <a href="#" class="btn btn-primary">Add a bookmark</a>
-                <a href="#" class="btn btn-primary">Manage categories</a>
-            </div>
-        {% endif %}
+    <section id="home-applications">
+        {% include "partials/_section_header.html" with title="bookmarks.title" %}
         <div hx-get="{% url "bookmarks:home" %}" hx-trigger="revealed">Loading...</div>
     </section>
 {% endblock content %}

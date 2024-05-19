@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-19 23:02+0200\n"
+"POT-Creation-Date: 2024-05-19 23:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -223,14 +223,6 @@ msgstr "Create"
 msgid "applications.none"
 msgstr "No application defined."
 
-#: templates/applications/index.html:5 templates/home/index.html:11
-msgid "applications.title"
-msgstr "Applications"
-
-#: templates/applications/index.html:6
-msgid "backhome.link.title"
-msgstr "Back to home"
-
 #: templates/applications/manage.html:8
 msgid "apps.manage.table.header.name"
 msgstr "Name"
@@ -351,13 +343,21 @@ msgstr "Actions"
 msgid "bm.manage.bookmark.button.new"
 msgstr "New bookmark"
 
+#: templates/home/index.html:11
+msgid "applications.title"
+msgstr "Applications"
+
 #: templates/home/index.html:15
-msgid "bookmarks.h2"
+msgid "bookmarks.title"
 msgstr "Bookmarks"
 
 #: templates/layout.html:24
 msgid "fab.settings"
 msgstr "Settings"
+
+#: templates/partials/_section_header.html:4
+msgid "backhome.link.title"
+msgstr "Back to home"
 
 #: templates/partials/nav.html:4
 msgid "settings.nav.general"
@@ -418,14 +418,6 @@ msgstr ""
 "        <p>Soon, an import feature will allow you to move data between "
 "instances.</p>\n"
 "    "
-
-#: templates/user/base.html:5
-msgid "settings.h1"
-msgstr "Settings"
-
-#: templates/user/base.html:6
-msgid "Back to home"
-msgstr "Back to home"
 
 #: templates/user/index.html:4
 msgid "settings.general.nothing"
@@ -514,3 +506,6 @@ msgstr "Extra coverage"
 #: user/views.py:83
 msgid "user.manage.weather.success"
 msgstr "Weather configuration has been updated!"
+
+msgid "settings.title"
+msgstr "Settings"

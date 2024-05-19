@@ -12,7 +12,7 @@
         <div hx-get="{% url "applications:home" %}" hx-trigger="revealed">Loading...</div>
     </section>
     <section id="home-bookmarks">
-        <h2><a href="{% url "bookmarks:index" %}">{% trans "bookmarks.h2" %}</a></h2>
+        <h2><a href="{% url "bookmarks:index" %}">{% trans "bookmarks.title" %}</a></h2>
         <div hx-get="{% url "bookmarks:home" %}" hx-trigger="revealed">Loading...</div>
     </section>
 {% endblock content %}

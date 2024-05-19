@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-19 23:02+0200\n"
+"POT-Creation-Date: 2024-05-19 23:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -224,14 +224,6 @@ msgstr "Créer"
 msgid "applications.none"
 msgstr "Aucune application définie."
 
-#: templates/applications/index.html:5 templates/home/index.html:11
-msgid "applications.title"
-msgstr "Applications"
-
-#: templates/applications/index.html:6
-msgid "backhome.link.title"
-msgstr "Retour à l'accueil"
-
 #: templates/applications/manage.html:8
 msgid "apps.manage.table.header.name"
 msgstr "Nom"
@@ -352,13 +344,21 @@ msgstr "Actions"
 msgid "bm.manage.bookmark.button.new"
 msgstr "Nouveau marque-page"
 
+#: templates/home/index.html:11
+msgid "applications.title"
+msgstr "Applications"
+
 #: templates/home/index.html:15
-msgid "bookmarks.h2"
+msgid "bookmarks.title"
 msgstr "Marque-pages"
 
 #: templates/layout.html:24
 msgid "fab.settings"
 msgstr "Paramètres"
+
+#: templates/partials/_section_header.html:4
+msgid "backhome.link.title"
+msgstr "Retour à l'accueil"
 
 #: templates/partials/nav.html:4
 msgid "settings.nav.general"
@@ -419,14 +419,6 @@ msgstr ""
 "        <p>Une fonction d'import entre instances sera bientôt disponible.</"
 "p>\n"
 "    "
-
-#: templates/user/base.html:5
-msgid "settings.h1"
-msgstr "Paramètres"
-
-#: templates/user/base.html:6
-msgid "Back to home"
-msgstr "Retour"
 
 #: templates/user/index.html:4
 msgid "settings.general.nothing"
@@ -516,8 +508,5 @@ msgstr "Données complémentaires à afficher"
 msgid "user.manage.weather.success"
 msgstr "La configuration liée à la météo a été mise à jour !"
 
-#~ msgid "applications.h2"
-#~ msgstr "Applications"
-
-#~ msgid "bm.category.create.success"
-#~ msgstr "La catégorie a été créée !"
+msgid "settings.title"
+msgstr "Paramètres"

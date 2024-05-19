@@ -7,6 +7,7 @@ class Application(models.Model):
     url = models.URLField(unique=True, null=False)
     description = models.CharField(max_length=250, blank=True)
     is_public = models.BooleanField(default=False)
+    is_pinned = models.BooleanField(default=False)
     icon = models.CharField(max_length=50, null=True, blank=True)
     position = models.IntegerField(unique=True, null=False, default=0)
 

@@ -8,7 +8,7 @@
         <div hx-get="{% url "home:weather" %}" hx-trigger="revealed, every 3600s">Weather</div>
     </header>
     <section>
-        <h2><a href="#">{% trans "applications.h2" %}</a></h2>
+        <h2><a href="{% url "applications:index" %}">{% trans "applications.title" %}</a></h2>
         <div hx-get="{% url "applications:home" %}" hx-trigger="revealed">Loading...</div>
     </section>
     <section id="home-bookmarks">

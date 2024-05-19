@@ -9,6 +9,12 @@ from .models import Application
 from .forms import ApplicationForm
 
 
+class IndexView(ListView):
+    model = Application
+    template_name = "applications/index.html"
+    context_object_name = "applications"
+
+
 class HomeView(ListView):
     model = Application
     template_name = "applications/home.html"
@@ -16,6 +22,10 @@ class HomeView(ListView):
 
     def get_queryset(self):
         qs = super().get_queryset()
+
+        if self.request.GET.get("pinned", default="true") == "true":
+            print("Got pinned")
+            qs = qs.filter(is_pinned=True)
 
         if self.request.user.is_anonymous:
             return qs.filter(is_public=True)

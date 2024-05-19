@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-12 23:03+0200\n"
+"POT-Creation-Date: 2024-05-19 23:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,57 +29,75 @@ msgstr "Français"
 msgid "apps.manage.form.name.placeholder"
 msgstr "Mon application"
 
-#: applications/forms.py:20
+#: applications/forms.py:23
 msgid "apps.manage.form.is_public.public"
 msgstr "Public"
 
-#: applications/forms.py:20
+#: applications/forms.py:23
 msgid "apps.manage.form.is_public.private"
 msgstr "Privé"
 
-#: applications/forms.py:24
+#: applications/forms.py:27
+msgid "apps.manage.form.is_pinned.yes"
+msgstr "Oui"
+
+#: applications/forms.py:27
+msgid "apps.manage.form.is_pinned.no"
+msgstr "Non"
+
+#: applications/forms.py:31
 msgid "apps.manager.form.name.label"
 msgstr "Nom"
 
-#: applications/forms.py:25
+#: applications/forms.py:32
 msgid "apps.manager.form.description.label"
 msgstr "Description"
 
-#: applications/forms.py:26
+#: applications/forms.py:33
 msgid "apps.manager.form.url.label"
 msgstr "URL"
 
-#: applications/forms.py:27
+#: applications/forms.py:34
 msgid "apps.manager.form.icon.label"
 msgstr "Icône"
 
-#: applications/forms.py:28
+#: applications/forms.py:35
 msgid "apps.manager.form.is_public.label"
 msgstr "Visibilité"
 
-#: applications/forms.py:31
-msgid "apps.manager.form.icon.help_text"
+#: applications/forms.py:36
+msgid "apps.manager.form.is_pinned.label"
+msgstr "Epingle"
+
+#: applications/forms.py:39
+#, fuzzy, python-format
+#| msgid "apps.manager.form.icon.help_text"
+msgid "apps.manager.form.icon.help_text %(url)s"
 msgstr "Une icône du set MDI sur icons.design"
 
-#: applications/forms.py:32
+#: applications/forms.py:40
 msgid "apps.manager.form.description.help_text"
 msgstr "L'URL sera affichée en sous-texte si la description est vide"
 
-#: applications/forms.py:33
+#: applications/forms.py:41
 msgid "apps.manager.form.is_public.help_text"
 msgstr "Afficher cette application aux anonymes"
 
-#: applications/views.py:42
+#: applications/forms.py:42
+msgid "apps.manager.form.is_pinned.help_text"
+msgstr "Epingler cette application sur la page d'accueil"
+
+#: applications/views.py:52
 #, python-format
 msgid "app.manage.success.created %(name)s"
 msgstr "L'application %(name)s a été créée"
 
-#: applications/views.py:57
+#: applications/views.py:67
 #, python-format
 msgid "app.manage.success.updated %(name)s"
 msgstr "L'application %(name)s a été mise à jour"
 
-#: applications/views.py:72
+#: applications/views.py:82
 #, python-format
 msgid "app.manage.success.deleted %(name)s"
 msgstr "L'application %(name)s a été supprimée"
@@ -206,6 +224,14 @@ msgstr "Créer"
 msgid "applications.none"
 msgstr "Aucune application définie."
 
+#: templates/applications/index.html:5 templates/home/index.html:11
+msgid "applications.title"
+msgstr "Applications"
+
+#: templates/applications/index.html:6
+msgid "backhome.link.title"
+msgstr "Retour à l'accueil"
+
 #: templates/applications/manage.html:8
 msgid "apps.manage.table.header.name"
 msgstr "Nom"
@@ -219,12 +245,20 @@ msgid "apps.manage.table.header.visibility"
 msgstr "Visibilité"
 
 #: templates/applications/manage.html:11
+msgid "apps.manage.table.header.pinned"
+msgstr "Epinglé"
+
+#: templates/applications/manage.html:12
 msgid "apps.manage.table.header.actions"
 msgstr "Actions"
 
-#: templates/applications/manage.html:17
+#: templates/applications/manage.html:18
 msgid "apps.manage.new_button"
 msgstr "Nouvelle application"
+
+#: templates/applications/manage.html:28 templates/applications/manage.html:29
+msgid "yes,no"
+msgstr "Oui,Non"
 
 #: templates/applications/update.html:10
 msgid "apps.manage.forms.update.new"
@@ -237,8 +271,7 @@ msgstr "Créer le marque-page"
 #: templates/bookmarks/bookmark/delete.html:7
 #, python-format
 msgid "bm.bookmark.delete.message %(name)s"
-msgstr ""
-"Êtes-vous certain de vouloir supprimer le marque-page %(name)s ?"
+msgstr "Êtes-vous certain de vouloir supprimer le marque-page %(name)s ?"
 
 #: templates/bookmarks/bookmark/delete.html:11
 msgid "bm.bookmark.button.delete"
@@ -318,10 +351,6 @@ msgstr "Actions"
 #: templates/bookmarks/manage.html:52
 msgid "bm.manage.bookmark.button.new"
 msgstr "Nouveau marque-page"
-
-#: templates/home/index.html:11
-msgid "applications.h2"
-msgstr "Applications"
 
 #: templates/home/index.html:15
 msgid "bookmarks.h2"
@@ -486,6 +515,9 @@ msgstr "Données complémentaires à afficher"
 #: user/views.py:83
 msgid "user.manage.weather.success"
 msgstr "La configuration liée à la météo a été mise à jour !"
+
+#~ msgid "applications.h2"
+#~ msgstr "Applications"
 
 #~ msgid "bm.category.create.success"
 #~ msgstr "La catégorie a été créée !"

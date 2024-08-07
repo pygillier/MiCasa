@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-19 23:11+0200\n"
+"POT-Creation-Date: 2024-05-24 22:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -420,6 +420,10 @@ msgstr ""
 "p>\n"
 "    "
 
+#: templates/user/base.html:5
+msgid "settings.title"
+msgstr "Paramètres"
+
 #: templates/user/index.html:4
 msgid "settings.general.nothing"
 msgstr "Rien à voir !"
@@ -444,7 +448,17 @@ msgstr "Changer de langue"
 msgid "signin.form.submit_button"
 msgstr "Connexion"
 
-#: templates/user/weather.html:18
+#: templates/user/weather.html:7
+msgid ""
+"Weather data is provided by <a href=\"https://www.weatherapi.com/"
+"\">WeatherAPI</a>. You can subscribe for free to the service and get your "
+"own key."
+msgstr ""
+"Les données météo sont fournies par le site <a href=\"https://www.weatherapi."
+"com/\">WeatherAPI</a>. Vous pouvez vous enregistrer gratuitement & obtenir "
+"votre propre clef API."
+
+#: templates/user/weather.html:21
 msgid "apps.manage.forms.submit.update"
 msgstr "Mettre à jour"
 
@@ -507,6 +521,3 @@ msgstr "Données complémentaires à afficher"
 #: user/views.py:83
 msgid "user.manage.weather.success"
 msgstr "La configuration liée à la météo a été mise à jour !"
-
-msgid "settings.title"
-msgstr "Paramètres"

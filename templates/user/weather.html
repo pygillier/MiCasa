@@ -3,6 +3,9 @@
 {% block inner %}
     <div class="row justify-content-center">
         <div class="col-6">
+            <p>
+                {% blocktrans %}Weather data is provided by <a href="https://www.weatherapi.com/">WeatherAPI</a>. You can subscribe for free to the service and get your own key.{% endblocktrans %}
+            </p>
             <form method="post" action="{% url "user:weather" %}" class="container">
                 {% csrf_token %}
                 {% for field in form %}

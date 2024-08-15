@@ -7,7 +7,7 @@
     {% endblocktrans %}
         <form method="post">
             {% csrf_token %}
-            <input type="submit" class="btn btn-primary d-block w-75" value="Begin export">
+            <input type="submit" class="btn btn-primary d-block w-75" value="{% trans "backup.form.submit_button" %}">
         </form>
 
 {% endblock inner %}

@@ -1,11 +1,17 @@
 {% extends "user/base.html" %}
-{% load i18n %}
+{% load i18n static %}
+{% block head_extra %}
+    <script src="{% static 'js/sortable.min.js' %}"></script>
+    <script src="{% static 'js/sortable-lists.js' %}"></script>
+{% endblock head_extra %}
 {% block inner %}
+    <form hx-post="{% url "applications:reorder" %}" hx-trigger="end">
+    {% csrf_token %}
     <table class="table">
         <thead>
             <tr>
                 <th><iconify-icon icon="mdi:sort-numeric-ascending"></iconify-icon></th>
-                <th>{% trans "apps.manage.table.header.name" %}</th>
+                <th colspan="2">{% trans "apps.manage.table.header.name" %}</th>
                 <th>{% trans "apps.manage.table.header.url" %}</th>
                 <th>{% trans "apps.manage.table.header.visibility" %}</th>
                 <th>{% trans "apps.manage.table.header.pinned" %}</th>
@@ -19,9 +25,14 @@
                 </td>
             </tr>
         </tfoot>
-        <tbody>
+
+        <tbody class="sortable">
         {% for application in applications %}
             <tr>
+                <td class="drag-handle">
+                    <input type="hidden" name="position" value="{{ application.position }}" />
+                    <iconify-icon icon="mdi:drag-vertical"></iconify-icon>
+                </td>
                 <td><iconify-icon icon="mdi:{{ application.icon }}"></iconify-icon></td>
                 <td>{{ application.name }}</td>
                 <td><a class="link-light" href="{{ application.url }}" target="_blank">{{ application.url }}</a></td>
@@ -34,4 +45,5 @@
         {% endfor %}
         </tbody>
     </table>
+    </form>
 {% endblock inner %}

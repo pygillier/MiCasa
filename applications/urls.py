@@ -11,4 +11,5 @@ urlpatterns = [
     path("create/", views.CreateApplicationView.as_view(), name="create"),
     path("<int:pk>/update/", views.UpdateApplicationView.as_view(), name="update"),
     path("<int:pk>/delete/", views.DeleteApplicationView.as_view(), name="delete"),
+    path("reorder/", views.ReorderApplicationView.as_view(), name="reorder"),
 ]

@@ -89,9 +89,10 @@ a#fab-settings {
 /** Drag & drop */
 td.drag-handle {
     width: 1em;
+    cursor: move;
 }
 td.drag-handle iconify-icon {
     font-size: 1.8em;
     vertical-align: middle;
-    cursor: grab;
+
 }

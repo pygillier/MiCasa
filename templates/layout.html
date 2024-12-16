@@ -13,8 +13,8 @@
         <link rel="stylesheet" type="text/css" href="{% static "css/app.css" %}" />
         <script src="{% static 'js/htmx.min.js' %}"></script>
         <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
-        {% block head_extra %}{% endblock head_extra %}
         {% django_htmx_script %}
+        {% block head_extra %}{% endblock head_extra %}
     </head>
     <body>
         <main class="container mt-5" id="page">

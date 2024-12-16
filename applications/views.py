@@ -1,4 +1,6 @@
+from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView
 from django.views.generic.base import ContextMixin
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -86,3 +88,8 @@ class DeleteApplicationView(LoginRequiredMixin, SuccessMessageMixin, ManageAppMi
             cleaned_data,
             name=self.object.name,
         )
+
+
+class ReorderApplicationView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        return HttpResponse("result")

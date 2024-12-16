@@ -15,6 +15,7 @@
                     <button type="submit" class="btn btn-primary d-block w-100">{% trans "signin.form.submit_button" %}</button>
                 </div>
             </form>
+        <a href="{% url 'oidc_authentication_init' %}">Login with OIDC</a>
         </div>
     </div>
 {% endblock inner %}

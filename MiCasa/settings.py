@@ -11,6 +11,14 @@ env = environ.Env(
     DATABASE_URL=(str, "sqlite:////data/micasa.db"),
     TIMEZONE=(str, "Europe/Paris"),
     APP_URL=(str, None),
+    OIDC_ENABLED=(bool, False),
+    OIDC_CLIENT_ID=(str, None),
+    OIDC_CLIENT_SECRET=(str, None),
+    OIDC_AUTH_ENDPOINT=(str, None),
+    OIDC_TOKEN_ENDPOINT=(str, None),
+    OIDC_USER_ENDPOINT=(str, None),
+    OIDC_SIGN_ALGO=(str, "HS256"),
+    OIDC_JWKS_ENDPOINT=(str, None),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -52,6 +60,7 @@ INSTALLED_APPS = [
     "bookmarks.apps.BookmarksConfig",
     "home.apps.HomeConfig",
     "applications.apps.ApplicationsConfig",
+    "mozilla_django_oidc",
 ]
 
 MIDDLEWARE = [
@@ -112,6 +121,10 @@ LOGGING = {
     },
 }
 
+AUTHENTICATION_BACKENDS = (
+    "mozilla_django_oidc.auth.OIDCAuthenticationBackend",
+    # ...
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -135,6 +148,7 @@ AUTH_USER_MODEL = "user.User"
 
 # Default auth routes
 LOGIN_URL = "user:login"
+LOGIN_REDIRECT_URL = "user:index"
 LOGOUT_REDIRECT_URL = "home:index"
 
 # Storage
@@ -213,3 +227,12 @@ CONSTANCE_CONFIG = {
     "PAGE_TITLE": ("MiCasa", "Page title", str),
     "DATE_FORMAT": ("l, j F Y", "Date format on homepage", str),
 }
+
+# OIDC configuration
+OIDC_RP_CLIENT_ID = env("OIDC_CLIENT_ID")
+OIDC_RP_CLIENT_SECRET = env("OIDC_CLIENT_SECRET")
+OIDC_OP_AUTHORIZATION_ENDPOINT = env("OIDC_AUTH_ENDPOINT")
+OIDC_OP_TOKEN_ENDPOINT = env("OIDC_TOKEN_ENDPOINT")
+OIDC_OP_USER_ENDPOINT = env("OIDC_USER_ENDPOINT")
+OIDC_RP_SIGN_ALGO = env("OIDC_SIGN_ALGO")
+OIDC_OP_JWKS_ENDPOINT = env("OIDC_JWKS_ENDPOINT")

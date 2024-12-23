@@ -1,10 +1,9 @@
 {% extends "layout.html" %}
 {% load current_time greeting i18n %}
 {% block content %}
-    <h6>{% current_time %}</h6>
-    <header class="hstack mb-3" id="greetings">
-        <h1 class="fs-1 fw-bolder">{% greeting %}</h1>
-        <div class="ms-auto"></div>
+    <h6 class="mt-10 text-base text-bold">{% current_time %}</h6>
+    <header class="grid grid-cols-12 gap-2" id="greetings">
+        <h1 class="col-span-10 place-items-center">{% greeting %}</h1>
         <div hx-get="{% url "home:weather" %}" hx-trigger="revealed, every 3600s">Weather</div>
     </header>
     <section>

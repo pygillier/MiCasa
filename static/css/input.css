@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Amazon Ember';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/static/fonts/amazon-ember-regular.woff2) format('woff2');
+  }
+}
+
+h1 {
+    @apply text-5xl font-bold leading-tight;
+}
+
+h2 {
+    @apply text-2xl font-bold leading-tight;
+}
+
+body {
+    @apply text-white text-lg;
+}

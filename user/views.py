@@ -10,6 +10,7 @@ from applications.models import Application
 from bookmarks.models import BookmarkCategory
 from django.http import HttpResponseNotFound
 from django.contrib.auth import get_user_model
+from django.conf import settings
 import os
 
 
@@ -45,6 +46,15 @@ class UserLoginView(SuccessMessageMixin, LoginView):
 
     success_url = reverse_lazy("user:index")
     success_message = "user.login.success %(name)s"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Is OIDC support enabled ?
+        context["show_oidc_link"] = settings.OIDC_ENABLED
+
+
+        return context
 
     def get_success_message(self, cleaned_data):
         user = self.request.user

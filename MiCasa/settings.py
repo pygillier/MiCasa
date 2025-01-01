@@ -123,6 +123,7 @@ LOGGING = {
 
 AUTHENTICATION_BACKENDS = (
     "mozilla_django_oidc.auth.OIDCAuthenticationBackend",
+    "django.contrib.auth.backends.ModelBackend"
     # ...
 )
 
@@ -229,6 +230,7 @@ CONSTANCE_CONFIG = {
 }
 
 # OIDC configuration
+OIDC_ENABLED = env("OIDC_ENABLED")
 OIDC_RP_CLIENT_ID = env("OIDC_CLIENT_ID")
 OIDC_RP_CLIENT_SECRET = env("OIDC_CLIENT_SECRET")
 OIDC_OP_AUTHORIZATION_ENDPOINT = env("OIDC_AUTH_ENDPOINT")

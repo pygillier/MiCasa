@@ -1,37 +1,37 @@
 {% load i18n %}
-<ul class="nav nav-pills flex-column">
-    <li class="nav-item">
-        <a class="nav-link{% if current == "index" %} active{% endif %}" href="{% url "user:index" %}">{% trans "settings.nav.general" %}</a>
+<ul>
+    <li{% if current == "index" %} class="active"{% endif %}>
+        <a href="{% url "user:index" %}">{% trans "settings.nav.general" %}</a>
     </li>
     {% if request.user.is_authenticated %}
-    <li class="nav-item">
-        <a class="nav-link{% if current == "applications" %} active{% endif %}" href="{% url "applications:manage" %}">{% trans "settings.nav.applications" %}</a>
+    <li{% if current == "applications" %} class="active"{% endif %}>
+        <a href="{% url "applications:manage" %}">{% trans "settings.nav.applications" %}</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link{% if current == "bookmarks" %} active{% endif %}" href="{% url "bookmarks:manage" %}">{% trans "settings.nav.bookmarks" %}</a>
+    <li{% if current == "bookmarks" %} class="active"{% endif %}>
+        <a href="{% url "bookmarks:manage" %}">{% trans "settings.nav.bookmarks" %}</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link{% if current == "weather" %} active{% endif %}" href="{% url "user:weather" %}">{% trans "settings.nav.weather" %}</a>
+    <li{% if current == "weather" %} class="active"{% endif %}>
+        <a href="{% url "user:weather" %}">{% trans "settings.nav.weather" %}</a>
     </li>
     {% endif %}
-    <li class="nav-item">
-        <a class="nav-link{% if current == "language" %} active{% endif %}" href="{% url "user:language" %}">{% trans "settings.nav.language" %}</a>
+    <li{% if current == "language" %} class="active"{% endif %}>
+        <a href="{% url "user:language" %}">{% trans "settings.nav.language" %}</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link{% if current == "about" %} active{% endif %}" href="{% url "user:about" %}">{% trans "settings.nav.about" %}</a>
+    <li{% if current == "about" %} class="active"{% endif %}>
+        <a href="{% url "user:about" %}">{% trans "settings.nav.about" %}</a>
     </li>
     {% if request.user.is_authenticated %}
-    <li class="nav-item"><hr/></li>
-        <li class="nav-item">
-        <a class="nav-link{% if current == "backup" %} active{% endif %}" href="{% url "user:backup" %}">{% trans "settings.nav.backup" %}</a>
+    <li><hr/></li>
+    <li{% if current == "backup" %} class="active"{% endif %}>
+        <a href="{% url "user:backup" %}">{% trans "settings.nav.backup" %}</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url "admin:index" %}">{% trans "settings.nav.django_admin" %}</a>
+    <li>
+        <a href="{% url "admin:index" %}">{% trans "settings.nav.django_admin" %}</a>
     </li>
-    <li class="nav-item">
+    <li>
         <form method="post" action="{% url "user:logout" %}">
             {% csrf_token %}
-            <button class="nav-link" type="submit">{% trans "settings.nav.logout" %}</button>
+            <button type="submit">{% trans "settings.nav.logout" %}</button>
         </form>
     </li>
     {% endif %}

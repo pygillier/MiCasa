@@ -1,6 +1,7 @@
 {% extends "user/base.html" %}
 {% load i18n %}
 {% block inner %}
+    <h2 class="mb-4">{% trans "settings.language.header" %}</h2>
     <div class="row justify-content-center">
         <div class="col-6">
             <form action="{% url 'set_language' %}" method="post">

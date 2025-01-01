@@ -4,10 +4,11 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: [
-        './templates/**/*.html',
+      './templates/*.html',
+      './templates/**/*.html',
     ],
   theme: {
-    backgroundColor: "#242B33",
+
     extend: {
       fontFamily: {
         'sans': ['"Amazon Ember"', ...defaultTheme.fontFamily.sans],
@@ -17,5 +18,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }

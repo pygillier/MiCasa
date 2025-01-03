@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-15 21:18+0200\n"
+"POT-Creation-Date: 2025-01-03 23:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: MiCasa/settings.py:154
+#: MiCasa/settings.py:169
 msgid "English"
 msgstr "English"
 
-#: MiCasa/settings.py:155
+#: MiCasa/settings.py:170
 msgid "French"
 msgstr "French"
 
@@ -86,17 +86,17 @@ msgstr "Whether to show the application to anonymous people"
 msgid "apps.manager.form.is_pinned.help_text"
 msgstr "Whether to pin the application to homepage"
 
-#: applications/views.py:52
+#: applications/views.py:54
 #, python-format
 msgid "app.manage.success.created %(name)s"
 msgstr "Application %(name)s has been created"
 
-#: applications/views.py:67
+#: applications/views.py:69
 #, python-format
 msgid "app.manage.success.updated %(name)s"
 msgstr "Application %(name)s has been updated"
 
-#: applications/views.py:82
+#: applications/views.py:84
 #, python-format
 msgid "app.manage.success.deleted %(name)s"
 msgstr "Application %(name)s has been deleted"
@@ -223,31 +223,31 @@ msgstr "Create"
 msgid "applications.none"
 msgstr "No application defined."
 
-#: templates/applications/manage.html:8
+#: templates/applications/manage.html:14
 msgid "apps.manage.table.header.name"
 msgstr "Name"
 
-#: templates/applications/manage.html:9
+#: templates/applications/manage.html:15
 msgid "apps.manage.table.header.url"
 msgstr "URL"
 
-#: templates/applications/manage.html:10
+#: templates/applications/manage.html:16
 msgid "apps.manage.table.header.visibility"
 msgstr "Visibility"
 
-#: templates/applications/manage.html:11
+#: templates/applications/manage.html:17
 msgid "apps.manage.table.header.pinned"
 msgstr "Pinned"
 
-#: templates/applications/manage.html:12
+#: templates/applications/manage.html:18
 msgid "apps.manage.table.header.actions"
 msgstr "Actions"
 
-#: templates/applications/manage.html:18
+#: templates/applications/manage.html:24
 msgid "apps.manage.new_button"
 msgstr "New application"
 
-#: templates/applications/manage.html:28 templates/applications/manage.html:29
+#: templates/applications/manage.html:39 templates/applications/manage.html:40
 msgid "yes,no"
 msgstr "Yes,No"
 
@@ -343,15 +343,15 @@ msgstr "Actions"
 msgid "bm.manage.bookmark.button.new"
 msgstr "New bookmark"
 
-#: templates/home/index.html:11
+#: templates/home/index.html:10
 msgid "applications.title"
 msgstr "Applications"
 
-#: templates/home/index.html:15
+#: templates/home/index.html:14
 msgid "bookmarks.title"
 msgstr "Bookmarks"
 
-#: templates/layout.html:24
+#: templates/layout.html:22
 msgid "fab.settings"
 msgstr "Settings"
 
@@ -375,33 +375,13 @@ msgstr "Bookmarks"
 msgid "settings.nav.weather"
 msgstr "Weather"
 
-#: templates/partials/nav.html:18
-msgid "settings.nav.language"
-msgstr "Language"
-
-#: templates/partials/nav.html:21
-msgid "settings.nav.about"
-msgstr "About"
-
-#: templates/partials/nav.html:26
-msgid "settings.nav.backup"
-msgstr "Backup"
-
-#: templates/partials/nav.html:29
+#: templates/partials/nav.html:17
 msgid "settings.nav.django_admin"
 msgstr "Django Admin"
 
-#: templates/partials/nav.html:34
+#: templates/partials/nav.html:22
 msgid "settings.nav.logout"
 msgstr "Log out"
-
-#: templates/user/about.html:5
-msgid "settings.version.page.version"
-msgstr "Version"
-
-#: templates/user/about.html:7
-msgid "settings.version.page.git_commit"
-msgstr "Git commit"
 
 #: templates/user/backup.html:4
 msgid ""
@@ -420,37 +400,56 @@ msgstr ""
 "    "
 
 #: templates/user/backup.html:10
-#| msgid "signin.form.submit_button"
 msgid "backup.form.submit_button"
 msgstr "Begin export"
 
-#: templates/user/base.html:5
+#: templates/user/base.html:4
 msgid "settings.title"
 msgstr "Settings"
 
-#: templates/user/index.html:4
-msgid "settings.general.nothing"
-msgstr "Nothing!"
+#: templates/user/index.html:12
+msgid "settings.language.form.select.label"
+msgstr "Interface language"
 
-#: templates/user/language.html:11
-msgid "settings.language.form.option.default"
-msgstr "Choose a language"
-
-#: templates/user/language.html:12
+#: templates/user/index.html:15
 msgid "settings.language.form.option.english"
 msgstr "English"
 
-#: templates/user/language.html:13
+#: templates/user/index.html:16
 msgid "settings.language.form.option.french"
 msgstr "French"
 
-#: templates/user/language.html:17
+#: templates/user/index.html:21
 msgid "settings.language.form.submit"
-msgstr "Change language"
+msgstr "Update"
 
-#: templates/user/login.html:15
+#: templates/user/index.html:29
+msgid "settings.backup.label"
+msgstr "Data export"
+
+#: templates/user/index.html:30
+msgid "settings.backup.label.help"
+msgstr "Export your data in JSON format"
+
+#: templates/user/index.html:35
+msgid "settings.backup.button"
+msgstr "Export"
+
+#: templates/user/index.html:43
+msgid "settings.version.page.version"
+msgstr "Version"
+
+#: templates/user/index.html:47
+msgid "settings.version.page.git_commit"
+msgstr "Git commit"
+
+#: templates/user/login.html:30
 msgid "signin.form.submit_button"
 msgstr "Signin"
+
+#: templates/user/login.html:34
+msgid "signin.form.oidc_button"
+msgstr "OIDC Signin"
 
 #: templates/user/weather.html:7
 msgid ""
@@ -522,6 +521,11 @@ msgstr "Humidity"
 msgid "pref.weather.coverage.help"
 msgstr "Extra coverage"
 
-#: user/views.py:83
+#: user/views.py:46
+#, python-format
+msgid "user.login.success %(name)s"
+msgstr "Welcome back, %(name)s!"
+
+#: user/views.py:80
 msgid "user.manage.weather.success"
 msgstr "Weather configuration has been updated!"

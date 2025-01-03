@@ -1,5 +1,11 @@
 {% if messages %}
     {% for message in messages %}
-        <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
+        <div class="alert {{ message.tags }}" role="alert">
+            <iconify-icon icon="mdi:information" class="flex-shrink-0 inline w-4 h-4 me-3 text-lg"></iconify-icon>
+            <span class="sr-only">{{ message.tags|cut:"alert-"|capfirst }}</span>
+            <div>
+                {{ message }}
+            </div>
+        </div>
     {% endfor %}
 {% endif %}

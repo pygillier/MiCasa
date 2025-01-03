@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import get_language, gettext_lazy as _
 from .forms import SetupForm
 from applications.models import Application
 from bookmarks.models import BookmarkCategory
@@ -30,14 +30,12 @@ class IndexView(LoginRequiredMixin, TemplateView):
     template_name = "user/index.html"
     extra_context = {"current": "index"}
 
-
-class LanguageSelectorView(TemplateView):
-    template_name = "user/language.html"
-    extra_context = {"current": "language"}
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context["redirect_to"] = self.request.path
+        context["current_language"] = get_language()
+        context["version"] = os.getenv("VERSION", "develop")
+        context["commit_sha"] = os.getenv("COMMIT_SHA", "offtree")
         return context
 
 
@@ -45,7 +43,7 @@ class UserLoginView(SuccessMessageMixin, LoginView):
     template_name = "user/login.html"
 
     success_url = reverse_lazy("user:index")
-    success_message = "user.login.success %(name)s"
+    success_message = _("user.login.success %(name)s")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -53,22 +51,11 @@ class UserLoginView(SuccessMessageMixin, LoginView):
         # Is OIDC support enabled ?
         context["show_oidc_link"] = settings.OIDC_ENABLED
 
-
         return context
 
     def get_success_message(self, cleaned_data):
         user = self.request.user
         return self.success_message % dict(cleaned_data, name=user.first_name if user.first_name else user.username)
-
-
-class AboutView(TemplateView):
-    template_name = "user/about.html"
-    extra_context = {
-        "current": "about",
-        "versiob": os.getenv("VERSION", "develop"),
-        "commit_branch": os.getenv("COMMIT_BRANCH", ""),
-        "commit_sha": os.getenv("COMMIT_SHA", ""),
-    }
 
 
 class BackupView(LoginRequiredMixin, TemplateView):

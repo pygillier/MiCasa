@@ -13,22 +13,10 @@
     <li{% if current == "weather" %} class="active"{% endif %}>
         <a href="{% url "user:weather" %}">{% trans "settings.nav.weather" %}</a>
     </li>
-    {% endif %}
-    <li{% if current == "language" %} class="active"{% endif %}>
-        <a href="{% url "user:language" %}">{% trans "settings.nav.language" %}</a>
-    </li>
-    <li{% if current == "about" %} class="active"{% endif %}>
-        <a href="{% url "user:about" %}">{% trans "settings.nav.about" %}</a>
-    </li>
-    {% if request.user.is_authenticated %}
-    <li><hr/></li>
-    <li{% if current == "backup" %} class="active"{% endif %}>
-        <a href="{% url "user:backup" %}">{% trans "settings.nav.backup" %}</a>
-    </li>
     <li>
-        <a href="{% url "admin:index" %}">{% trans "settings.nav.django_admin" %}</a>
+        <a href="{% url "admin:index" %}" target="_blank">{% trans "settings.nav.django_admin" %} <iconify-icon icon="mdi:open-in-new" class="text-gray-600"></iconify-icon></a>
     </li>
-    <li>
+    <li class="mt-4">
         <form method="post" action="{% url "user:logout" %}">
             {% csrf_token %}
             <button type="submit">{% trans "settings.nav.logout" %}</button>

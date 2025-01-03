@@ -43,7 +43,7 @@ class UserLoginView(SuccessMessageMixin, LoginView):
     template_name = "user/login.html"
 
     success_url = reverse_lazy("user:index")
-    success_message = "user.login.success %(name)s"
+    success_message = _("user.login.success %(name)s")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

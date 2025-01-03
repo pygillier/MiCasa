@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-03 22:16+0100\n"
+"POT-Creation-Date: 2025-01-03 23:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -520,6 +520,11 @@ msgstr "Humidity"
 #: user/preferences.py:68
 msgid "pref.weather.coverage.help"
 msgstr "Extra coverage"
+
+#: user/views.py:46
+#, python-format
+msgid "user.login.success %(name)s"
+msgstr "Welcome back, %(name)s!"
 
 #: user/views.py:80
 msgid "user.manage.weather.success"

@@ -16,11 +16,6 @@
     <li>
         <a href="{% url "admin:index" %}" target="_blank">{% trans "settings.nav.django_admin" %} <iconify-icon icon="mdi:open-in-new" class="text-gray-600"></iconify-icon></a>
     </li>
-    {% endif %}
-    <li{% if current == "about" %} class="active"{% endif %}>
-        <a href="{% url "user:about" %}">{% trans "settings.nav.about" %}</a>
-    </li>
-    {% if request.user.is_authenticated %}
     <li class="mt-4">
         <form method="post" action="{% url "user:logout" %}">
             {% csrf_token %}

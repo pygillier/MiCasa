@@ -34,6 +34,8 @@ class IndexView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data()
         context["redirect_to"] = self.request.path
         context["current_language"] = get_language()
+        context["version"] = os.getenv("VERSION", "develop")
+        context["commit_sha"] = os.getenv("COMMIT_SHA", "offtree")
         return context
 
 
@@ -54,16 +56,6 @@ class UserLoginView(SuccessMessageMixin, LoginView):
     def get_success_message(self, cleaned_data):
         user = self.request.user
         return self.success_message % dict(cleaned_data, name=user.first_name if user.first_name else user.username)
-
-
-class AboutView(TemplateView):
-    template_name = "user/about.html"
-    extra_context = {
-        "current": "about",
-        "versiob": os.getenv("VERSION", "develop"),
-        "commit_branch": os.getenv("COMMIT_BRANCH", ""),
-        "commit_sha": os.getenv("COMMIT_SHA", ""),
-    }
 
 
 class BackupView(LoginRequiredMixin, TemplateView):

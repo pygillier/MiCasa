@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-03 21:49+0100\n"
+"POT-Creation-Date: 2025-01-03 22:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -375,25 +375,13 @@ msgstr "Bookmarks"
 msgid "settings.nav.weather"
 msgstr "Weather"
 
-#: templates/partials/nav.html:18
-msgid "settings.nav.about"
-msgstr "About"
-
-#: templates/partials/nav.html:23
+#: templates/partials/nav.html:17
 msgid "settings.nav.django_admin"
 msgstr "Django Admin"
 
-#: templates/partials/nav.html:28
+#: templates/partials/nav.html:22
 msgid "settings.nav.logout"
 msgstr "Log out"
-
-#: templates/user/about.html:5
-msgid "settings.version.page.version"
-msgstr "Version"
-
-#: templates/user/about.html:7
-msgid "settings.version.page.git_commit"
-msgstr "Git commit"
 
 #: templates/user/backup.html:4
 msgid ""
@@ -446,6 +434,14 @@ msgstr "Export your data in JSON format"
 #: templates/user/index.html:35
 msgid "settings.backup.button"
 msgstr "Export"
+
+#: templates/user/index.html:43
+msgid "settings.version.page.version"
+msgstr "Version"
+
+#: templates/user/index.html:47
+msgid "settings.version.page.git_commit"
+msgstr "Git commit"
 
 #: templates/user/login.html:30
 msgid "signin.form.submit_button"
@@ -525,6 +521,6 @@ msgstr "Humidity"
 msgid "pref.weather.coverage.help"
 msgstr "Extra coverage"
 
-#: user/views.py:88
+#: user/views.py:80
 msgid "user.manage.weather.success"
 msgstr "Weather configuration has been updated!"

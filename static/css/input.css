@@ -53,8 +53,11 @@ nav > ul > li > a {
   @apply hover:text-gray-400;
 }
 
-select {
-  @apply form-select rounded-lg bg-gray-700 py-2.5;
+/*
+Form elements
+ */
+select, input[type="number"], input[type="text"]  {
+  @apply rounded-lg bg-gray-700 me-auto;
 }
 
 .button {

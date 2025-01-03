@@ -3,7 +3,7 @@
 {% block inner %}
     <div class="container max-w-md">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <form class="space-y-4 md:space-y-6" method="POST">
+              <form class="space-y-4 md:space-y-6" method="post">
                   {% csrf_token %}
                   {% for field in form %}
                   <div>
@@ -26,11 +26,11 @@
                       <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                   </div>
               {% endcomment %}
-                  <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">{% trans "signin.form.submit_button" %}</button>
+                  <button type="submit" class="w-full text-white focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">{% trans "signin.form.submit_button" %}</button>
               </form>
                 {% if show_oidc_link %}
                     <hr/>
-                    <a class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" href="{% url "oidc_authentication_init" %}">{% trans "signin.form.oidc_button" %}</a>
+                    <a class="w-full text-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" href="{% url "oidc_authentication_init" %}">{% trans "signin.form.oidc_button" %}</a>
           {% endif %}
           </div>
       </div>

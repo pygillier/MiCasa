@@ -14,9 +14,6 @@
         <a href="{% url "user:weather" %}">{% trans "settings.nav.weather" %}</a>
     </li>
     {% endif %}
-    <li{% if current == "language" %} class="active"{% endif %}>
-        <a href="{% url "user:language" %}">{% trans "settings.nav.language" %}</a>
-    </li>
     <li{% if current == "about" %} class="active"{% endif %}>
         <a href="{% url "user:about" %}">{% trans "settings.nav.about" %}</a>
     </li>

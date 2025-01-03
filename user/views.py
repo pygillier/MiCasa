@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import get_language, gettext_lazy as _
 from .forms import SetupForm
 from applications.models import Application
 from bookmarks.models import BookmarkCategory
@@ -30,14 +30,10 @@ class IndexView(LoginRequiredMixin, TemplateView):
     template_name = "user/index.html"
     extra_context = {"current": "index"}
 
-
-class LanguageSelectorView(TemplateView):
-    template_name = "user/language.html"
-    extra_context = {"current": "language"}
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context["redirect_to"] = self.request.path
+        context["current_language"] = get_language()
         return context
 
 
@@ -52,7 +48,6 @@ class UserLoginView(SuccessMessageMixin, LoginView):
 
         # Is OIDC support enabled ?
         context["show_oidc_link"] = settings.OIDC_ENABLED
-
 
         return context
 

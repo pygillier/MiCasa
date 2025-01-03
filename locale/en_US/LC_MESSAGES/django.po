@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-03 23:00+0100\n"
+"POT-Creation-Date: 2025-01-03 23:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -451,7 +451,11 @@ msgstr "Signin"
 msgid "signin.form.oidc_button"
 msgstr "OIDC Signin"
 
-#: templates/user/weather.html:7
+#: templates/user/weather.html:5
+msgid "settings.weather.title"
+msgstr "Weather"
+
+#: templates/user/weather.html:8
 msgid ""
 "Weather data is provided by <a href=\"https://www.weatherapi.com/"
 "\">WeatherAPI</a>. You can subscribe for free to the service and get your "
@@ -461,7 +465,7 @@ msgstr ""
 "\">WeatherAPI</a>. You can subscribe for free to the service and get your "
 "own key."
 
-#: templates/user/weather.html:21
+#: templates/user/weather.html:24
 msgid "apps.manage.forms.submit.update"
 msgstr "Update"
 

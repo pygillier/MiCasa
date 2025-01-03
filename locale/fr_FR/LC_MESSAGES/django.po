@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-03 21:15+0100\n"
+"POT-Creation-Date: 2025-01-03 21:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -381,14 +381,10 @@ msgid "settings.nav.about"
 msgstr "A propos"
 
 #: templates/partials/nav.html:23
-msgid "settings.nav.backup"
-msgstr "Import / Export"
-
-#: templates/partials/nav.html:26
 msgid "settings.nav.django_admin"
 msgstr "Admin Django"
 
-#: templates/partials/nav.html:31
+#: templates/partials/nav.html:28
 msgid "settings.nav.logout"
 msgstr "Déconnexion"
 
@@ -439,6 +435,18 @@ msgstr "Français"
 #: templates/user/index.html:21
 msgid "settings.language.form.submit"
 msgstr "Modifier"
+
+#: templates/user/index.html:29
+msgid "settings.backup.label"
+msgstr "Export des données"
+
+#: templates/user/index.html:30
+msgid "settings.backup.label.help"
+msgstr "Exporter vos données au format JSON."
+
+#: templates/user/index.html:35
+msgid "settings.backup.button"
+msgstr "Exporter"
 
 #: templates/user/login.html:30
 msgid "signin.form.submit_button"
@@ -520,20 +528,6 @@ msgstr "Humidité"
 msgid "pref.weather.coverage.help"
 msgstr "Données complémentaires à afficher"
 
-#: user/views.py:89
+#: user/views.py:88
 msgid "user.manage.weather.success"
 msgstr "La configuration liée à la météo a été mise à jour !"
-
-#~ msgid "settings.nav.language"
-#~ msgstr "Langue"
-
-#, fuzzy
-#~| msgid "settings.nav.language"
-#~ msgid "settings.language.header"
-#~ msgstr "Langue"
-
-#~ msgid "settings.language.form.option.default"
-#~ msgstr "Choisissez une langue"
-
-#~ msgid "settings.general.nothing"
-#~ msgstr "Rien à voir !"

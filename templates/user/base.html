@@ -1,5 +1,13 @@
 {% extends "layout.html" %}
 {% load i18n %}
+{% block head_extra %}
+    <script type="text/javascript">
+    document.documentElement.classList.toggle(
+  'dark',
+  localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+)
+    </script>
+{% endblock head_extra %}
 {% block content %}
     {% translate "settings.title" as title %}
     {% include "partials/_section_header.html" with title=title %}

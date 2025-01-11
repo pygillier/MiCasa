@@ -3,3 +3,6 @@ staticfiles/
 .venv/
 .env
 *.mo
+node_modules/
+package-lock.json
+static/css/output.css

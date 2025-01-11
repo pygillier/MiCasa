@@ -1,4 +1,4 @@
-FROM python:3.12-slim-bookworm as python-base
+FROM python:3.12-slim AS python-base
 ARG BRANCH="main"
 ARG COMMIT=""
 ARG VERSION="develop"
@@ -18,7 +18,7 @@ ENV PYTHONUNBUFFERED=1 \
     \
     # poetry
     # https://python-poetry.org/docs/configuration/#using-environment-variables
-    POETRY_VERSION=1.7.0 \
+    POETRY_VERSION=1.8.4 \
     # make poetry install to this location
     POETRY_HOME="/opt/poetry" \
     # make poetry create the virtual environment in the project's root
@@ -34,28 +34,34 @@ ENV PYTHONUNBUFFERED=1 \
 
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
-FROM python-base as builder-base
+FROM python-base AS builder-base
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         # deps for installing poetry
         curl \
         # deps for building python deps
-        build-essential
-
-# install poetry - respects $POETRY_VERSION & $POETRY_HOME
-RUN curl -sSL https://install.python-poetry.org | python3 -
+        build-essential \
+    # install poetry - respects $POETRY_VERSION & $POETRY_HOME
+    && curl -sSL https://install.python-poetry.org | python3 -
 
 # copy project requirement files here to ensure they will be cached.
 WORKDIR $PYSETUP_PATH
 COPY poetry.lock pyproject.toml ./
 
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
-RUN poetry install --no-dev
+RUN poetry install --without dev
+
+# NodeJS for tailwind css
+FROM node:20 AS node-builder
+WORKDIR /node
+COPY . /node/
+RUN npm install --no-fund && npx tailwindcss -o production.css --minify
 
 # Production image
-FROM python-base as production
+FROM python-base AS production
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 COPY . /app/
+COPY --from=node-builder /node/production.css /app/static/css/output.css
 WORKDIR /app
 
 # Image identifiers

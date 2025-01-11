@@ -77,3 +77,4 @@ cython_debug/
 micasa.db
 staticfiles/
 data/
+static/css/output.css

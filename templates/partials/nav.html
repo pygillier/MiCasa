@@ -1,5 +1,8 @@
 {% load i18n %}
 <ul>
+    <li class="text-sm mb-3">
+        <a href="#">Light</a> / <a href="#">Dark</a> / <a href="#">System</a>
+    </li>
     <li{% if current == "index" %} class="active"{% endif %}>
         <a href="{% url "user:index" %}">{% trans "settings.nav.general" %}</a>
     </li>

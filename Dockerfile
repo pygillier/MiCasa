@@ -2,6 +2,7 @@ FROM python:3.12-slim AS python-base
 ARG BRANCH="main"
 ARG COMMIT=""
 ARG VERSION="develop"
+ARG S6_OVERLAY_VERSION=3.2.0.3
 LABEL authors="Pierre-Yves Gillier <github@pygillier.me>"
 LABEL branch=${BRANCH}
 LABEL commit=${COMMIT}
@@ -41,15 +42,19 @@ RUN apt-get update \
         curl \
         # deps for building python deps
         build-essential \
+        # I18N for gjango \
+        gettext \
+        libgettextpo-dev \
     # install poetry - respects $POETRY_VERSION & $POETRY_HOME
     && curl -sSL https://install.python-poetry.org | python3 -
 
 # copy project requirement files here to ensure they will be cached.
 WORKDIR $PYSETUP_PATH
-COPY poetry.lock pyproject.toml ./
+COPY . ./
 
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
 RUN poetry install --without dev
+RUN SECRET_KEY=dumb python manage.py compilemessages
 
 # NodeJS for tailwind css
 FROM node:20 AS node-builder
@@ -61,6 +66,7 @@ RUN npm install --no-fund && npx tailwindcss -o production.css --minify
 FROM python-base AS production
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 COPY . /app/
+COPY --from=builder-base $PYSETUP_PATH/locale/ /app/locale/
 COPY --from=node-builder /node/production.css /app/static/css/output.css
 WORKDIR /app
 
@@ -69,6 +75,5 @@ ENV COMMIT_SHA=${COMMIT}
 ENV COMMIT_BRANCH=${BRANCH}
 ENV VERSION=${VERSION}
 
-RUN apt-get update && apt-get install -y gettext libgettextpo-dev
 RUN chmod +x /app/entrypoint.sh
 ENTRYPOINT ["/app/entrypoint.sh"]

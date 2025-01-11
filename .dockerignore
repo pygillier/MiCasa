@@ -2,7 +2,7 @@ micasa.db
 staticfiles/
 .venv/
 .env
-*.mo
+**/*.mo
 node_modules/
 package-lock.json
 static/css/output.css

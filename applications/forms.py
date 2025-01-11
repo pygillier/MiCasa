@@ -8,7 +8,7 @@ class ApplicationForm(ModelForm):
         model = Application
         fields = ["name", "description", "url", "icon", "is_public", "is_pinned"]
         widgets = {
-            "name": TextInput(attrs={"class": "form-control", "placeholder": _("apps.manage.form.name.placeholder")}),
+            "name": TextInput(attrs={"id": "app_name", "placeholder": _("apps.manage.form.name.placeholder")}),
             "description": TextInput(
                 attrs={"class": "form-control"},
             ),
@@ -19,11 +19,11 @@ class ApplicationForm(ModelForm):
                 attrs={"class": "form-control", "placeholder": "https://"},
             ),
             "is_public": Select(
-                attrs={"class": "form-select"},
+                attrs={"class": ""},
                 choices={True: _("apps.manage.form.is_public.public"), False: _("apps.manage.form.is_public.private")},
             ),
             "is_pinned": Select(
-                attrs={"class": "form-select"},
+                attrs={"class": ""},
                 choices={True: _("apps.manage.form.is_pinned.yes"), False: _("apps.manage.form.is_pinned.no")},
             ),
         }
@@ -36,7 +36,7 @@ class ApplicationForm(ModelForm):
             "is_pinned": _("apps.manager.form.is_pinned.label"),
         }
         help_texts = {
-            "icon": _("apps.manager.form.icon.help_text %(url)s"),
+            "icon": _("apps.manager.form.icon.help_text %(url)s") % {"url": "https://pictogrammers.com/library/mdi/"},
             "description": _("apps.manager.form.description.help_text"),
             "is_public": _("apps.manager.form.is_public.help_text"),
             "is_pinned": _("apps.manager.form.is_pinned.help_text"),

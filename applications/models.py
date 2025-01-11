@@ -9,7 +9,7 @@ class Application(models.Model):
     is_public = models.BooleanField(default=False)
     is_pinned = models.BooleanField(default=False)
     icon = models.CharField(max_length=50, null=True, blank=True)
-    position = models.IntegerField(unique=True, null=False, default=0)
+    position = models.IntegerField(unique=False, null=False, default=0)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

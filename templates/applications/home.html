@@ -1,15 +1,11 @@
 {% load i18n %}
-<div class="row">
+<div class="grid grid-cols-4">
     {% for application in applications %}
-        <a class="col-sm-3 app_link link-underline link-underline-opacity-0" href="{{ application.url }}" target="_blank">
-            <div class="hstack gap-2">
-                <div class="app_icon"><iconify-icon icon="mdi:{{ application.icon }}" observer="false"></iconify-icon></div>
-                <div class="app_title vstack gap-0">
-                    <h3>{{ application.name }}</h3>
-                    <span>{{ application.subtitle }}</span>
-                </div>
-            </div>
-        </a>
+        <div class="appbox">
+            <aside><iconify-icon icon="mdi:{{ application.icon }}" observer="false"></iconify-icon></aside>
+            <h3>{{ application.name }}</h3>
+            <p>{{ application.subtitle }}</p>
+        </div>
     {% empty %}
         <p>{% trans "applications.none" %}</p>
     {% endfor %}

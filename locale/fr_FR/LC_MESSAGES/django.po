@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-03 23:39+0100\n"
+"POT-Creation-Date: 2025-01-11 19:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,10 +70,9 @@ msgid "apps.manager.form.is_pinned.label"
 msgstr "Epingle"
 
 #: applications/forms.py:39
-#, fuzzy, python-format
-#| msgid "apps.manager.form.icon.help_text"
+#, python-format
 msgid "apps.manager.form.icon.help_text %(url)s"
-msgstr "Une icône du set MDI sur icons.design"
+msgstr "Liste sur <a href='%(url)s' target='_blank'>Pictogrammers</a>."
 
 #: applications/forms.py:40
 msgid "apps.manager.form.description.help_text"
@@ -216,43 +215,82 @@ msgstr "Bonne nuit"
 msgid "greetings.hello"
 msgstr "Bonjour"
 
-#: templates/applications/create.html:10
+#: templates/applications/create.html:5
+msgid "settings.apps.new.title"
+msgstr "Nouvelle application"
+
+#: templates/applications/create.html:11
 msgid "apps.manage.forms.submit.new"
 msgstr "Créer"
 
-#: templates/applications/home.html:14
+#: templates/applications/delete.html:5
+msgid "settings.apps.delete.title"
+msgstr "Supprimer une application"
+
+#: templates/applications/delete.html:7
+#, python-format
+msgid "settings.apps.delete.message %(app_name)s"
+msgstr "Êtes-vous certain de vouloir supprimer l'application \"%(app_name)s\" ? Cette opération est irréversible !"
+
+#: templates/applications/delete.html:10
+msgid "settings.apps.delete.button.title"
+msgstr "Oui, la supprimer !"
+
+#: templates/applications/home.html:10
 msgid "applications.none"
 msgstr "Aucune application définie."
 
-#: templates/applications/manage.html:14
+#: templates/applications/manage.html:10
+msgid "settings.apps.list.title"
+msgstr "Applications"
+
+#: templates/applications/manage.html:11
+msgid "apps.manage.new_button"
+msgstr "Nouvelle application"
+
+#: templates/applications/manage.html:19
+#, fuzzy
+#| msgid "apps.manage.table.header.url"
+msgid "apps.manage.table.header.sort_handle"
+msgstr "URL"
+
+#: templates/applications/manage.html:20
 msgid "apps.manage.table.header.name"
 msgstr "Nom"
 
-#: templates/applications/manage.html:15
+#: templates/applications/manage.html:21
 msgid "apps.manage.table.header.url"
 msgstr "URL"
 
-#: templates/applications/manage.html:16
+#: templates/applications/manage.html:22
 msgid "apps.manage.table.header.visibility"
 msgstr "Visibilité"
 
-#: templates/applications/manage.html:17
+#: templates/applications/manage.html:23
 msgid "apps.manage.table.header.pinned"
 msgstr "Epinglé"
 
-#: templates/applications/manage.html:18
+#: templates/applications/manage.html:24
 msgid "apps.manage.table.header.actions"
 msgstr "Actions"
-
-#: templates/applications/manage.html:24
-msgid "apps.manage.new_button"
-msgstr "Nouvelle application"
 
 #: templates/applications/manage.html:39 templates/applications/manage.html:40
 msgid "yes,no"
 msgstr "Oui,Non"
 
-#: templates/applications/update.html:10
+#: templates/applications/manage.html:43
+msgid "settings.buttons.edit.title"
+msgstr "Modifier"
+
+#: templates/applications/manage.html:44
+msgid "settings.buttons.delete.title"
+msgstr "Supprimer"
+
+#: templates/applications/update.html:5
+msgid "settings.apps.edit.title"
+msgstr "Modifier une application"
+
+#: templates/applications/update.html:11
 msgid "apps.manage.forms.update.new"
 msgstr "Mettre à jour"
 

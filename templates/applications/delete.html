@@ -1,13 +1,14 @@
 {% extends "user/base.html" %}
 {% load i18n %}
 {% block inner %}
-    <div class="row justify-content-center">
-        <div class="col-10 mt-5">
-            <p>Are you sure you want to delete the application {{ application.name }}?</p>
-            <form method="post">
+    <section id="admin-page-content">
+        <h2>{% trans "settings.apps.delete.title" %}</h2>
+        <div class="admin-block admin-block-padded">
+            <p>{% blocktrans with app_name=application.name %}settings.apps.delete.message {{ app_name }}{% endblocktrans %}</p>
+            <form method="post" class="mx-auto text-center mt-4 mb-2">
                 {% csrf_token %}
-                <input type="submit" class="btn btn-danger d-block w-75" value="Yes, delete the application!">
+                <input type="submit" class="red" value="{% trans "settings.apps.delete.button.title" %}" />
             </form>
         </div>
-    </div>
+    </section>
 {% endblock inner %}

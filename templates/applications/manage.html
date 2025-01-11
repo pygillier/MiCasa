@@ -5,45 +5,30 @@
     <script src="{% static 'js/sortable-lists.js' %}"></script>
 {% endblock head_extra %}
 {% block inner %}
-    <form hx-post="{% url "applications:reorder" %}" hx-trigger="end">
-    {% csrf_token %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th><iconify-icon icon="mdi:sort-numeric-ascending"></iconify-icon></th>
-                <th colspan="2">{% trans "apps.manage.table.header.name" %}</th>
-                <th>{% trans "apps.manage.table.header.url" %}</th>
-                <th>{% trans "apps.manage.table.header.visibility" %}</th>
-                <th>{% trans "apps.manage.table.header.pinned" %}</th>
-                <th>{% trans "apps.manage.table.header.actions" %}</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <td colspan="5">
-                    <a href="{% url "applications:create" %}" class="btn btn-primary">{% trans "apps.manage.new_button" %}</a>
-                </td>
-            </tr>
-        </tfoot>
-
-        <tbody class="sortable">
-        {% for application in applications %}
-            <tr>
-                <td class="drag-handle">
-                    <input type="hidden" name="position" value="{{ application.position }}" />
-                    <iconify-icon icon="mdi:drag-vertical"></iconify-icon>
-                </td>
-                <td><iconify-icon icon="mdi:{{ application.icon }}"></iconify-icon></td>
-                <td>{{ application.name }}</td>
-                <td><a class="link-light" href="{{ application.url }}" target="_blank">{{ application.url }}</a></td>
-                <td><iconify-icon icon="mdi:visibility-{{ application.is_public|yesno:"outline,off-outline" }}"></iconify-icon> {{ application.is_public|yesno:_("yes,no") }}</td>
-                <td><iconify-icon icon="mdi:pin-{{ application.is_pinned|yesno:"outline,off-outline" }}"></iconify-icon> {{ application.is_pinned|yesno:_("yes,no") }}</td>
-                <td>
-                    <a href="{% url "applications:update" pk=application.id %}" class="link-secondary">Edit</a> |
-                    <a href="{% url "applications:delete" pk=application.id %}" class="link-secondary">Delete</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </form>
+    <section id="admin-page-content">
+        <h2>
+            {% trans "settings.apps.list.title" %}
+            <a class="main-action" href="{% url "applications:create" %}">{% trans "apps.manage.new_button" %}</a>
+        </h2>
+        <div class="admin-block">
+            <form hx-post="{% url "applications:reorder" %}" hx-trigger="end" hx-target=".sortable">
+                {% csrf_token %}
+                <table id="applications-list" class="listing">
+                    <thead>
+                        <tr>
+                            <th scope="col"><span class="sr-only">{% trans "apps.manage.table.header.sort_handle" %}</span></th>
+                            <th scope="col">{% trans "apps.manage.table.header.name" %}</th>
+                            <th scope="col">{% trans "apps.manage.table.header.url" %}</th>
+                            <th scope="col">{% trans "apps.manage.table.header.visibility" %}</th>
+                            <th scope="col">{% trans "apps.manage.table.header.pinned" %}</th>
+                            <th scope="col"><span class="sr-only">{% trans "apps.manage.table.header.actions" %}</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="sortable">
+                        {% include "applications/manage/_list.html" with applications=applications %}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </section>
 {% endblock inner %}

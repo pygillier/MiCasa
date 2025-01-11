@@ -1,7 +1,5 @@
-from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.views.generic.base import ContextMixin
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -90,6 +88,22 @@ class DeleteApplicationView(LoginRequiredMixin, SuccessMessageMixin, ManageAppMi
         )
 
 
-class ReorderApplicationView(LoginRequiredMixin, View):
+class ReorderApplicationView(LoginRequiredMixin, TemplateView):
+    template_name = "applications/manage/_list.html"
+
     def post(self, request, *args, **kwargs):
-        return HttpResponse("result")
+        pks = request.POST.getlist("pk")
+        print(pks)
+        apps = []
+
+        for position, pk in enumerate(pks):
+            app = Application.objects.get(pk=pk)
+            app.position = position
+            apps.append(app)
+
+        Application.objects.bulk_update(apps, ["position"])
+
+        context = self.get_context_data(**kwargs)
+        context["applications"] = Application.objects.all()
+
+        return self.render_to_response(context)

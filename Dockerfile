@@ -60,7 +60,7 @@ RUN SECRET_KEY=dumb python manage.py compilemessages
 FROM node:20 AS node-builder
 WORKDIR /node
 COPY . /node/
-RUN npm install --no-fund && npx tailwindcss -o production.css --minify
+RUN npm install --no-fund && npx tailwindcss -i static/css/input.css -o production.css --minify
 
 # Production image
 FROM python-base AS production

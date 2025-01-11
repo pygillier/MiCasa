@@ -20,12 +20,13 @@
         </main>
         <aside class="position-absolute bottom-0 start-0">
             <a href="{% url "user:index" %}" id="fab-settings" alt="{% trans "fab.settings" %}" title="{% trans "fab.settings" %}"><iconify-icon icon="mdi:settings"/></a>
-        </
+        </aside>
 
         <!-- Modal placeholder -->
         <div id="modal" class="modal fade">
             <div id="dialog" class="modal-dialog" hx-target="this"></div>
         </div>
         <script defer src="{% static "js/app.js" %}"></script>
+        <script defer src="{% static "js/flowbite-2.5.2.min.js" %}"></script>
     </body>
 </html>

@@ -36,6 +36,23 @@ h2 {
     font-family: "Amazon Ember Bold", system-ui, sans-serif;
 }
 
+/** Application box on main page */
+.appbox {
+  @apply grid grid-cols-4 grid-rows-2 my-2;
+}
+
+.appbox > h3 {
+  @apply col-span-3 text-xl font-extrabold uppercase;
+  font-family: "Amazon Ember Bold", system-ui, sans-serif;
+}
+.appbox > aside {
+  @apply row-span-2 text-center align-middle text-5xl;
+}
+
+.appbox > p {
+  @apply col-span-3 uppercase text-sm;
+}
+
 body {
     @apply text-white;
 }
@@ -53,11 +70,39 @@ nav > ul > li > a {
   @apply hover:text-gray-400;
 }
 
+section#admin-page-content {
+  @apply container max-w-4xl mx-auto mb-10;
+}
+
+section#admin-page-content h2 {
+  @apply mb-4;
+}
+
+section#admin-page-content a.main-action {
+  @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800;
+}
+
+.admin-block {
+  @apply border-2 border-neutral-700 overflow-x-auto sm:rounded-lg;
+}
+
+.admin-block-padded {
+  @apply mb-4 px-4 py-6;
+}
+
 /*
 Form elements
  */
-select, input[type="number"], input[type="text"]  {
+select, input[type="number"], input[type="text"], input[type="url"]  {
   @apply rounded-lg bg-gray-700 me-auto;
+}
+
+form .help-text {
+  @apply text-sm text-gray-500;
+}
+
+form .help-text a {
+  @apply underline underline-offset-4;
 }
 
 .button {
@@ -72,10 +117,51 @@ select, input[type="number"], input[type="text"]  {
     rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700;
 }
 
-.settings-box {
-  @apply border-2 border-neutral-700 px-4 py-6 rounded-lg mb-4 pr-4;
+input[type="submit"].red {
+  @apply focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900;
 }
 
+/* management listing */
+table.listing {
+  @apply w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400;
+}
+
+table.listing thead {
+  @apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400;
+}
+
+table.listing thead th:not(:first-child) { /** Prevent apply on drag-handle */
+  @apply px-6 py-3;
+}
+
+table.listing tbody tr {
+  @apply bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600
+}
+
+table.listing tbody th {
+  @apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white font-bold max-w-72 truncate;
+}
+
+table.listing tbody td:not(:first-child) { /** Prevent apply on drag-handle */
+  @apply px-6 py-4;
+}
+
+table.listing td.actions a {
+  @apply font-medium text-blue-600 dark:text-blue-500 hover:underline;
+}
+
+table.listing iconify-icon {
+  @apply align-middle px-1;
+}
+
+.drag-handle {
+  @apply max-w-4 cursor-move;
+}
+
+/* Application form */
+#app_name {
+  width : 25rem;
+}
 /*
 Alerts
  */

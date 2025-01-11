@@ -1,9 +1,9 @@
 {% extends "user/base.html" %}
 {% load i18n %}
 {% block inner %}
-    <div class="container max-w-2xl mx-auto">
-        <h2 class=" border-1 border-yellow-50 mb-3">{% trans "settings.weather.title" %}</h2>
-        <div class="settings-box">
+    <section id="admin-page-content">
+        <h2>{% trans "settings.weather.title" %}</h2>
+        <div class="admin-block admin-block-padded">
             <p class="text-sm text-justify text-gray-300">
                 {% blocktrans %}Weather data is provided by <a href="https://www.weatherapi.com/">WeatherAPI</a>. You can subscribe for free to the service and get your own key.{% endblocktrans %}
             </p>
@@ -25,5 +25,5 @@
                 </div>
             </form>
         </div>
-    </div>
+    </section>
 {% endblock inner %}

@@ -1,16 +1,16 @@
 {% extends "user/base.html" %}
 {% load i18n %}
 {% block inner %}
-    <div class="row justify-content-center">
-        <div class="col-10">
-            <form method="post" class="container">
+    <section id="admin-page-content">
+        <h2>{% trans "settings.apps.edit.title" %}</h2>
+        <div class="admin-block admin-block-padded">
+            <form method="post">
                 {% csrf_token %}
                 {% include "applications/_form.html" with form=form %}
-                <div class="d-flex align-items-center">
-                    <button type="submit" class="btn btn-primary ms-auto">{% trans "apps.manage.forms.update.new" %}</button>
+                <div class="w-full text-center mt-6">
+                    <input type="submit" class="button" value="{% trans "apps.manage.forms.update.new" %}">
                 </div>
             </form>
         </div>
-    </div>
-
+    </section>
 {% endblock inner %}

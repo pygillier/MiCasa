@@ -41,34 +41,44 @@ RUN apt-get update \
         curl \
         # deps for building python deps
         build-essential \
+        # I18N for gjango \
+        gettext \
+        libgettextpo-dev \
     # install poetry - respects $POETRY_VERSION & $POETRY_HOME
     && curl -sSL https://install.python-poetry.org | python3 -
 
 # copy project requirement files here to ensure they will be cached.
 WORKDIR $PYSETUP_PATH
-COPY poetry.lock pyproject.toml ./
+COPY . ./
 
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
-RUN poetry install --without dev
+RUN poetry install --without dev && SECRET_KEY=dumb python manage.py compilemessages --ignore=.venv
+
 
 # NodeJS for tailwind css
 FROM node:20 AS node-builder
 WORKDIR /node
 COPY . /node/
-RUN npm install --no-fund && npx tailwindcss -o production.css --minify
+RUN npm install --no-fund && npx tailwindcss -i static/css/input.css -o production.css --minify
 
 # Production image
 FROM python-base AS production
+
+WORKDIR /app
+# Copy all elements
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 COPY . /app/
+COPY --from=builder-base $PYSETUP_PATH/locale/ $PYSETUP_PATH/locale/
 COPY --from=node-builder /node/production.css /app/static/css/output.css
-WORKDIR /app
+
+RUN SECRET_KEY=static python manage.py collectstatic
+
+
 
 # Image identifiers
 ENV COMMIT_SHA=${COMMIT}
 ENV COMMIT_BRANCH=${BRANCH}
 ENV VERSION=${VERSION}
 
-RUN apt-get update && apt-get install -y gettext libgettextpo-dev
 RUN chmod +x /app/entrypoint.sh
 ENTRYPOINT ["/app/entrypoint.sh"]

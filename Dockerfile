@@ -2,7 +2,6 @@ FROM python:3.12-slim AS python-base
 ARG BRANCH="main"
 ARG COMMIT=""
 ARG VERSION="develop"
-ARG S6_OVERLAY_VERSION=3.2.0.3
 LABEL authors="Pierre-Yves Gillier <github@pygillier.me>"
 LABEL branch=${BRANCH}
 LABEL commit=${COMMIT}
@@ -53,8 +52,8 @@ WORKDIR $PYSETUP_PATH
 COPY . ./
 
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
-RUN poetry install --without dev
-RUN SECRET_KEY=dumb python manage.py compilemessages
+RUN poetry install --without dev && SECRET_KEY=dumb python manage.py compilemessages --ignore=.venv
+
 
 # NodeJS for tailwind css
 FROM node:20 AS node-builder
@@ -64,11 +63,17 @@ RUN npm install --no-fund && npx tailwindcss -i static/css/input.css -o producti
 
 # Production image
 FROM python-base AS production
+
+WORKDIR /app
+# Copy all elements
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 COPY . /app/
-COPY --from=builder-base $PYSETUP_PATH/locale/ /app/locale/
+COPY --from=builder-base $PYSETUP_PATH/locale/ $PYSETUP_PATH/locale/
 COPY --from=node-builder /node/production.css /app/static/css/output.css
-WORKDIR /app
+
+RUN SECRET_KEY=static python manage.py collectstatic
+
+
 
 # Image identifiers
 ENV COMMIT_SHA=${COMMIT}

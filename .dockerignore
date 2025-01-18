@@ -6,3 +6,6 @@ staticfiles/
 node_modules/
 package-lock.json
 static/css/output.css
+.pre-commit-config.yaml
+.devcontainer/
+.github/

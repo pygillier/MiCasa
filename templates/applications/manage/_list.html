@@ -7,7 +7,7 @@
     </td>
     <th scope="row">
         <iconify-icon icon="mdi:{{ application.icon }}" class="text-4xl"></iconify-icon>
-        {{ application.name }} ({{ application.pk }})
+        {{ application.name }} ({{ application.position }})
     </th>
     <td class="max-w-64"><a href="{{ application.url }}" target="_blank">{{ application.url }}</a></td>
     <td><iconify-icon class="text-xl" icon="mdi:visibility-{{ application.is_public|yesno:"outline,off-outline" }}"></iconify-icon> {{ application.is_public|yesno:_("yes,no") }}</td>

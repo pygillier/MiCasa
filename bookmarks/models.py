@@ -6,7 +6,7 @@ from django.db import models
 class BookmarkCategory(models.Model):
     name = models.CharField(max_length=250, unique=True, null=False)
     is_public = models.BooleanField(default=False)
-    position = models.IntegerField(unique=True, null=False, default=0)
+    position = models.IntegerField(null=False, default=0)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

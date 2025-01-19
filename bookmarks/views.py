@@ -101,6 +101,26 @@ class CategoryDeleteView(LoginRequiredMixin, SuccessMessageMixin, ManageBookmark
         )
 
 
+class ReorderCategoryView(LoginRequiredMixin, TemplateView):
+    template_name = "bookmarks/category/_list.html"
+
+    def post(self, request, *args, **kwargs):
+        pks = request.POST.getlist("pk")
+        cats = []
+
+        for position, pk in enumerate(pks):
+            app = models.BookmarkCategory.objects.get(pk=pk)
+            app.position = position + 1  # 1-based
+            cats.append(app)
+
+        models.BookmarkCategory.objects.bulk_update(cats, ["position"])
+
+        context = self.get_context_data(**kwargs)
+        context["categories"] = models.BookmarkCategory.objects.all()
+
+        return self.render_to_response(context)
+
+
 # Bookmarks management
 class BookmarkCreateView(LoginRequiredMixin, SuccessMessageMixin, ManageBookmarksMixin, CreateView):
     model = models.Bookmark
@@ -145,3 +165,23 @@ class BookmarkDeleteView(LoginRequiredMixin, SuccessMessageMixin, ManageBookmark
             cleaned_data,
             name=self.object.name,
         )
+
+
+class BookmarkReorderView(LoginRequiredMixin, TemplateView):
+    template_name = "bookmarks/bookmark/_list.html"
+
+    def post(self, request, *args, **kwargs):
+        pks = request.POST.getlist("pk")
+        bms = []
+
+        for position, pk in enumerate(pks):
+            bm = models.Bookmark.objects.get(pk=pk)
+            bm.position = position + 1  # 1-based
+            bms.append(bm)
+
+        models.Bookmark.objects.bulk_update(bms, ["position"])
+
+        context = self.get_context_data(**kwargs)
+        context["bookmarks"] = models.Bookmark.objects.all()
+
+        return self.render_to_response(context)

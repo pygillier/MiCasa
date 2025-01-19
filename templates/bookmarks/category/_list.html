@@ -1,0 +1,19 @@
+{% load i18n %}
+{% for category in categories %}
+<tr>
+    <td class="drag-handle">
+        <input type="hidden" name="pk" value="{{ category.pk }}" />
+        <iconify-icon icon="mdi:drag-vertical" class="text-2xl"></iconify-icon>
+    </td>
+    <th scope="row">
+        {{ category.name }} ({{ category.position }})
+    </th>
+    <td><iconify-icon class="text-xl" icon="mdi:visibility-{{ category.is_public|yesno:"outline,off-outline" }}"></iconify-icon> {{ category.is_public|yesno:_("yes,no") }}</td>
+    <td class="actions text-right">
+        <ul>
+            <li><a href="{% url "bookmarks:category_update" pk=category.id %}">{% trans "settings.buttons.edit.title" %}</a></li>
+            <li><a href="{% url "bookmarks:category_delete" pk=category.id %}">{% trans "settings.buttons.delete.title" %}</a></li>
+        </ul>
+       </td>
+</tr>
+{% endfor %}

@@ -37,3 +37,18 @@ class Application(models.Model):
 
     def __str__(self):
         return self.name
+
+    def export(self) -> dict:
+        """
+        Export a portable version of application details as a dictionary for backup.
+        :return: dict
+        """
+        return {
+            "name": self.name,
+            "url": self.url,
+            "description": self.description,
+            "is_public": self.is_public,
+            "is_pinned": self.is_pinned,
+            "icon": self.icon,
+            "position": self.position,
+        }

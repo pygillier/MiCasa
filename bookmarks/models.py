@@ -28,6 +28,14 @@ class BookmarkCategory(models.Model):
     def __str__(self):
         return self.name
 
+    def export(self) -> dict:
+        return {
+            "name": self.name,
+            "is_public": self.is_public,
+            "position": self.position,
+            "bookmarks": [bookmark.export() for bookmark in self.bookmark_set.all()],
+        }
+
 
 class Bookmark(models.Model):
     name = models.CharField(max_length=250, unique=False, null=False)
@@ -57,3 +65,12 @@ class Bookmark(models.Model):
 
     def __str__(self):
         return self.name
+
+    def export(self) -> dict:
+        return {
+            "name": self.name,
+            "url": self.url,
+            "icon": self.icon,
+            "is_public": self.is_public,
+            "position": self.position,
+        }

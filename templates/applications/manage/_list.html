@@ -14,8 +14,8 @@
     <td><iconify-icon icon="mdi:pin-{{ application.is_pinned|yesno:"outline,off-outline" }}"></iconify-icon> {{ application.is_pinned|yesno:_("yes,no") }}</td>
     <td class="actions text-right">
         <ul>
-            <li><a href="{% url "applications:update" pk=application.id %}">{% trans "settings.buttons.edit.title" %}</a></li>
-            <li><a href="{% url "applications:delete" pk=application.id %}">{% trans "settings.buttons.delete.title" %}</a></li>
+            <li><a href="{% url "applications:update" pk=application.id %}">{% trans "forms.buttons.update" %}</a></li>
+            <li><a href="{% url "applications:delete" pk=application.id %}">{% trans "forms.buttons.delete" %}</a></li>
         </ul>
        </td>
 </tr>

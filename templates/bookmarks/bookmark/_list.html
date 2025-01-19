@@ -14,8 +14,8 @@
     <td><iconify-icon class="text-xl" icon="mdi:visibility-{{ bookmark.is_public|yesno:"outline,off-outline" }}"></iconify-icon> {{ bookmark.is_public|yesno:_("yes,no") }}</td>
     <td class="actions text-right">
         <ul>
-            <li><a href="{% url "bookmarks:bookmark_update" pk=bookmark.id %}">{% trans "settings.buttons.edit.title" %}</a></li>
-            <li><a href="{% url "bookmarks:bookmark_delete" pk=bookmark.id %}">{% trans "settings.buttons.delete.title" %}</a></li>
+            <li><a href="{% url "bookmarks:bookmark_update" pk=bookmark.id %}">{% trans "forms.buttons.update" %}</a></li>
+            <li><a href="{% url "bookmarks:bookmark_delete" pk=bookmark.id %}">{% trans "forms.buttons.delete" %}</a></li>
         </ul>
        </td>
 </tr>

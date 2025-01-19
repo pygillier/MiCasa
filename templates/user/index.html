@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="w-full text-right mt-6">
-                    <input type="submit" class="button" value="{% trans "settings.language.form.submit" %}">
+                    <input type="submit" class="button" value="{% trans "forms.buttons.update" %}">
                 </div>
             </form>
         </div>
@@ -32,7 +32,7 @@
                 <div class="w-1/3 text-right mr-2">
                     <form method="post" action="{% url 'user:backup' %}">
                         {% csrf_token %}
-                        <input type="submit" class="button" value="{% trans "settings.backup.button" %}"/>
+                        <input type="submit" class="button" value="{% trans "forms.buttons.backup" %}"/>
                     </form>
                 </div>
             </div>

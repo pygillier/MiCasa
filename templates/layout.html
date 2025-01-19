@@ -10,7 +10,7 @@
         {% include "partials/favicons.html" %}
         <link rel="stylesheet" type="text/css" href="{% static "css/output.css" %}" />
         <script src="{% static 'js/htmx.min.js' %}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
+
         {% django_htmx_script %}
         {% block head_extra %}{% endblock head_extra %}
     </head>
@@ -21,11 +21,5 @@
         <aside class="position-absolute bottom-0 start-0">
             <a href="{% url "user:index" %}" id="fab-settings" alt="{% trans "fab.settings" %}" title="{% trans "fab.settings" %}"><iconify-icon icon="mdi:settings"/></a>
         </aside>
-
-        <!-- Modal placeholder -->
-        <div id="modal" class="modal fade">
-            <div id="dialog" class="modal-dialog" hx-target="this"></div>
-        </div>
-        <script defer src="{% static "js/app.js" %}"></script>
     </body>
 </html>

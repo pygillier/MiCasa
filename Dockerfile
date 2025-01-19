@@ -59,7 +59,7 @@ RUN poetry install --without dev && SECRET_KEY=dumb python manage.py compilemess
 FROM node:20 AS node-builder
 WORKDIR /node
 COPY . /node/
-RUN npm install --no-fund && npx tailwindcss -i static/css/input.css -o production.css --minify
+RUN npm install --no-fund && npx tailwindcss -i static/src/manage.css -o manage.css --minify
 
 # Production image
 FROM python-base AS production
@@ -69,7 +69,7 @@ WORKDIR /app
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 COPY . /app/
 COPY --from=builder-base $PYSETUP_PATH/locale/ $PYSETUP_PATH/locale/
-COPY --from=node-builder /node/production.css /app/static/css/output.css
+COPY --from=node-builder /node/manage.css /app/static/css/manage.css
 
 RUN SECRET_KEY=static python manage.py collectstatic
 

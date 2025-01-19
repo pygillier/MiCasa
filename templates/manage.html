@@ -1,0 +1,22 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ global_preferences.general__site_title }}</title>
+        {% include "partials/favicons.html" %}
+        {% include "partials/manage/styles.html" %}
+        {% include "partials/manage/scripts.html" %}
+        {% block head_extra %}{% endblock head_extra %}
+    </head>
+    <body>
+        <main class="container max-w-screen-xl" id="page">
+            {% translate "settings.title" as title %}
+            {% include "partials/manage/header.html" with title=title %}
+            {% block content %}{% endblock content %}
+        </main>
+
+    </body>
+</html>

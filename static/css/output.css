@@ -2652,6 +2652,11 @@ Alerts
   background-color: rgb(55 65 81 / var(--tw-bg-opacity, 1)) !important;
 }
 
+.dark\:bg-\[\#242B33\]:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(36 43 51 / var(--tw-bg-opacity, 1));
+}
+
 .dark\:bg-blue-600:is(.dark *) {
   --tw-bg-opacity: 1;
   background-color: rgb(28 100 242 / var(--tw-bg-opacity, 1));

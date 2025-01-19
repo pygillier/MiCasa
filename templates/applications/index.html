@@ -2,7 +2,7 @@
 {% load i18n %}
 {% block content %}
     <section id="home-applications">
-        {% include "partials/_section_header.html" with title="applications.title" %}
+        {% include "partials/manage/header.html" with title="applications.title" %}
         <div class="mt-3" hx-get="{% url "applications:home" %}?pinned=false" hx-trigger="revealed">Loading...</div>
     </section>
 {% endblock content %}

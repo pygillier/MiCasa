@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <section id="home-applications">
-        {% include "partials/_section_header.html" with title="bookmarks.title" %}
+        {% include "partials/manage/header.html" with title="bookmarks.title" %}
         <div hx-get="{% url "bookmarks:home" %}" hx-trigger="revealed">Loading...</div>
     </section>
 {% endblock content %}

@@ -98,7 +98,7 @@ class ReorderApplicationView(LoginRequiredMixin, TemplateView):
 
         for position, pk in enumerate(pks):
             app = Application.objects.get(pk=pk)
-            app.position = position
+            app.position = position + 1  # 1 based
             apps.append(app)
 
         Application.objects.bulk_update(apps, ["position"])

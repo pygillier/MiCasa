@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView, TemplateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -8,10 +7,11 @@ from django.utils.translation import get_language, gettext_lazy as _
 from .forms import SetupForm
 from applications.models import Application
 from bookmarks.models import BookmarkCategory
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, JsonResponse
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import os
+import datetime
 
 
 class SetupView(FormView):
@@ -58,17 +58,39 @@ class UserLoginView(SuccessMessageMixin, LoginView):
         return self.success_message % dict(cleaned_data, name=user.first_name if user.first_name else user.username)
 
 
-class BackupView(LoginRequiredMixin, TemplateView):
-    template_name = "user/backup.html"
-    extra_context = {"current": "backup"}
+class BackupView(LoginRequiredMixin, View):
+    """
+    Export all user data to a JSON file
+    """
 
     def post(self, request, *args, **kwargs):
+
+        from dynamic_preferences.registries import global_preferences_registry
+
+        registry = global_preferences_registry.manager()
+
         apps = Application.objects.all()
-        cats = BookmarkCategory.objects.all()
+        cats = BookmarkCategory.objects.prefetch_related("bookmark_set").all()  # Prefetch to reduce queries
 
-        response = render(request, "user/backup.json", {"applications": apps, "categories": cats})
+        response = JsonResponse(
+            data={
+                "backup_time": datetime.datetime.now().isoformat(),
+                "applications": [app.export() for app in apps],
+                "bookmarks": [cat.export() for cat in cats],
+                "settings": {
+                    "language": get_language(),
+                    "weather": {
+                        "latitude": registry["weather__latitude"],
+                        "longitude": registry["weather__longitude"],
+                        "temperature": registry["weather__temperature"],
+                        "coverage": registry["weather__coverage"],
+                    },
+                },
+            }
+        )
+        # Force download
+        response["Content-Disposition"] = 'attachment; filename="micasa-export.json"'
 
-        response["Content-Disposition"] = 'attachment; filename="backup.json"'
         return response
 
 

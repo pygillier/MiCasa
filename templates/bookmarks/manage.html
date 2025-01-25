@@ -8,7 +8,7 @@
     <section id="admin-page-content">
         <h2>
             {% trans "categories.manage_header" %}
-            <a class="main-action" href="{% url "bookmarks:category_create" %}">{% trans "categories.new_button" %}</a>
+            <a class="button" href="{% url "bookmarks:category_create" %}">{% trans "categories.new_button" %}</a>
         </h2>
         <div class="admin-block">
             <form hx-post="{% url "bookmarks:category_reorder" %}" hx-trigger="end" hx-target="#categories">
@@ -30,7 +30,7 @@
         </div>
         <h2 class="mt-6">
             {% trans "bookmarks.manage_header" %}
-            <a class="main-action" href="{% url "bookmarks:bookmark_create" %}">{% trans "bookmarks.new_button" %}</a>
+            <a class="button" href="{% url "bookmarks:bookmark_create" %}">{% trans "bookmarks.new_button" %}</a>
         </h2>
         <div class="admin-block">
             <form hx-post="{% url "bookmarks:bookmark_reorder" %}" hx-trigger="end" hx-target="#bookmarks">

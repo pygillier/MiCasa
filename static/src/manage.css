@@ -1,3 +1,4 @@
+@config "../../tailwind.manage.config.js";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,11 +28,11 @@
 }
 
 body {
-  @apply dark:bg-[#242B33] bg-green-400;
+  @apply dark:bg-[#242B33] bg-surface-100 text-black h-screen pt-12;
 }
 
 h1 {
-    @apply text-6xl dark:text-white text-black;
+    @apply text-6xl dark:text-white text-primary-600;
     font-family: "Amazon Ember Bold", system-ui, sans-serif;
 }
 
@@ -57,21 +58,20 @@ h2 {
   @apply col-span-3 uppercase text-sm;
 }
 
-body {
-    @apply text-white;
-}
-
 /** Management section */
+nav {
+  @apply bg-surface-200 dark:bg-gray-800 rounded-lg py-4 px-2;
+}
 nav > ul > li {
   @apply py-1 px-3;
 }
 
-nav > ul > li.active {
-  @apply bg-cyan-900 rounded-lg;
+nav > ul > li.active > a {
+  @apply text-primary-500 font-bold;
 }
 
 nav > ul > li > a {
-  @apply hover:text-gray-400;
+  @apply hover:text-primary-200 dark:hover:text-gray-400;
 }
 
 section#admin-page-content {
@@ -82,12 +82,10 @@ section#admin-page-content h2 {
   @apply mb-4;
 }
 
-section#admin-page-content a.main-action {
-  @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800;
-}
-
 .admin-block {
-  @apply border-2 border-neutral-700 overflow-x-auto sm:rounded-lg;
+  @apply border-2
+    border-surface-200 dark:border-neutral-700
+    overflow-x-auto sm:rounded-lg;
 }
 
 .admin-block-padded {
@@ -98,11 +96,16 @@ section#admin-page-content a.main-action {
 Form elements
  */
 select, input[type="number"], input[type="text"], input[type="url"]  {
-  @apply rounded-lg bg-gray-700 me-auto;
+  @apply rounded-lg font-medium me-auto
+    bg-surface-200 dark:bg-gray-700;
+}
+
+input::placeholder {
+  @apply text-surface-500 dark:text-gray-400;
 }
 
 form .help-text {
-  @apply text-sm text-gray-500;
+  @apply text-sm;
 }
 
 form .help-text a {
@@ -110,15 +113,15 @@ form .help-text a {
 }
 
 .button {
-  @apply text-gray-900
-    bg-white border
-    border-gray-300
+  @apply rounded-lg text-sm px-5 py-2.5 font-bold border
+    text-gray-900 dark:text-white
+    bg-primary-300 dark:bg-gray-800
+    border-gray-300 dark:border-gray-600
     focus:outline-none
-    hover:bg-gray-100
+    hover:bg-primary-200 dark:hover:bg-gray-700
     focus:ring-4
-    focus:ring-gray-100
-    font-medium
-    rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700;
+    focus:ring-gray-100 dark:focus:ring-gray-700
+    dark:hover:border-gray-600;
 }
 
 input[type="submit"].red {
@@ -131,7 +134,9 @@ table.listing {
 }
 
 table.listing thead {
-  @apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400;
+  @apply text-xs uppercase
+    text-gray-700 dark:text-gray-400
+    bg-surface-400 dark:bg-gray-700 ;
 }
 
 table.listing thead th:not(:first-child) { /** Prevent apply on drag-handle */
@@ -139,7 +144,10 @@ table.listing thead th:not(:first-child) { /** Prevent apply on drag-handle */
 }
 
 table.listing tbody tr {
-  @apply bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600
+  @apply border-b
+    bg-surface-100 dark:bg-gray-800
+    dark:border-gray-700
+    hover:bg-gray-50 dark:hover:bg-gray-600;
 }
 
 table.listing tbody th {
@@ -151,7 +159,9 @@ table.listing tbody td:not(:first-child) { /** Prevent apply on drag-handle */
 }
 
 table.listing td.actions a {
-  @apply font-medium text-blue-600 dark:text-blue-500 hover:underline;
+  @apply font-medium
+    text-primary-500 dark:text-blue-500
+  hover:underline;
 }
 
 table.listing iconify-icon {

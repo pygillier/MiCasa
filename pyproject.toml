@@ -18,6 +18,7 @@ gunicorn = "^23.0.0"
 weatherapi = "^0.0.4"
 django-dynamic-preferences = "^1.16.0"
 mozilla-django-oidc = "^4.0.1"
+invoke = "^2.2.0"
 
 
 [tool.poetry.group.dev.dependencies]

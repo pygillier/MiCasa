@@ -28,7 +28,7 @@
 }
 
 body {
-  @apply dark:bg-[#242B33] bg-surface-100 text-black h-screen pt-12;
+  @apply dark:bg-[#242B33] bg-surface-100 text-black dark:text-white h-screen pt-12;
 }
 
 h1 {
@@ -60,7 +60,7 @@ h2 {
 
 /** Management section */
 nav {
-  @apply bg-surface-200 dark:bg-gray-800 rounded-lg py-4 px-2;
+  @apply bg-surface-200 dark:bg-transparent rounded-lg py-4 px-2;
 }
 nav > ul > li {
   @apply py-1 px-3;

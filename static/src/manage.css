@@ -95,7 +95,7 @@ section#admin-page-content h2 {
 /*
 Form elements
  */
-select, input[type="number"], input[type="text"], input[type="url"]  {
+select, input[type="number"], input[type="text"], input[type="url"], input[type="password"]  {
   @apply rounded-lg font-medium me-auto
     bg-surface-200 dark:bg-gray-700;
 }

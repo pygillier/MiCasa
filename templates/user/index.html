@@ -2,7 +2,7 @@
 {% load i18n %}
 {% block content %}
     <section id="admin-page-content">
-        <h2>Settings</h2>
+        <h2>{% trans "general.header" %}</h2>
 
         <div class="admin-block admin-block-padded">
             <form action="{% url 'set_language' %}" method="post">

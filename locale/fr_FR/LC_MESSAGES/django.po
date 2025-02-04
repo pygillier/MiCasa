@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-04 20:07+0100\n"
+"POT-Creation-Date: 2025-02-04 21:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,68 +24,72 @@ msgstr "Anglais"
 msgid "French"
 msgstr "Français"
 
-#: applications/forms.py:11
+#: applications/forms.py:12
 msgid "forms.apps.name_placeholder"
 msgstr "Mon application"
 
-#: applications/forms.py:12 bookmarks/forms.py:34
+#: applications/forms.py:13 bookmarks/forms.py:35
 msgid "forms.url_placeholder"
 msgstr "https://"
 
-#: applications/forms.py:14 bookmarks/forms.py:14 bookmarks/forms.py:37
+#: applications/forms.py:15 bookmarks/forms.py:15 bookmarks/forms.py:39
 msgid "forms.is_public.public_field"
 msgstr "Public"
 
-#: applications/forms.py:14 bookmarks/forms.py:15 bookmarks/forms.py:38
+#: applications/forms.py:15 bookmarks/forms.py:16 bookmarks/forms.py:40
 msgid "forms.is_public.private_field"
 msgstr "Privé"
 
-#: applications/forms.py:17
+#: applications/forms.py:18
 msgid "apps.manage.form.is_pinned.yes"
 msgstr "Oui"
 
-#: applications/forms.py:17
+#: applications/forms.py:18
 msgid "apps.manage.form.is_pinned.no"
 msgstr "Non"
 
-#: applications/forms.py:21 bookmarks/forms.py:20 bookmarks/forms.py:43
+#: applications/forms.py:20 bookmarks/forms.py:36
+msgid "forms.icon_placeholder"
+msgstr "icon_id"
+
+#: applications/forms.py:23 bookmarks/forms.py:21 bookmarks/forms.py:45
 msgid "forms.name_label"
 msgstr "Nom"
 
-#: applications/forms.py:22
+#: applications/forms.py:24
 msgid "forms.apps.description_label"
 msgstr "Description"
 
-#: applications/forms.py:23 bookmarks/forms.py:44
+#: applications/forms.py:25 bookmarks/forms.py:46
 msgid "forms.url_label"
 msgstr "URL"
 
-#: applications/forms.py:24
+#: applications/forms.py:26 bookmarks/forms.py:47
 msgid "forms.icon_label"
 msgstr "Icône"
 
-#: applications/forms.py:25 bookmarks/forms.py:21 bookmarks/forms.py:46
+#: applications/forms.py:27 bookmarks/forms.py:22 bookmarks/forms.py:49
 msgid "forms.is_public_label"
 msgstr "Visibilité"
 
-#: applications/forms.py:26
+#: applications/forms.py:28
 msgid "forms.is_pinned_label"
 msgstr "Epingle"
 
-#: applications/forms.py:29
+#: applications/forms.py:31 bookmarks/forms.py:53
 #, python-format
 msgid "forms.icon_help_text %(url)s"
 msgstr "Liste sur <a href='%(url)s' target='_blank'>Pictogrammers</a>."
 
-#: applications/forms.py:30
+#: applications/forms.py:32
 msgid "forms.apps.description_help_text"
 msgstr "L'URL sera affichée en sous-texte si la description est vide"
 
-#: applications/forms.py:31 bookmarks/forms.py:24 bookmarks/forms.py:49
+#: applications/forms.py:33 bookmarks/forms.py:25 bookmarks/forms.py:52
 msgid "forms.is_public_help_text"
 msgstr "Afficher aux anonymes"
 
-#: applications/forms.py:32
+#: applications/forms.py:34
 msgid "forms.is_pinned_help_text"
 msgstr "Epingler sur la page d'accueil"
 
@@ -104,15 +108,15 @@ msgstr "L'application %(name)s a été mise à jour"
 msgid "app.manage.success.deleted %(name)s"
 msgstr "L'application %(name)s a été supprimée"
 
-#: bookmarks/forms.py:11
+#: bookmarks/forms.py:12
 msgid "forms.categories.name_placeholder"
 msgstr "Catégorie"
 
-#: bookmarks/forms.py:33
+#: bookmarks/forms.py:34
 msgid "forms.bookmarks.name_placeholder"
 msgstr "Mon marque-page"
 
-#: bookmarks/forms.py:45
+#: bookmarks/forms.py:48
 msgid "forms.bookmarks.category_label"
 msgstr "Catégorie"
 
@@ -183,21 +187,21 @@ msgid "apps.new_button"
 msgstr "Nouvelle application"
 
 #: templates/applications/manage.html:19 templates/bookmarks/manage.html:19
-#: templates/bookmarks/manage.html:41
+#: templates/bookmarks/manage.html:43
 msgid "global.table.sort_handle"
 msgstr "Clef de tru"
 
 #: templates/applications/manage.html:20 templates/bookmarks/manage.html:20
-#: templates/bookmarks/manage.html:42
+#: templates/bookmarks/manage.html:44
 msgid "global.table.name_header"
 msgstr "Nom"
 
-#: templates/applications/manage.html:21 templates/bookmarks/manage.html:43
+#: templates/applications/manage.html:21 templates/bookmarks/manage.html:45
 msgid "global.table.url_header"
 msgstr "URL"
 
 #: templates/applications/manage.html:22 templates/bookmarks/manage.html:21
-#: templates/bookmarks/manage.html:45
+#: templates/bookmarks/manage.html:47
 msgid "global.table.visibility_header"
 msgstr "Visibilité"
 
@@ -205,8 +209,8 @@ msgstr "Visibilité"
 msgid "apps.table.pinned_header"
 msgstr "Epingle"
 
-#: templates/applications/manage.html:24 templates/bookmarks/manage.html:22
-#: templates/bookmarks/manage.html:46
+#: templates/applications/manage.html:24 templates/bookmarks/manage.html:23
+#: templates/bookmarks/manage.html:48
 msgid "global.table.actions"
 msgstr "Actions"
 
@@ -224,7 +228,7 @@ msgstr "Oui,Non"
 #: templates/applications/manage/update.html:11
 #: templates/bookmarks/bookmark/_list.html:17
 #: templates/bookmarks/bookmark/update.html:11
-#: templates/bookmarks/category/_list.html:14
+#: templates/bookmarks/category/_list.html:15
 #: templates/bookmarks/category/update.html:11 templates/user/index.html:21
 #: templates/user/weather.html:24
 msgid "forms.buttons.update"
@@ -232,7 +236,7 @@ msgstr "Mettre à jour"
 
 #: templates/applications/manage/_list.html:18
 #: templates/bookmarks/bookmark/_list.html:18
-#: templates/bookmarks/category/_list.html:15
+#: templates/bookmarks/category/_list.html:16
 msgid "forms.buttons.delete"
 msgstr "Supprimer"
 
@@ -313,15 +317,19 @@ msgstr "Catégories"
 msgid "categories.new_button"
 msgstr "Nouvelle catégorie"
 
-#: templates/bookmarks/manage.html:32
+#: templates/bookmarks/manage.html:22
+msgid "categories.table.bookmarks_header"
+msgstr "Marque-pages"
+
+#: templates/bookmarks/manage.html:34
 msgid "bookmarks.manage_header"
 msgstr "Marque-pages"
 
-#: templates/bookmarks/manage.html:33
+#: templates/bookmarks/manage.html:35
 msgid "bookmarks.new_button"
 msgstr "Nouveau marque-page"
 
-#: templates/bookmarks/manage.html:44
+#: templates/bookmarks/manage.html:46
 msgid "bookmarks.table.category_header"
 msgstr "Catégorie"
 
@@ -368,6 +376,10 @@ msgstr "Admin Django"
 #: templates/partials/nav.html:22
 msgid "settings.nav.logout"
 msgstr "Déconnexion"
+
+#: templates/user/index.html:5
+msgid "general.header"
+msgstr "Général"
 
 #: templates/user/index.html:12
 msgid "settings.language.form.select.label"

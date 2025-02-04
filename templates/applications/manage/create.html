@@ -6,7 +6,7 @@
         <div class="admin-block admin-block-padded">
             <form method="post">
                 {% csrf_token %}
-                {% include "applications/_form.html" with form=form %}
+                {% include "applications/manage/_form.html" with form=form %}
                 <div class="w-full text-center mt-6">
                     <input type="submit" class="button" value="{% trans "forms.buttons.create" %}">
                 </div>

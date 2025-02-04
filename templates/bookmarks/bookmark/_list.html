@@ -11,7 +11,7 @@
     </th>
     <td class="max-w-64"><a href="{{ bookmark.url }}" target="_blank">{{ bookmark.url }}</a></td>
     <td>{{ bookmark.category.name }}</td>
-    <td><iconify-icon class="text-xl" icon="mdi:visibility-{{ bookmark.is_public|yesno:"outline,off-outline" }}"></iconify-icon> {{ bookmark.is_public|yesno:_("yes,no") }}</td>
+    <td><iconify-icon class="text-xl" icon="mdi:visibility-{{ bookmark.is_public|yesno:"outline,off-outline" }}"></iconify-icon> {{ bookmark.is_public|yesno:_("public,private") }}</td>
     <td class="actions text-right">
         <ul>
             <li><a href="{% url "bookmarks:bookmark_update" pk=bookmark.id %}">{% trans "forms.buttons.update" %}</a></li>

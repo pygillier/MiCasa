@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-20 00:12+0100\n"
+"POT-Creation-Date: 2025-02-04 20:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,64 +28,64 @@ msgstr "French"
 msgid "forms.apps.name_placeholder"
 msgstr "My application"
 
-#: applications/forms.py:12 bookmarks/forms.py:32
+#: applications/forms.py:12 bookmarks/forms.py:34
 msgid "forms.url_placeholder"
 msgstr "https://"
 
-#: applications/forms.py:14 bookmarks/forms.py:13 bookmarks/forms.py:34
+#: applications/forms.py:14 bookmarks/forms.py:14 bookmarks/forms.py:37
 msgid "forms.is_public.public_field"
 msgstr "Public"
 
-#: applications/forms.py:15 bookmarks/forms.py:14 bookmarks/forms.py:35
+#: applications/forms.py:14 bookmarks/forms.py:15 bookmarks/forms.py:38
 msgid "forms.is_public.private_field"
 msgstr "Private"
 
-#: applications/forms.py:18
+#: applications/forms.py:17
 msgid "apps.manage.form.is_pinned.yes"
 msgstr "Yes"
 
-#: applications/forms.py:19
+#: applications/forms.py:17
 msgid "apps.manage.form.is_pinned.no"
 msgstr "No"
 
-#: applications/forms.py:23 bookmarks/forms.py:18 bookmarks/forms.py:39
+#: applications/forms.py:21 bookmarks/forms.py:20 bookmarks/forms.py:43
 msgid "forms.name_label"
 msgstr "Name"
 
-#: applications/forms.py:24
+#: applications/forms.py:22
 msgid "forms.apps.description_label"
 msgstr "Description"
 
-#: applications/forms.py:25 bookmarks/forms.py:40
+#: applications/forms.py:23 bookmarks/forms.py:44
 msgid "forms.url_label"
 msgstr "URL"
 
-#: applications/forms.py:26
+#: applications/forms.py:24
 msgid "forms.icon_label"
 msgstr "Icon"
 
-#: applications/forms.py:27 bookmarks/forms.py:19 bookmarks/forms.py:42
+#: applications/forms.py:25 bookmarks/forms.py:21 bookmarks/forms.py:46
 msgid "forms.is_public_label"
 msgstr "Visibility"
 
-#: applications/forms.py:28
+#: applications/forms.py:26
 msgid "forms.is_pinned_label"
 msgstr "Pin to homepage"
 
-#: applications/forms.py:31
+#: applications/forms.py:29
 #, python-format
 msgid "forms.icon_help_text %(url)s"
 msgstr "List available on <a href='%(url)s' target='_blank'>Pictogrammers</a>"
 
-#: applications/forms.py:32
+#: applications/forms.py:30
 msgid "forms.apps.description_help_text"
 msgstr "If not description is set, the URL will be displayed instead"
 
-#: applications/forms.py:33 bookmarks/forms.py:22 bookmarks/forms.py:45
+#: applications/forms.py:31 bookmarks/forms.py:24 bookmarks/forms.py:49
 msgid "forms.is_public_help_text"
 msgstr "Whether to show the category to anonymous people"
 
-#: applications/forms.py:34
+#: applications/forms.py:32
 msgid "forms.is_pinned_help_text"
 msgstr "Whether to pin the application to homepage"
 
@@ -108,11 +108,11 @@ msgstr "Application %(name)s has been deleted"
 msgid "forms.categories.name_placeholder"
 msgstr "Category"
 
-#: bookmarks/forms.py:31
+#: bookmarks/forms.py:33
 msgid "forms.bookmarks.name_placeholder"
 msgstr "My bookmark"
 
-#: bookmarks/forms.py:41
+#: bookmarks/forms.py:45
 msgid "forms.bookmarks.category_label"
 msgstr "Category"
 
@@ -170,31 +170,6 @@ msgstr "Good night"
 msgid "greetings.hello"
 msgstr "Hello"
 
-#: templates/applications/create.html:5
-msgid "apps.create_header"
-msgstr "Create application"
-
-#: templates/applications/create.html:11
-#: templates/bookmarks/bookmark/create.html:11
-#: templates/bookmarks/category/create.html:11
-msgid "forms.buttons.create"
-msgstr "Create"
-
-#: templates/applications/delete.html:5
-msgid "settings.apps.delete.title"
-msgstr "Delete application"
-
-#: templates/applications/delete.html:7
-#, python-format
-msgid "settings.apps.delete.message %(app_name)s"
-msgstr ""
-"Are you sure you want to delete \"%(app_name)s\"? This operation is "
-"irreversible!"
-
-#: templates/applications/delete.html:10
-msgid "settings.apps.delete.button.title"
-msgstr "Yes, delete!"
-
 #: templates/applications/home.html:10
 msgid "applications.none"
 msgstr "No application defined."
@@ -236,14 +211,17 @@ msgid "global.table.actions"
 msgstr "Actions"
 
 #: templates/applications/manage/_list.html:13
-#: templates/applications/manage/_list.html:14
 #: templates/bookmarks/bookmark/_list.html:14
 #: templates/bookmarks/category/_list.html:11
+msgid "public,private"
+msgstr "Public,Private"
+
+#: templates/applications/manage/_list.html:14
 msgid "yes,no"
 msgstr "Yes,No"
 
 #: templates/applications/manage/_list.html:17
-#: templates/applications/update.html:11
+#: templates/applications/manage/update.html:11
 #: templates/bookmarks/bookmark/_list.html:17
 #: templates/bookmarks/bookmark/update.html:11
 #: templates/bookmarks/category/_list.html:14
@@ -258,7 +236,32 @@ msgstr "Update"
 msgid "forms.buttons.delete"
 msgstr "Delete"
 
-#: templates/applications/update.html:5
+#: templates/applications/manage/create.html:5
+msgid "apps.create_header"
+msgstr "Create application"
+
+#: templates/applications/manage/create.html:11
+#: templates/bookmarks/bookmark/create.html:11
+#: templates/bookmarks/category/create.html:11
+msgid "forms.buttons.create"
+msgstr "Create"
+
+#: templates/applications/manage/delete.html:5
+msgid "settings.apps.delete.title"
+msgstr "Delete application"
+
+#: templates/applications/manage/delete.html:7
+#, python-format
+msgid "settings.apps.delete.message %(app_name)s"
+msgstr ""
+"Are you sure you want to delete \"%(app_name)s\"? This operation is "
+"irreversible!"
+
+#: templates/applications/manage/delete.html:10
+msgid "settings.apps.delete.button.title"
+msgstr "Yes, delete!"
+
+#: templates/applications/manage/update.html:5
 msgid "apps.update_header"
 msgstr "Update application"
 
@@ -342,27 +345,27 @@ msgstr "Settings"
 msgid "backhome.link.title"
 msgstr "Back to home"
 
-#: templates/partials/nav.html:10
+#: templates/partials/nav.html:4
 msgid "settings.nav.general"
 msgstr "General"
 
-#: templates/partials/nav.html:14
+#: templates/partials/nav.html:8
 msgid "settings.nav.applications"
 msgstr "Applications"
 
-#: templates/partials/nav.html:17
+#: templates/partials/nav.html:11
 msgid "settings.nav.bookmarks"
 msgstr "Bookmarks"
 
-#: templates/partials/nav.html:20
+#: templates/partials/nav.html:14
 msgid "settings.nav.weather"
 msgstr "Weather"
 
-#: templates/partials/nav.html:23
+#: templates/partials/nav.html:17
 msgid "settings.nav.django_admin"
 msgstr "Django Admin"
 
-#: templates/partials/nav.html:28
+#: templates/partials/nav.html:22
 msgid "settings.nav.logout"
 msgstr "Log out"
 
@@ -398,11 +401,11 @@ msgstr "Version"
 msgid "settings.version.page.git_commit"
 msgstr "Git commit"
 
-#: templates/user/login.html:30
+#: templates/user/login.html:14
 msgid "signin.form.submit_button"
 msgstr "Signin"
 
-#: templates/user/login.html:34
+#: templates/user/login.html:19
 msgid "signin.form.oidc_button"
 msgstr "OIDC Signin"
 

@@ -10,7 +10,7 @@
         {{ application.name }} ({{ application.position }})
     </th>
     <td class="max-w-64"><a href="{{ application.url }}" target="_blank">{{ application.url }}</a></td>
-    <td><iconify-icon class="text-xl" icon="mdi:visibility-{{ application.is_public|yesno:"outline,off-outline" }}"></iconify-icon> {{ application.is_public|yesno:_("yes,no") }}</td>
+    <td><iconify-icon class="text-xl" icon="mdi:visibility-{{ application.is_public|yesno:"outline,off-outline" }}"></iconify-icon> {{ application.is_public|yesno:_("public,private") }}</td>
     <td><iconify-icon icon="mdi:pin-{{ application.is_pinned|yesno:"outline,off-outline" }}"></iconify-icon> {{ application.is_pinned|yesno:_("yes,no") }}</td>
     <td class="actions text-right">
         <ul>

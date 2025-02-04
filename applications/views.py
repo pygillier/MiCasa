@@ -45,7 +45,7 @@ class ManageListView(LoginRequiredMixin, ManageAppMixin, ListView):
 
 class CreateApplicationView(LoginRequiredMixin, SuccessMessageMixin, ManageAppMixin, CreateView):
     model = Application
-    template_name = "applications/create.html"
+    template_name = "applications/manage/create.html"
     form_class = ApplicationForm
 
     success_url = reverse_lazy("applications:manage")
@@ -60,7 +60,7 @@ class CreateApplicationView(LoginRequiredMixin, SuccessMessageMixin, ManageAppMi
 
 class UpdateApplicationView(LoginRequiredMixin, SuccessMessageMixin, ManageAppMixin, UpdateView):
     model = Application
-    template_name = "applications/update.html"
+    template_name = "applications/manage/update.html"
     form_class = ApplicationForm
 
     success_url = reverse_lazy("applications:manage")
@@ -74,7 +74,7 @@ class UpdateApplicationView(LoginRequiredMixin, SuccessMessageMixin, ManageAppMi
 
 
 class DeleteApplicationView(LoginRequiredMixin, SuccessMessageMixin, ManageAppMixin, DeleteView):
-    template_name = "applications/delete.html"
+    template_name = "applications/manage/delete.html"
     context_object_name = "application"
     model = Application
 

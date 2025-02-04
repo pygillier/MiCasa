@@ -1,6 +1,6 @@
-{% extends "user/base.html" %}
+{% extends "manage.html" %}
 {% load i18n %}
-{% block inner %}
+{% block content %}
     <section id="admin-page-content">
         <h2>{% trans "apps.create_header" %}</h2>
         <div class="admin-block admin-block-padded">
@@ -13,4 +13,4 @@
             </form>
         </div>
     </section>
-{% endblock inner %}
+{% endblock content %}

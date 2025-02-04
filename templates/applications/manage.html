@@ -1,10 +1,10 @@
-{% extends "user/base.html" %}
+{% extends "manage.html" %}
 {% load i18n static %}
 {% block head_extra %}
     <script defer src="{% static 'js/sortable.min.js' %}"></script>
     <script defer src="{% static 'js/sortable-lists.js' %}"></script>
 {% endblock head_extra %}
-{% block inner %}
+{% block content %}
     <section id="admin-page-content">
         <h2>
             {% trans "apps.manage_header" %}
@@ -31,4 +31,4 @@
             </form>
         </div>
     </section>
-{% endblock inner %}
+{% endblock content %}

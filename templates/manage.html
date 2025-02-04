@@ -15,8 +15,15 @@
         <main class="container max-w-screen-xl" id="page">
             {% translate "settings.title" as title %}
             {% include "partials/manage/header.html" with title=title %}
-            {% block content %}{% endblock content %}
+            <section class="grid grid-cols-6 gap-6">
+                <nav>
+                    {% include "partials/nav.html" %}
+                </nav>
+                <div class="col-span-5 text-base">
+                    {% include "partials/messages.html" %}
+                    {% block content %}{% endblock content %}
+                </div>
+            </section>
         </main>
-
     </body>
 </html>

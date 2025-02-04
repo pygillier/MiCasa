@@ -1,3 +1,4 @@
+/* Theme selector */
 function setColorScheme(scheme) {
   console.log("Setting scheme to: ", scheme);
   switch(scheme){
@@ -24,3 +25,11 @@ if(window.matchMedia){
 }
 
 updateColorScheme();
+
+/* Icon selector */
+const iconSelector = () => {
+  return {
+    icon: null,
+    get mdiIcon() { return `mdi-${this.icon ? this.icon: "border-none-variant"}`; },
+  }
+}

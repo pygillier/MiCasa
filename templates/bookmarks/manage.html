@@ -19,6 +19,7 @@
                             <th scope="col"><span class="sr-only">{% trans "global.table.sort_handle" %}</span></th>
                             <th scope="col">{% trans "global.table.name_header" %}</th>
                             <th scope="col">{% trans "global.table.visibility_header" %}</th>
+                            <th scope="col">{% trans "categories.table.bookmarks_header" %}</th>
                             <th scope="col"><span class="sr-only">{% trans "global.table.actions" %}</span></th>
                         </tr>
                     </thead>
@@ -28,29 +29,31 @@
                 </table>
             </form>
         </div>
-        <h2 class="mt-6">
-            {% trans "bookmarks.manage_header" %}
-            <a class="button" href="{% url "bookmarks:bookmark_create" %}">{% trans "bookmarks.new_button" %}</a>
-        </h2>
-        <div class="admin-block">
-            <form hx-post="{% url "bookmarks:bookmark_reorder" %}" hx-trigger="end" hx-target="#bookmarks">
-                {% csrf_token %}
-                <table class="listing">
-                    <thead>
-                        <tr>
-                            <th scope="col"><span class="sr-only">{% trans "global.table.sort_handle" %}</span></th>
-                            <th scope="col">{% trans "global.table.name_header" %}</th>
-                            <th scope="col">{% trans "global.table.url_header" %}</th>
-                            <th scope="col">{% trans "bookmarks.table.category_header" %}</th>
-                            <th scope="col">{% trans "global.table.visibility_header" %}</th>
-                            <th scope="col"><span class="sr-only">{% trans "global.table.actions" %}</span></th>
-                        </tr>
-                    </thead>
-                    <tbody class="sortable" id="bookmarks">
-                        {% include "bookmarks/bookmark/_list.html" %}
-                    </tbody>
-                </table>
-            </form>
+        <div id="bookmarks">
+            <h2 class="mt-6">
+                {% trans "bookmarks.manage_header" %}
+                <a class="button" href="{% url "bookmarks:bookmark_create" %}">{% trans "bookmarks.new_button" %}</a>
+            </h2>
+            <div class="admin-block">
+                <form hx-post="{% url "bookmarks:bookmark_reorder" %}" hx-trigger="end" hx-target="#bookmarks">
+                    {% csrf_token %}
+                    <table class="listing">
+                        <thead>
+                            <tr>
+                                <th scope="col"><span class="sr-only">{% trans "global.table.sort_handle" %}</span></th>
+                                <th scope="col">{% trans "global.table.name_header" %}</th>
+                                <th scope="col">{% trans "global.table.url_header" %}</th>
+                                <th scope="col">{% trans "bookmarks.table.category_header" %}</th>
+                                <th scope="col">{% trans "global.table.visibility_header" %}</th>
+                                <th scope="col"><span class="sr-only">{% trans "global.table.actions" %}</span></th>
+                            </tr>
+                        </thead>
+                        <tbody class="sortable" id="bookmarks">
+                            {% include "bookmarks/bookmark/_list.html" %}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
         </div>
     </section>
 {% endblock content %}

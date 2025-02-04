@@ -9,6 +9,7 @@
         {{ category.name }} ({{ category.position }})
     </th>
     <td><iconify-icon class="text-xl" icon="mdi:visibility-{{ category.is_public|yesno:"outline,off-outline" }}"></iconify-icon> {{ category.is_public|yesno:_("public,private") }}</td>
+    <td><strong><a href="#" class="underline">{{ category.bookmarks.count }}</a></strong></td>
     <td class="actions text-right">
         <ul>
             <li><a href="{% url "bookmarks:category_update" pk=category.id %}">{% trans "forms.buttons.update" %}</a></li>

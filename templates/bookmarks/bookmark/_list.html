@@ -6,7 +6,7 @@
         <iconify-icon icon="mdi:drag-vertical" class="text-2xl"></iconify-icon>
     </td>
     <th scope="row">
-        <iconify-icon icon="mdi:{{ bookmark.icon }}" class="text-4xl"></iconify-icon>
+        <iconify-icon icon="mdi:{{ bookmark.icon|default_if_none:"border-none-variant" }}" class="text-4xl"></iconify-icon>
         {{ bookmark.name }} ({{ bookmark.position }})
     </th>
     <td class="max-w-64"><a href="{{ bookmark.url }}" target="_blank">{{ bookmark.url }}</a></td>

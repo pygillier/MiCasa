@@ -1,6 +1,7 @@
 from django.forms import ModelForm, Select, TextInput, URLInput
 from .models import Application
 from django.utils.translation import gettext_lazy as _
+from user.custom_widgets import IconInput
 
 
 class ApplicationForm(ModelForm):
@@ -16,6 +17,7 @@ class ApplicationForm(ModelForm):
             "is_pinned": Select(
                 choices={True: _("apps.manage.form.is_pinned.yes"), False: _("apps.manage.form.is_pinned.no")}
             ),
+            "icon": IconInput(attrs={"placeholder": _("forms.icon_placeholder")}),
         }
         labels = {
             "name": _("forms.name_label"),

@@ -1,11 +1,5 @@
 {% load i18n %}
 <ul>
-    <li class="text-sm mb-3" x-data="{theme: ''}">
-        <a x-on:click="theme = 'light'">Light</a> /
-        <a x-on:click="theme = 'dark'">Dark</a> /
-        <a x-on:click="theme = 'system'">System</a>
-        Current Theme: <span x-text="theme"></span>
-    </li>
     <li{% if current == "index" %} class="active"{% endif %}>
         <a href="{% url "user:index" %}">{% trans "settings.nav.general" %}</a>
     </li>

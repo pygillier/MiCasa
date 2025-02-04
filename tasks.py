@@ -8,4 +8,4 @@ def build_css(c, component="manage"):
 
 @task(post=[build_css])
 def build_manage_css(c):
-    print("Building manage css")
+    print("Starting tailwindcss build for manage component")

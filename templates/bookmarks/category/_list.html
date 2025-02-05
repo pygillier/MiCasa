@@ -6,7 +6,7 @@
         <iconify-icon icon="mdi:drag-vertical" class="text-2xl"></iconify-icon>
     </td>
     <th scope="row">
-        {{ category.name }} ({{ category.position }})
+        {{ category.name }}
     </th>
     <td><iconify-icon class="text-xl" icon="mdi:visibility-{{ category.is_public|yesno:"outline,off-outline" }}"></iconify-icon> {{ category.is_public|yesno:_("public,private") }}</td>
     <td><strong><a href="#" class="underline">{{ category.bookmarks.count }}</a></strong></td>

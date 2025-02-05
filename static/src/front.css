@@ -114,5 +114,5 @@ main > section > h2 {
 
 /** Floating button */
 aside#fab {
-  @apply fixed top-2 right-1 md:bottom-4 md:left-4 text-2xl;
+  @apply fixed bottom-4 left-4 text-2xl;
 }

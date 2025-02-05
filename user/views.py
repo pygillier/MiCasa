@@ -70,7 +70,7 @@ class BackupView(LoginRequiredMixin, View):
         registry = global_preferences_registry.manager()
 
         apps = Application.objects.all()
-        cats = BookmarkCategory.objects.prefetch_related("bookmark_set").all()  # Prefetch to reduce queries
+        cats = BookmarkCategory.objects.prefetch_related("bookmarks").all()  # Prefetch to reduce queries
 
         response = JsonResponse(
             data={

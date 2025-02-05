@@ -7,7 +7,7 @@
     </td>
     <th scope="row">
         <iconify-icon icon="mdi:{{ bookmark.icon|default_if_none:"border-none-variant" }}" class="text-4xl"></iconify-icon>
-        {{ bookmark.name }} ({{ bookmark.position }})
+        {{ bookmark.name }}
     </th>
     <td class="max-w-64"><a href="{{ bookmark.url }}" target="_blank">{{ bookmark.url }}</a></td>
     <td>{{ bookmark.category.name }}</td>

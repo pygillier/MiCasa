@@ -14,3 +14,15 @@ def build_manage(c):
 @task(post=[call(build_css, component="front")])
 def build_front(c):
     print("Starting tailwindcss build for front component")
+
+
+@task
+def build_container(c):
+    print("Building container")
+    c.run("docker build -t micasa:local .")
+
+
+@task
+def run_container(c):
+    print("Running container")
+    c.run("docker run --rm -e SECRET_KEY=local -p 8080:8000 micasa:local")

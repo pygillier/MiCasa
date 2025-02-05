@@ -37,7 +37,34 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
-*.mo
+*.mo@config "../../tailwind.manage.config.js";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Amazon Ember';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/static/fonts/amazon-ember-regular.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Amazon Ember Heavy';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/static/fonts/amazon-ember-heavy.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Amazon Ember Bold';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/static/fonts/amazon-ember-bold.woff2) format('woff2');
+  }
+}
 *.pot
 *.log
 local_settings.py

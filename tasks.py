@@ -1,4 +1,4 @@
-from invoke import task
+from invoke import task, call
 
 
 @task
@@ -7,5 +7,10 @@ def build_css(c, component="manage"):
 
 
 @task(post=[build_css])
-def build_manage_css(c):
+def build_manage(c):
     print("Starting tailwindcss build for manage component")
+
+
+@task(post=[call(build_css, component="front")])
+def build_front(c):
+    print("Starting tailwindcss build for front component")

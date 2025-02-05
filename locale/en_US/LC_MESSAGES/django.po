@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-04 21:47+0100\n"
+"POT-Creation-Date: 2025-02-05 20:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,9 +174,18 @@ msgstr "Good night"
 msgid "greetings.hello"
 msgstr "Hello"
 
-#: templates/applications/home.html:10
+#: templates/applications/home.html:3
+msgid "applications.title"
+msgstr "Applications"
+
+#: templates/applications/home.html:12
 msgid "applications.none"
 msgstr "No application defined."
+
+#: templates/applications/index.html:6 templates/bookmarks/index.html:6
+#: templates/home/index.html:10
+msgid "front.applications.loading"
+msgstr "Loading applications"
 
 #: templates/applications/manage.html:10
 msgid "apps.manage_header"
@@ -305,7 +314,11 @@ msgstr "Delete category"
 msgid "categories.update_header"
 msgstr "Update category"
 
-#: templates/bookmarks/home.html:15
+#: templates/bookmarks/home.html:3
+msgid "bookmarks.title"
+msgstr "Bookmarks"
+
+#: templates/bookmarks/home.html:20
 msgid "bookmarks.none"
 msgstr "No bookmark defined."
 
@@ -333,15 +346,11 @@ msgstr "New bookmark"
 msgid "bookmarks.table.category_header"
 msgstr "Category"
 
-#: templates/home/index.html:10
-msgid "applications.title"
-msgstr "Applications"
+#: templates/home/index.html:13
+msgid "front.loading"
+msgstr ""
 
-#: templates/home/index.html:14
-msgid "bookmarks.title"
-msgstr "Bookmarks"
-
-#: templates/layout.html:22
+#: templates/layout.html:30
 msgid "fab.settings"
 msgstr "Settings"
 

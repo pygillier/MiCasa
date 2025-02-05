@@ -1,0 +1,118 @@
+@config "../../tailwind.manage.config.js";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Amazon Ember';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/static/fonts/amazon-ember-regular.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Amazon Ember Heavy';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/static/fonts/amazon-ember-heavy.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: 'Amazon Ember Bold';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url(/static/fonts/amazon-ember-bold.woff2) format('woff2');
+  }
+}
+
+body {
+  @apply font-bold;
+  background-color: var(--body-bg);
+  color: var(--body-color);
+}
+
+h1 {
+  @apply text-6xl mt-2 mb-4;
+  font-family: "Amazon Ember Heavy", system-ui, sans-serif;
+}
+
+h2 {
+  @apply text-3xl mt-4 mb-2 uppercase;
+  font-family: "Amazon Ember Bold", system-ui, sans-serif;
+}
+
+h6 {
+  font-family: "Amazon Ember Bold", system-ui, sans-serif;
+}
+
+main {
+  @apply container max-w-screen-xl mt-4 md:mt-10;
+}
+
+/** Headers with greetings and weather */
+header#greetings {
+  @apply flex justify-between items-center;
+}
+
+aside#weather {
+  @apply grid grid-rows-2 grid-flow-col text-lg font-bold;
+}
+
+aside#weather div#weather-icon {
+  @apply row-span-2 self-center text-6xl me-2;
+  color: var(--accent-color);
+}
+
+aside#weather div#temperature {
+  @apply border-b-2 border-slate-500 self-baseline;
+}
+aside#weather div#extra {
+  @apply self-start;
+}
+
+/** Content sections */
+main > section {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-1;
+}
+main > section > h2 {
+  @apply col-start-1 col-span-2 md:col-span-4;
+}
+
+/** Application section */
+.application {
+  @apply grid grid-rows-2 grid-flow-col text-lg place-content-start mb-4;
+}
+
+.application aside {
+  @apply row-span-2 self-center text-5xl me-2;
+}
+.application h3 {
+  @apply uppercase font-medium self-end text-lg;
+  font-family: "Amazon Ember Bold", system-ui, sans-serif;
+}
+.application p {
+  @apply self-start uppercase text-sm font-light;
+  color: var(
+    --accent-color
+  )
+}
+
+/** Bookmarks section */
+.category h3 {
+  @apply uppercase mb-3;
+  color: var(--accent-color);
+}
+
+.category li {
+  @apply mb-2;
+}
+.category li iconify-icon {
+  @apply text-2xl me-1;
+}
+
+/** Floating button */
+aside#fab {
+  @apply fixed top-2 right-1 md:bottom-4 md:left-4 text-2xl;
+}

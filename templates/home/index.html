@@ -1,17 +1,15 @@
 {% extends "layout.html" %}
 {% load current_time greeting i18n %}
 {% block content %}
-    <h6 class="mt-10 text-base text-bold">{% current_time %}</h6>
-    <header class="grid grid-cols-12 gap-2" id="greetings">
-        <h1 class="col-span-10 place-items-center">{% greeting %}</h1>
+    <h6>{% current_time %}</h6>
+    <header id="greetings">
+        <h1>{% greeting %}</h1>
         <div hx-get="{% url "home:weather" %}" hx-trigger="revealed, every 3600s">Weather</div>
     </header>
-    <section>
-        <h2><a href="{% url "applications:index" %}">{% trans "applications.title" %}</a></h2>
-        <div hx-get="{% url "applications:home" %}" hx-trigger="revealed">Loading...</div>
+    <section id="apps" hx-get="{% url "applications:home" %}" hx-trigger="revealed">
+        {% trans "front.applications.loading" %}
     </section>
-    <section id="home-bookmarks">
-        <h2><a href="{% url "bookmarks:index" %}">{% trans "bookmarks.title" %}</a></h2>
-        <div hx-get="{% url "bookmarks:home" %}" hx-trigger="revealed">Loading...</div>
+    <section id="bookmarks" hx-get="{% url "bookmarks:home" %}" hx-trigger="revealed">
+        {% trans "front.loading" %}
     </section>
 {% endblock content %}

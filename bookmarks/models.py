@@ -74,3 +74,6 @@ class Bookmark(models.Model):
             "is_public": self.is_public,
             "position": self.position,
         }
+
+    def public_icon(self):
+        return self.icon if self.icon else "bookmark"

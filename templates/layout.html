@@ -8,18 +8,28 @@
 
         <title>{{ global_preferences.general__site_title }}</title>
         {% include "partials/favicons.html" %}
-        <link rel="stylesheet" type="text/css" href="{% static "css/output.css" %}" />
-        <script src="{% static 'js/htmx.min.js' %}"></script>
+        <style type="text/css">
+            :root {
+                --body-bg: #242B33;
+                --body-color: #EFFBFF;
+                --accent-color: #6EE2FF;
 
-        {% django_htmx_script %}
+                /* Extended overrides */
+                --bs-link-color:  #EFFBFF;
+            }
+        </style>
+        <link rel="stylesheet" type="text/css" href="{% static "css/front.css" %}" />
         {% block head_extra %}{% endblock head_extra %}
     </head>
-    <body class="bg-[#242B33]">
-        <main class="container max-w-screen-xl" id="page">
+    <body>
+        <main id="page">
             {% block content %}{% endblock content %}
         </main>
-        <aside class="position-absolute bottom-0 start-0">
+        <!-- Bottom-Left Corner -->
+        <aside id="fab">
             <a href="{% url "user:index" %}" id="fab-settings" alt="{% trans "fab.settings" %}" title="{% trans "fab.settings" %}"><iconify-icon icon="mdi:settings"/></a>
         </aside>
+        <script defer src="{% static 'js/htmx.min.js' %}"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
     </body>
 </html>

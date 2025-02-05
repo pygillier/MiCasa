@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-05 20:42+0100\n"
+"POT-Creation-Date: 2025-02-05 22:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -239,7 +239,7 @@ msgstr "Oui,Non"
 #: templates/bookmarks/bookmark/update.html:11
 #: templates/bookmarks/category/_list.html:15
 #: templates/bookmarks/category/update.html:11 templates/user/index.html:21
-#: templates/user/weather.html:24
+#: templates/user/theme.html:23 templates/user/weather.html:24
 msgid "forms.buttons.update"
 msgstr "Mettre à jour"
 
@@ -375,14 +375,18 @@ msgid "settings.nav.bookmarks"
 msgstr "Marque-pages"
 
 #: templates/partials/nav.html:14
+msgid "settings.nav.theme"
+msgstr "Thème"
+
+#: templates/partials/nav.html:17
 msgid "settings.nav.weather"
 msgstr "Météo"
 
-#: templates/partials/nav.html:17
+#: templates/partials/nav.html:20
 msgid "settings.nav.django_admin"
 msgstr "Admin Django"
 
-#: templates/partials/nav.html:22
+#: templates/partials/nav.html:25
 msgid "settings.nav.logout"
 msgstr "Déconnexion"
 
@@ -430,6 +434,10 @@ msgstr "Connexion"
 msgid "signin.form.oidc_button"
 msgstr "Connexion via OIDC"
 
+#: templates/user/theme.html:5
+msgid "theme.update_header"
+msgstr "Thème de couleurs"
+
 #: templates/user/weather.html:5
 msgid "weather.update_header"
 msgstr "Configuration de la météo"
@@ -444,61 +452,85 @@ msgstr ""
 "com/\">WeatherAPI</a>. Vous pouvez vous enregistrer gratuitement & obtenir "
 "votre propre clef API."
 
-#: user/preferences.py:15
+#: user/preferences.py:16
 msgid "pref.weather.apikey.verbose_name"
 msgstr "Clef API"
 
-#: user/preferences.py:18
+#: user/preferences.py:19
 msgid "pref.weather.apikey.help"
 msgstr "La clef API de WeatherAPI"
 
-#: user/preferences.py:25
+#: user/preferences.py:26
 msgid "pref.weather.latitude.verbose_name"
 msgstr "Latitude"
 
-#: user/preferences.py:28
+#: user/preferences.py:29
 msgid "pref.weather.latitude.help"
 msgstr "La latitude de l'endroit choisi"
 
-#: user/preferences.py:39
+#: user/preferences.py:40
 msgid "pref.weather.longitude.verbose_name"
 msgstr "Longitude"
 
-#: user/preferences.py:42
+#: user/preferences.py:43
 msgid "pref.weather.longitude.help"
 msgstr "La longitude de l'endroit choisi"
 
-#: user/preferences.py:53
+#: user/preferences.py:54
 msgid "pref.weather.temperature.verbose_name"
 msgstr "Température"
 
-#: user/preferences.py:54
+#: user/preferences.py:55
 msgid "weather.temp.celsius"
 msgstr "Celsius"
 
-#: user/preferences.py:54
+#: user/preferences.py:55
 msgid "weather.temp.farenheit"
 msgstr "Farenheit"
 
-#: user/preferences.py:57
+#: user/preferences.py:58
 msgid "pref.weather.temperature.help"
 msgstr "Le format de température"
 
-#: user/preferences.py:64
+#: user/preferences.py:65
 msgid "pref.weather.coverage.verbose_name"
 msgstr "Couverture"
 
-#: user/preferences.py:65
+#: user/preferences.py:66
 msgid "weather.coverage.cloud"
 msgstr "Nuages"
 
-#: user/preferences.py:65
+#: user/preferences.py:66
 msgid "weather.coverage.humidity"
 msgstr "Humidité"
 
-#: user/preferences.py:68
+#: user/preferences.py:69
 msgid "pref.weather.coverage.help"
 msgstr "Données complémentaires à afficher"
+
+#: user/preferences.py:85
+msgid "pref.theme.background_color.verbose_name"
+msgstr "Couleur de fond"
+
+#: user/preferences.py:88
+msgid "pref.theme.background_color.help"
+msgstr "La couleur du fond de page"
+
+#: user/preferences.py:94
+msgid "pref.theme.text_color.verbose_name"
+msgstr "Couleur du texte"
+
+#: user/preferences.py:97
+msgid "pref.theme.text_color.help"
+msgstr ""
+
+#: user/preferences.py:103
+msgid "pref.theme.accent_color.verbose_name"
+msgstr "Couleur d'accent"
+
+#: user/preferences.py:106
+msgid "pref.theme.accent_color.help"
+msgstr ""
 
 #: user/views.py:46
 #, python-format
@@ -508,3 +540,9 @@ msgstr "Bon retour parmi nous, %(name)s !"
 #: user/views.py:102
 msgid "user.manage.weather.success"
 msgstr "La configuration liée à la météo a été mise à jour !"
+
+#: user/views.py:119
+#, fuzzy
+#| msgid "user.manage.weather.success"
+msgid "user.manage.theme.success"
+msgstr "La configuration du thème de couleurs a été mise à jour !"

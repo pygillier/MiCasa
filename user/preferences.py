@@ -5,6 +5,7 @@ from django.forms import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 weather = Section("weather")
+theme = Section("theme")
 
 
 # WeatherAPI preferences
@@ -66,3 +67,44 @@ class WeatherAPICoverage(ChoicePreference):
     default = "cloud"
     required = True
     help_text = _("pref.weather.coverage.help")
+
+
+# Theme preferences
+class HexadecimalColor(StringPreference):
+
+    def validate(self, value):
+        try:
+            int(value, 16)
+            assert len(value) == 6
+        except (ValueError, AssertionError):
+            raise ValidationError("Color must be in hexadecimal format (RRGGBB)")
+
+
+@registry.register
+class ThemeBackgroundColor(HexadecimalColor):
+    section = theme
+    name = "background_color"
+    verbose_name = _("pref.theme.background_color.verbose_name")
+    default = "242B33"
+    required = True
+    help_text = _("pref.theme.background_color.help")
+
+
+@registry.register
+class ThemeTextColor(HexadecimalColor):
+    section = theme
+    name = "text_color"
+    verbose_name = _("pref.theme.text_color.verbose_name")
+    default = "EFFBFF"
+    required = True
+    help_text = _("pref.theme.text_color.help")
+
+
+@registry.register
+class ThemeAccentColor(HexadecimalColor):
+    section = theme
+    name = "accent_color"
+    verbose_name = _("pref.theme.accent_color.verbose_name")
+    default = "6EE2FF"
+    required = True
+    help_text = _("pref.theme.accent_color.help")

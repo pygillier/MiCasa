@@ -110,3 +110,21 @@ class WeatherView(LoginRequiredMixin, SuccessMessageMixin, FormView):
         form.update_preferences()
 
         return super().form_valid(form)
+
+
+class ThemeView(LoginRequiredMixin, SuccessMessageMixin, FormView):
+    template_name = "user/theme.html"
+    extra_context = {"current": "theme"}
+
+    success_url = reverse_lazy("user:theme")
+    success_message = _("user.manage.theme.success")
+
+    def get_form_class(self):
+        from dynamic_preferences.forms import global_preference_form_builder
+
+        return global_preference_form_builder(section="theme")
+
+    def form_valid(self, form):
+        form.update_preferences()
+
+        return super().form_valid(form)

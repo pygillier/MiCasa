@@ -1,14 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# MiCasa fr_FR po file..
+# Copyright (C) 2025 Pierre-Yves Gillier
+# This file is distributed under the same license as the MiCasa package.
+# Pierre-Yves Gillier <github@pygillier.me>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-11 19:07+0100\n"
+"POT-Creation-Date: 2025-02-05 20:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,143 +24,103 @@ msgstr "Anglais"
 msgid "French"
 msgstr "Français"
 
-#: applications/forms.py:11
-msgid "apps.manage.form.name.placeholder"
+#: applications/forms.py:12
+msgid "forms.apps.name_placeholder"
 msgstr "Mon application"
 
-#: applications/forms.py:23
-msgid "apps.manage.form.is_public.public"
+#: applications/forms.py:13 bookmarks/forms.py:35
+msgid "forms.url_placeholder"
+msgstr "https://"
+
+#: applications/forms.py:15 bookmarks/forms.py:15 bookmarks/forms.py:39
+msgid "forms.is_public.public_field"
 msgstr "Public"
 
-#: applications/forms.py:23
-msgid "apps.manage.form.is_public.private"
+#: applications/forms.py:15 bookmarks/forms.py:16 bookmarks/forms.py:40
+msgid "forms.is_public.private_field"
 msgstr "Privé"
 
-#: applications/forms.py:27
+#: applications/forms.py:18
 msgid "apps.manage.form.is_pinned.yes"
 msgstr "Oui"
 
-#: applications/forms.py:27
+#: applications/forms.py:18
 msgid "apps.manage.form.is_pinned.no"
 msgstr "Non"
 
-#: applications/forms.py:31
-msgid "apps.manager.form.name.label"
+#: applications/forms.py:20 bookmarks/forms.py:36
+msgid "forms.icon_placeholder"
+msgstr "icon_id"
+
+#: applications/forms.py:23 bookmarks/forms.py:21 bookmarks/forms.py:45
+msgid "forms.name_label"
 msgstr "Nom"
 
-#: applications/forms.py:32
-msgid "apps.manager.form.description.label"
+#: applications/forms.py:24
+msgid "forms.apps.description_label"
 msgstr "Description"
 
-#: applications/forms.py:33
-msgid "apps.manager.form.url.label"
+#: applications/forms.py:25 bookmarks/forms.py:46
+msgid "forms.url_label"
 msgstr "URL"
 
-#: applications/forms.py:34
-msgid "apps.manager.form.icon.label"
+#: applications/forms.py:26 bookmarks/forms.py:47
+msgid "forms.icon_label"
 msgstr "Icône"
 
-#: applications/forms.py:35
-msgid "apps.manager.form.is_public.label"
+#: applications/forms.py:27 bookmarks/forms.py:22 bookmarks/forms.py:49
+msgid "forms.is_public_label"
 msgstr "Visibilité"
 
-#: applications/forms.py:36
-msgid "apps.manager.form.is_pinned.label"
+#: applications/forms.py:28
+msgid "forms.is_pinned_label"
 msgstr "Epingle"
 
-#: applications/forms.py:39
+#: applications/forms.py:31 bookmarks/forms.py:53
 #, python-format
-msgid "apps.manager.form.icon.help_text %(url)s"
+msgid "forms.icon_help_text %(url)s"
 msgstr "Liste sur <a href='%(url)s' target='_blank'>Pictogrammers</a>."
 
-#: applications/forms.py:40
-msgid "apps.manager.form.description.help_text"
+#: applications/forms.py:32
+msgid "forms.apps.description_help_text"
 msgstr "L'URL sera affichée en sous-texte si la description est vide"
 
-#: applications/forms.py:41
-msgid "apps.manager.form.is_public.help_text"
-msgstr "Afficher cette application aux anonymes"
+#: applications/forms.py:33 bookmarks/forms.py:25 bookmarks/forms.py:52
+msgid "forms.is_public_help_text"
+msgstr "Afficher aux anonymes"
 
-#: applications/forms.py:42
-msgid "apps.manager.form.is_pinned.help_text"
-msgstr "Epingler cette application sur la page d'accueil"
+#: applications/forms.py:34
+msgid "forms.is_pinned_help_text"
+msgstr "Epingler sur la page d'accueil"
 
-#: applications/views.py:54
+#: applications/views.py:52
 #, python-format
 msgid "app.manage.success.created %(name)s"
 msgstr "L'application %(name)s a été créée"
 
-#: applications/views.py:69
+#: applications/views.py:67
 #, python-format
 msgid "app.manage.success.updated %(name)s"
 msgstr "L'application %(name)s a été mise à jour"
 
-#: applications/views.py:84
+#: applications/views.py:82
 #, python-format
 msgid "app.manage.success.deleted %(name)s"
 msgstr "L'application %(name)s a été supprimée"
 
-#: bookmarks/forms.py:11
-msgid "bm.category.form.name.placeholder"
+#: bookmarks/forms.py:12
+msgid "forms.categories.name_placeholder"
 msgstr "Catégorie"
-
-#: bookmarks/forms.py:15
-msgid "bm.category.form.is_public.public.text"
-msgstr "Public"
-
-#: bookmarks/forms.py:16
-msgid "bm.category.form.is_public.private.text"
-msgstr "Privé"
-
-#: bookmarks/forms.py:21
-msgid "bm.category.form.name.label"
-msgstr "Nom"
-
-#: bookmarks/forms.py:22
-msgid "bm.category.form.is_public.label"
-msgstr "Visibilité"
-
-#: bookmarks/forms.py:25
-msgid "bm.category.form.is_public.help_text"
-msgstr "Afficher cette catégorie aux anonymes"
 
 #: bookmarks/forms.py:34
-msgid "bm.bookmark.form.name.placeholder"
-msgstr "Nom"
-
-#: bookmarks/forms.py:35
-msgid "bm.bookmark.form.url.placeholder"
-msgstr "URL"
-
-#: bookmarks/forms.py:42
-msgid "bm.bookmark.form.is_public.public.text"
-msgstr "Public"
-
-#: bookmarks/forms.py:43
-msgid "bm.bookmark.form.is_public.private.text"
-msgstr "Privé"
+msgid "forms.bookmarks.name_placeholder"
+msgstr "Mon marque-page"
 
 #: bookmarks/forms.py:48
-msgid "bm.bookmark.form.name.label"
-msgstr "Nom"
-
-#: bookmarks/forms.py:49
-msgid "bm.bookmark.form.url.label"
-msgstr "URL"
-
-#: bookmarks/forms.py:50
-msgid "bm.bookmark.form.category.label"
+msgid "forms.bookmarks.category_label"
 msgstr "Catégorie"
 
-#: bookmarks/forms.py:51
-msgid "bm.bookmark.form.is_public.label"
-msgstr "Visibilité"
-
-#: bookmarks/forms.py:54
-msgid "bm.bookmark.form.is_public.help_text"
-msgstr "Afficher ce marque-page aux anonymes"
-
-#: bookmarks/models.py:49
+#: bookmarks/models.py:57
 msgid "A bookmark can't be public if the category is private."
 msgstr "Un marque-page ne peut être public si sa catégorie est privée."
 
@@ -180,17 +139,17 @@ msgstr "La catégorie %(name)s a été mise à jour"
 msgid "bm.category.delete.success %(name)s"
 msgstr "La catégorie %(name)s a été supprimée"
 
-#: bookmarks/views.py:111
+#: bookmarks/views.py:131
 #, python-format
 msgid "bm.bookmark.create.success %(name)s"
 msgstr "Le marque-page %(name)s a été créé"
 
-#: bookmarks/views.py:126
+#: bookmarks/views.py:146
 #, python-format
 msgid "bm.bookmark.update.success %(name)s"
 msgstr "Le marque-page %(name)s a été mis à jour"
 
-#: bookmarks/views.py:141
+#: bookmarks/views.py:161
 #, python-format
 msgid "bm.bookmark.delete.success %(name)s"
 msgstr "Le marque-page %(name)s a été supprimé"
@@ -215,87 +174,112 @@ msgstr "Bonne nuit"
 msgid "greetings.hello"
 msgstr "Bonjour"
 
-#: templates/applications/create.html:5
-msgid "settings.apps.new.title"
-msgstr "Nouvelle application"
+#: templates/applications/home.html:3
+msgid "applications.title"
+msgstr "Applications"
 
-#: templates/applications/create.html:11
-msgid "apps.manage.forms.submit.new"
-msgstr "Créer"
-
-#: templates/applications/delete.html:5
-msgid "settings.apps.delete.title"
-msgstr "Supprimer une application"
-
-#: templates/applications/delete.html:7
-#, python-format
-msgid "settings.apps.delete.message %(app_name)s"
-msgstr "Êtes-vous certain de vouloir supprimer l'application \"%(app_name)s\" ? Cette opération est irréversible !"
-
-#: templates/applications/delete.html:10
-msgid "settings.apps.delete.button.title"
-msgstr "Oui, la supprimer !"
-
-#: templates/applications/home.html:10
+#: templates/applications/home.html:12
 msgid "applications.none"
 msgstr "Aucune application définie."
 
+#: templates/applications/index.html:6 templates/bookmarks/index.html:6
+#: templates/home/index.html:10
+msgid "front.applications.loading"
+msgstr "Chargement des applications..."
+
 #: templates/applications/manage.html:10
-msgid "settings.apps.list.title"
+msgid "apps.manage_header"
 msgstr "Applications"
 
 #: templates/applications/manage.html:11
-msgid "apps.manage.new_button"
+msgid "apps.new_button"
 msgstr "Nouvelle application"
 
-#: templates/applications/manage.html:19
-#, fuzzy
-#| msgid "apps.manage.table.header.url"
-msgid "apps.manage.table.header.sort_handle"
-msgstr "URL"
+#: templates/applications/manage.html:19 templates/bookmarks/manage.html:19
+#: templates/bookmarks/manage.html:43
+msgid "global.table.sort_handle"
+msgstr "Clef de tru"
 
-#: templates/applications/manage.html:20
-msgid "apps.manage.table.header.name"
+#: templates/applications/manage.html:20 templates/bookmarks/manage.html:20
+#: templates/bookmarks/manage.html:44
+msgid "global.table.name_header"
 msgstr "Nom"
 
-#: templates/applications/manage.html:21
-msgid "apps.manage.table.header.url"
+#: templates/applications/manage.html:21 templates/bookmarks/manage.html:45
+msgid "global.table.url_header"
 msgstr "URL"
 
-#: templates/applications/manage.html:22
-msgid "apps.manage.table.header.visibility"
+#: templates/applications/manage.html:22 templates/bookmarks/manage.html:21
+#: templates/bookmarks/manage.html:47
+msgid "global.table.visibility_header"
 msgstr "Visibilité"
 
 #: templates/applications/manage.html:23
-msgid "apps.manage.table.header.pinned"
-msgstr "Epinglé"
+msgid "apps.table.pinned_header"
+msgstr "Epingle"
 
-#: templates/applications/manage.html:24
-msgid "apps.manage.table.header.actions"
+#: templates/applications/manage.html:24 templates/bookmarks/manage.html:23
+#: templates/bookmarks/manage.html:48
+msgid "global.table.actions"
 msgstr "Actions"
 
-#: templates/applications/manage.html:39 templates/applications/manage.html:40
+#: templates/applications/manage/_list.html:13
+#: templates/bookmarks/bookmark/_list.html:14
+#: templates/bookmarks/category/_list.html:11
+msgid "public,private"
+msgstr "Public,Privé"
+
+#: templates/applications/manage/_list.html:14
 msgid "yes,no"
 msgstr "Oui,Non"
 
-#: templates/applications/manage.html:43
-msgid "settings.buttons.edit.title"
-msgstr "Modifier"
-
-#: templates/applications/manage.html:44
-msgid "settings.buttons.delete.title"
-msgstr "Supprimer"
-
-#: templates/applications/update.html:5
-msgid "settings.apps.edit.title"
-msgstr "Modifier une application"
-
-#: templates/applications/update.html:11
-msgid "apps.manage.forms.update.new"
+#: templates/applications/manage/_list.html:17
+#: templates/applications/manage/update.html:11
+#: templates/bookmarks/bookmark/_list.html:17
+#: templates/bookmarks/bookmark/update.html:11
+#: templates/bookmarks/category/_list.html:15
+#: templates/bookmarks/category/update.html:11 templates/user/index.html:21
+#: templates/user/weather.html:24
+msgid "forms.buttons.update"
 msgstr "Mettre à jour"
 
-#: templates/bookmarks/bookmark/create.html:10
-msgid "bm.bookmark.button.create"
+#: templates/applications/manage/_list.html:18
+#: templates/bookmarks/bookmark/_list.html:18
+#: templates/bookmarks/category/_list.html:16
+msgid "forms.buttons.delete"
+msgstr "Supprimer"
+
+#: templates/applications/manage/create.html:5
+msgid "apps.create_header"
+msgstr "Créer une application"
+
+#: templates/applications/manage/create.html:11
+#: templates/bookmarks/bookmark/create.html:11
+#: templates/bookmarks/category/create.html:11
+msgid "forms.buttons.create"
+msgstr "Créer"
+
+#: templates/applications/manage/delete.html:5
+msgid "settings.apps.delete.title"
+msgstr "Supprimer une application"
+
+#: templates/applications/manage/delete.html:7
+#, python-format
+msgid "settings.apps.delete.message %(app_name)s"
+msgstr ""
+"Êtes-vous certain de vouloir supprimer l'application \"%(app_name)s\" ? "
+"Cette opération est irréversible !"
+
+#: templates/applications/manage/delete.html:10
+msgid "settings.apps.delete.button.title"
+msgstr "Oui, la supprimer !"
+
+#: templates/applications/manage/update.html:5
+msgid "apps.update_header"
+msgstr "Mettre à jour l'application"
+
+#: templates/bookmarks/bookmark/create.html:5
+msgid "bookmarks.create_header"
 msgstr "Créer le marque-page"
 
 #: templates/bookmarks/bookmark/delete.html:7
@@ -307,13 +291,13 @@ msgstr "Êtes-vous certain de vouloir supprimer le marque-page %(name)s ?"
 msgid "bm.bookmark.button.delete"
 msgstr "Supprimer le marque-page"
 
-#: templates/bookmarks/bookmark/update.html:10
-msgid "bm.bookmark.button.update"
-msgstr "Mettre  le marque-page à jour"
+#: templates/bookmarks/bookmark/update.html:5
+msgid "bookmarks.update_header"
+msgstr "Mettre à jour le marque-page"
 
-#: templates/bookmarks/category/create.html:10
-msgid "bm.category.button.create"
-msgstr "Créer la catégorie"
+#: templates/bookmarks/category/create.html:5
+msgid "categories.create_header"
+msgstr "Créer une catégorie"
 
 #: templates/bookmarks/category/delete.html:7
 #, python-format
@@ -326,75 +310,55 @@ msgstr ""
 msgid "bm.category.button.delete"
 msgstr "Supprimer la catégorie"
 
-#: templates/bookmarks/category/update.html:10
-msgid "bm.category.button.update"
-msgstr "Mettre la catégorie à jour"
+#: templates/bookmarks/category/update.html:5
+msgid "categories.update_header"
+msgstr ""
 
-#: templates/bookmarks/home.html:15
-msgid "bookmarks.none"
-msgstr "Aucun marque-page défini."
-
-#: templates/bookmarks/manage.html:7
-msgid "bm.manage.category.section.title"
-msgstr "Catégories"
-
-#: templates/bookmarks/manage.html:12
-msgid "bm.manage.category.table.header.name"
-msgstr "Nom"
-
-#: templates/bookmarks/manage.html:13
-msgid "bm.manage.category.table.header.visibility"
-msgstr "Visibilité"
-
-#: templates/bookmarks/manage.html:14
-msgid "bm.manage.category.table.header.actions"
-msgstr "Actions"
-
-#: templates/bookmarks/manage.html:20
-msgid "bm.manage.category.button.new"
-msgstr "Nouvelle catégorie"
-
-#: templates/bookmarks/manage.html:37
-msgid "bm.manage.bookmarks.section.title"
-msgstr "Marque-pages"
-
-#: templates/bookmarks/manage.html:42
-msgid "bm.manage.bookmark.table.header.name"
-msgstr "Nom"
-
-#: templates/bookmarks/manage.html:43
-msgid "bm.manage.bookmark.table.header.url"
-msgstr "URL"
-
-#: templates/bookmarks/manage.html:44
-msgid "bm.manage.bookmark.table.header.category"
-msgstr "Catégorie"
-
-#: templates/bookmarks/manage.html:45
-msgid "bm.manage.bookmark.table.header.visibility"
-msgstr "Visibilité"
-
-#: templates/bookmarks/manage.html:46
-msgid "bm.manage.bookmark.table.header.actions"
-msgstr "Actions"
-
-#: templates/bookmarks/manage.html:52
-msgid "bm.manage.bookmark.button.new"
-msgstr "Nouveau marque-page"
-
-#: templates/home/index.html:10
-msgid "applications.title"
-msgstr "Applications"
-
-#: templates/home/index.html:14
+#: templates/bookmarks/home.html:3
 msgid "bookmarks.title"
 msgstr "Marque-pages"
 
-#: templates/layout.html:22
+#: templates/bookmarks/home.html:20
+msgid "bookmarks.none"
+msgstr "Aucun marque-page défini."
+
+#: templates/bookmarks/manage.html:10
+msgid "categories.manage_header"
+msgstr "Catégories"
+
+#: templates/bookmarks/manage.html:11
+msgid "categories.new_button"
+msgstr "Nouvelle catégorie"
+
+#: templates/bookmarks/manage.html:22
+msgid "categories.table.bookmarks_header"
+msgstr "Marque-pages"
+
+#: templates/bookmarks/manage.html:34
+msgid "bookmarks.manage_header"
+msgstr "Marque-pages"
+
+#: templates/bookmarks/manage.html:35
+msgid "bookmarks.new_button"
+msgstr "Nouveau marque-page"
+
+#: templates/bookmarks/manage.html:46
+msgid "bookmarks.table.category_header"
+msgstr "Catégorie"
+
+#: templates/home/index.html:13
+msgid "front.loading"
+msgstr ""
+
+#: templates/layout.html:30
 msgid "fab.settings"
 msgstr "Paramètres"
 
-#: templates/partials/_section_header.html:4
+#: templates/manage.html:16
+msgid "settings.title"
+msgstr "Paramètres"
+
+#: templates/partials/manage/header.html:4
 msgid "backhome.link.title"
 msgstr "Retour à l'accueil"
 
@@ -422,29 +386,9 @@ msgstr "Admin Django"
 msgid "settings.nav.logout"
 msgstr "Déconnexion"
 
-#: templates/user/backup.html:4
-msgid ""
-"\n"
-"        <p>You can export all applications and bookmarks/categories in a "
-"JSON-formatted for backup purposes.</p>\n"
-"        <p>Soon, an import feature will allow you to move data between "
-"instances.</p>\n"
-"    "
-msgstr ""
-"\n"
-"        <p>Vous pouvez exporter l'entièreté des applications, marque-pages "
-"et catégories dans un fichier au format JSON.</p>\n"
-"        <p>Une fonction d'import entre instances sera bientôt disponible.</"
-"p>\n"
-"    "
-
-#: templates/user/backup.html:10
-msgid "backup.form.submit_button"
-msgstr "Lancer l'export"
-
-#: templates/user/base.html:4
-msgid "settings.title"
-msgstr "Paramètres"
+#: templates/user/index.html:5
+msgid "general.header"
+msgstr "Général"
 
 #: templates/user/index.html:12
 msgid "settings.language.form.select.label"
@@ -458,10 +402,6 @@ msgstr "Anglais"
 msgid "settings.language.form.option.french"
 msgstr "Français"
 
-#: templates/user/index.html:21
-msgid "settings.language.form.submit"
-msgstr "Modifier"
-
 #: templates/user/index.html:29
 msgid "settings.backup.label"
 msgstr "Export des données"
@@ -471,7 +411,7 @@ msgid "settings.backup.label.help"
 msgstr "Exporter vos données au format JSON."
 
 #: templates/user/index.html:35
-msgid "settings.backup.button"
+msgid "forms.buttons.backup"
 msgstr "Exporter"
 
 #: templates/user/index.html:43
@@ -482,17 +422,17 @@ msgstr "Version"
 msgid "settings.version.page.git_commit"
 msgstr "Commit Git"
 
-#: templates/user/login.html:30
+#: templates/user/login.html:14
 msgid "signin.form.submit_button"
 msgstr "Connexion"
 
-#: templates/user/login.html:34
+#: templates/user/login.html:19
 msgid "signin.form.oidc_button"
 msgstr "Connexion via OIDC"
 
 #: templates/user/weather.html:5
-msgid "settings.weather.title"
-msgstr "Météo"
+msgid "weather.update_header"
+msgstr "Configuration de la météo"
 
 #: templates/user/weather.html:8
 msgid ""
@@ -503,10 +443,6 @@ msgstr ""
 "Les données météo sont fournies par le site <a href=\"https://www.weatherapi."
 "com/\">WeatherAPI</a>. Vous pouvez vous enregistrer gratuitement & obtenir "
 "votre propre clef API."
-
-#: templates/user/weather.html:24
-msgid "apps.manage.forms.submit.update"
-msgstr "Mettre à jour"
 
 #: user/preferences.py:15
 msgid "pref.weather.apikey.verbose_name"
@@ -569,6 +505,6 @@ msgstr "Données complémentaires à afficher"
 msgid "user.login.success %(name)s"
 msgstr "Bon retour parmi nous, %(name)s !"
 
-#: user/views.py:80
+#: user/views.py:102
 msgid "user.manage.weather.success"
 msgstr "La configuration liée à la météo a été mise à jour !"

@@ -1,6 +1,7 @@
 from django.forms import ModelForm, Select, TextInput, URLInput
 from .models import Application
 from django.utils.translation import gettext_lazy as _
+from user.custom_widgets import IconInput
 
 
 class ApplicationForm(ModelForm):
@@ -8,36 +9,27 @@ class ApplicationForm(ModelForm):
         model = Application
         fields = ["name", "description", "url", "icon", "is_public", "is_pinned"]
         widgets = {
-            "name": TextInput(attrs={"id": "app_name", "placeholder": _("apps.manage.form.name.placeholder")}),
-            "description": TextInput(
-                attrs={"class": "form-control"},
-            ),
-            "icon": TextInput(
-                attrs={"class": "form-control"},
-            ),
-            "url": URLInput(
-                attrs={"class": "form-control", "placeholder": "https://"},
-            ),
+            "name": TextInput(attrs={"id": "app_name", "placeholder": _("forms.apps.name_placeholder")}),
+            "url": URLInput(attrs={"placeholder": _("forms.url_placeholder")}),
             "is_public": Select(
-                attrs={"class": ""},
-                choices={True: _("apps.manage.form.is_public.public"), False: _("apps.manage.form.is_public.private")},
+                choices={True: _("forms.is_public.public_field"), False: _("forms.is_public.private_field")}
             ),
             "is_pinned": Select(
-                attrs={"class": ""},
-                choices={True: _("apps.manage.form.is_pinned.yes"), False: _("apps.manage.form.is_pinned.no")},
+                choices={True: _("apps.manage.form.is_pinned.yes"), False: _("apps.manage.form.is_pinned.no")}
             ),
+            "icon": IconInput(attrs={"placeholder": _("forms.icon_placeholder")}),
         }
         labels = {
-            "name": _("apps.manager.form.name.label"),
-            "description": _("apps.manager.form.description.label"),
-            "url": _("apps.manager.form.url.label"),
-            "icon": _("apps.manager.form.icon.label"),
-            "is_public": _("apps.manager.form.is_public.label"),
-            "is_pinned": _("apps.manager.form.is_pinned.label"),
+            "name": _("forms.name_label"),
+            "description": _("forms.apps.description_label"),
+            "url": _("forms.url_label"),
+            "icon": _("forms.icon_label"),
+            "is_public": _("forms.is_public_label"),
+            "is_pinned": _("forms.is_pinned_label"),
         }
         help_texts = {
-            "icon": _("apps.manager.form.icon.help_text %(url)s") % {"url": "https://pictogrammers.com/library/mdi/"},
-            "description": _("apps.manager.form.description.help_text"),
-            "is_public": _("apps.manager.form.is_public.help_text"),
-            "is_pinned": _("apps.manager.form.is_pinned.help_text"),
+            "icon": _("forms.icon_help_text %(url)s") % {"url": "https://pictogrammers.com/library/mdi/"},
+            "description": _("forms.apps.description_help_text"),
+            "is_public": _("forms.is_public_help_text"),
+            "is_pinned": _("forms.is_pinned_help_text"),
         }

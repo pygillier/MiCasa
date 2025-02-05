@@ -6,16 +6,16 @@
         <iconify-icon icon="mdi:drag-vertical" class="text-2xl"></iconify-icon>
     </td>
     <th scope="row">
-        <iconify-icon icon="mdi:{{ application.icon }}" class="text-4xl"></iconify-icon>
-        {{ application.name }} ({{ application.pk }})
+        <iconify-icon icon="mdi:{{ application.icon|default_if_none:"border-none-variant" }}" class="text-4xl"></iconify-icon>
+        {{ application.name }} ({{ application.position }})
     </th>
     <td class="max-w-64"><a href="{{ application.url }}" target="_blank">{{ application.url }}</a></td>
-    <td><iconify-icon class="text-xl" icon="mdi:visibility-{{ application.is_public|yesno:"outline,off-outline" }}"></iconify-icon> {{ application.is_public|yesno:_("yes,no") }}</td>
+    <td><iconify-icon class="text-xl" icon="mdi:visibility-{{ application.is_public|yesno:"outline,off-outline" }}"></iconify-icon> {{ application.is_public|yesno:_("public,private") }}</td>
     <td><iconify-icon icon="mdi:pin-{{ application.is_pinned|yesno:"outline,off-outline" }}"></iconify-icon> {{ application.is_pinned|yesno:_("yes,no") }}</td>
     <td class="actions text-right">
         <ul>
-            <li><a href="{% url "applications:update" pk=application.id %}">{% trans "settings.buttons.edit.title" %}</a></li>
-            <li><a href="{% url "applications:delete" pk=application.id %}">{% trans "settings.buttons.delete.title" %}</a></li>
+            <li><a href="{% url "applications:update" pk=application.id %}">{% trans "forms.buttons.update" %}</a></li>
+            <li><a href="{% url "applications:delete" pk=application.id %}">{% trans "forms.buttons.delete" %}</a></li>
         </ul>
        </td>
 </tr>

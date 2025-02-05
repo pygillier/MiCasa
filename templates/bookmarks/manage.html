@@ -1,71 +1,59 @@
-{% extends "user/base.html" %}
-{% load i18n %}
+{% extends "manage.html" %}
+{% load i18n static %}
 {% block head_extra %}
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script defer src="{% static 'js/sortable.min.js' %}"></script>
+    <script defer src="{% static 'js/sortable-lists.js' %}"></script>
 {% endblock head_extra %}
-{% block inner %}
-    <h4>{% trans "bm.manage.category.section.title" %}</h4>
-    <table class="table">
-        <thead>
-            <tr>
-                <th><iconify-icon icon="mdi:sort-numeric-ascending"></iconify-icon></th>
-                <th>{% trans "bm.manage.category.table.header.name" %}</th>
-                <th>{% trans "bm.manage.category.table.header.visibility" %}</th>
-                <th>{% trans "bm.manage.category.table.header.actions" %}</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <td colspan="5">
-                    <a href="{% url "bookmarks:category_create" %}" class="btn btn-primary">{% trans "bm.manage.category.button.new" %}</a>
-                </td>
-            </tr>
-        </tfoot>
-        <tbody>
-        {% for category in categories %}
-            <tr id="categories-sortable" class="sortable">
-                <td class="drag-handle"><iconify-icon icon="mdi:drag-vertical"></iconify-icon></td>
-                <td>{{ category.name }}</td>
-                <td><iconify-icon icon="mdi:visibility-{% if not category.is_public %}off-{% endif %}outline"></iconify-icon> {{ category.is_public }}</td>
-                <td>
-                    <a href="{% url "bookmarks:category_update" pk=category.id %}" class="link-secondary">Edit</a> |
-                    <a href="{% url "bookmarks:category_delete" pk=category.id %}" class="link-secondary">Delete</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <h4>{% trans "bm.manage.bookmarks.section.title" %}</h4>
-    <table class="table">
-        <thead>
-            <tr>
-                <th><iconify-icon icon="mdi:sort-numeric-ascending"></iconify-icon></th>
-                <th>{% trans "bm.manage.bookmark.table.header.name" %}</th>
-                <th>{% trans "bm.manage.bookmark.table.header.url" %}</th>
-                <th>{% trans "bm.manage.bookmark.table.header.category" %}</th>
-                <th>{% trans "bm.manage.bookmark.table.header.visibility" %}</th>
-                <th>{% trans "bm.manage.bookmark.table.header.actions" %}</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <td colspan="5">
-                    <a href="{% url "bookmarks:bookmark_create" %}" class="btn btn-primary">{% trans "bm.manage.bookmark.button.new" %}</a>
-                </td>
-            </tr>
-        </tfoot>
-        <tbody>
-        {% for bookmark in bookmarks %}
-            <tr id="categories-sortable" class="sortable">
-                <td class="drag-handle"><iconify-icon icon="mdi:drag-vertical"></iconify-icon></td>
-                <td>{{ bookmark.name }}</td>
-                <td><a href="{{ bookmark.url }}" target="_blank">{{ bookmark.url }}</a></td>
-                <td>{{ bookmark.category.name }}</td>
-                <td><iconify-icon icon="mdi:visibility-{% if not category.is_public %}off-{% endif %}outline"></iconify-icon> {{ bookmark.is_public }}</td>
-                <td>
-                    <a href="{% url "bookmarks:bookmark_update" pk=bookmark.id %}" class="link-secondary">Edit</a> |
-                    <a href="{% url "bookmarks:bookmark_delete" pk=bookmark.id %}" class="link-secondary">Delete</a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-{% endblock inner %}
+{% block content %}
+    <section id="admin-page-content">
+        <h2>
+            {% trans "categories.manage_header" %}
+            <a class="button" href="{% url "bookmarks:category_create" %}">{% trans "categories.new_button" %}</a>
+        </h2>
+        <div class="admin-block">
+            <form hx-post="{% url "bookmarks:category_reorder" %}" hx-trigger="end" hx-target="#categories">
+                {% csrf_token %}
+                <table class="listing">
+                    <thead>
+                        <tr>
+                            <th scope="col"><span class="sr-only">{% trans "global.table.sort_handle" %}</span></th>
+                            <th scope="col">{% trans "global.table.name_header" %}</th>
+                            <th scope="col">{% trans "global.table.visibility_header" %}</th>
+                            <th scope="col">{% trans "categories.table.bookmarks_header" %}</th>
+                            <th scope="col"><span class="sr-only">{% trans "global.table.actions" %}</span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="sortable" id="categories">
+                        {% include "bookmarks/category/_list.html" %}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div id="bookmarks">
+            <h2 class="mt-6">
+                {% trans "bookmarks.manage_header" %}
+                <a class="button" href="{% url "bookmarks:bookmark_create" %}">{% trans "bookmarks.new_button" %}</a>
+            </h2>
+            <div class="admin-block">
+                <form hx-post="{% url "bookmarks:bookmark_reorder" %}" hx-trigger="end" hx-target="#bookmarks">
+                    {% csrf_token %}
+                    <table class="listing">
+                        <thead>
+                            <tr>
+                                <th scope="col"><span class="sr-only">{% trans "global.table.sort_handle" %}</span></th>
+                                <th scope="col">{% trans "global.table.name_header" %}</th>
+                                <th scope="col">{% trans "global.table.url_header" %}</th>
+                                <th scope="col">{% trans "bookmarks.table.category_header" %}</th>
+                                <th scope="col">{% trans "global.table.visibility_header" %}</th>
+                                <th scope="col"><span class="sr-only">{% trans "global.table.actions" %}</span></th>
+                            </tr>
+                        </thead>
+                        <tbody class="sortable" id="bookmarks">
+                            {% include "bookmarks/bookmark/_list.html" %}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

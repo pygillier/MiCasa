@@ -52,14 +52,16 @@ WORKDIR $PYSETUP_PATH
 COPY . ./
 
 # install runtime deps - uses $POETRY_VIRTUALENVS_IN_PROJECT internally
-RUN poetry install --without dev && SECRET_KEY=dumb python manage.py compilemessages --ignore=.venv
+RUN poetry install --without dev && SECRET_KEY=dumb python manage.py compilemessages --ignore=.venv && ls /opt/pysetup/locale/en_US/LC_MESSAGES/
 
 
 # NodeJS for tailwind css
 FROM node:20 AS node-builder
 WORKDIR /node
 COPY . /node/
-RUN npm install --no-fund && npx tailwindcss -i static/css/input.css -o production.css --minify
+RUN npm install --no-fund && npm install -D tailwindcss@3 \
+    && npx tailwindcss -i static/src/manage.css -o manage.css --minify \
+    && npx tailwindcss -i static/src/front.css -o front.css --minify
 
 # Production image
 FROM python-base AS production
@@ -68,12 +70,11 @@ WORKDIR /app
 # Copy all elements
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 COPY . /app/
-COPY --from=builder-base $PYSETUP_PATH/locale/ $PYSETUP_PATH/locale/
-COPY --from=node-builder /node/production.css /app/static/css/output.css
+COPY --from=builder-base $PYSETUP_PATH/locale/ /app/locale/
+COPY --from=node-builder /node/manage.css /app/static/css/manage.css
+COPY --from=node-builder /node/front.css /app/static/css/front.css
 
 RUN SECRET_KEY=static python manage.py collectstatic
-
-
 
 # Image identifiers
 ENV COMMIT_SHA=${COMMIT}

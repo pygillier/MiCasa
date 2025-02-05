@@ -1,8 +1,8 @@
-{% extends "user/base.html" %}
+{% extends "manage.html" %}
 {% load i18n %}
-{% block inner %}
+{% block content %}
     <section id="admin-page-content">
-        <h2>{% trans "settings.weather.title" %}</h2>
+        <h2>{% trans "weather.update_header" %}</h2>
         <div class="admin-block admin-block-padded">
             <p class="text-sm text-justify text-gray-300">
                 {% blocktrans %}Weather data is provided by <a href="https://www.weatherapi.com/">WeatherAPI</a>. You can subscribe for free to the service and get your own key.{% endblocktrans %}
@@ -21,9 +21,9 @@
                 </div>
                 {% endfor %}
                 <div class="w-full text-center mt-6">
-                    <input type="submit" class="button" value="{% trans "apps.manage.forms.submit.update" %}">
+                    <input type="submit" class="button" value="{% trans "forms.buttons.update" %}">
                 </div>
             </form>
         </div>
     </section>
-{% endblock inner %}
+{% endblock content %}

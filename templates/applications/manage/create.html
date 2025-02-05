@@ -2,11 +2,11 @@
 {% load i18n %}
 {% block content %}
     <section id="admin-page-content">
-        <h2>{% trans "categories.create_header" %}</h2>
+        <h2>{% trans "apps.create_header" %}</h2>
         <div class="admin-block admin-block-padded">
             <form method="post">
                 {% csrf_token %}
-                {% include "bookmarks/category/_form.html" with form=form %}
+                {% include "applications/manage/_form.html" with form=form %}
                 <div class="w-full text-center mt-6">
                     <input type="submit" class="button" value="{% trans "forms.buttons.create" %}">
                 </div>

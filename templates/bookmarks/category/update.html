@@ -1,16 +1,16 @@
-{% extends "user/base.html" %}
+{% extends "manage.html" %}
 {% load i18n %}
-{% block inner %}
-    <div class="row justify-content-center">
-        <div class="col-10">
-            <form method="post" class="container">
+{% block content %}
+    <section id="admin-page-content">
+        <h2>{% trans "categories.update_header" %}</h2>
+        <div class="admin-block admin-block-padded">
+            <form method="post">
                 {% csrf_token %}
-                {% include "applications/_form.html" with form=form %}
-                <div class="d-flex align-items-center">
-                    <button type="submit" class="btn btn-primary ms-auto">{% trans "bm.category.button.update" %}</button>
+                {% include "bookmarks/category/_form.html" with form=form %}
+                <div class="w-full text-center mt-6">
+                    <input type="submit" class="button" value="{% trans "forms.buttons.update" %}">
                 </div>
             </form>
         </div>
-    </div>
-
-{% endblock inner %}
+    </section>
+{% endblock content %}

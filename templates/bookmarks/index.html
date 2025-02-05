@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
+{% load i18n %}
 {% block content %}
-    <section id="home-applications">
-        {% include "partials/_section_header.html" with title="bookmarks.title" %}
-        <div hx-get="{% url "bookmarks:home" %}" hx-trigger="revealed">Loading...</div>
+    {% include "partials/manage/header.html" with title="bookmarks.title" %}
+    <section id="bookmarks" hx-get="{% url "bookmarks:home" %}?home=false" hx-trigger="revealed">
+        {% trans "front.applications.loading" %}
     </section>
 {% endblock content %}

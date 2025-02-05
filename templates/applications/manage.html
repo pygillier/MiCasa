@@ -1,14 +1,14 @@
-{% extends "user/base.html" %}
+{% extends "manage.html" %}
 {% load i18n static %}
 {% block head_extra %}
-    <script src="{% static 'js/sortable.min.js' %}"></script>
-    <script src="{% static 'js/sortable-lists.js' %}"></script>
+    <script defer src="{% static 'js/sortable.min.js' %}"></script>
+    <script defer src="{% static 'js/sortable-lists.js' %}"></script>
 {% endblock head_extra %}
-{% block inner %}
+{% block content %}
     <section id="admin-page-content">
         <h2>
-            {% trans "settings.apps.list.title" %}
-            <a class="main-action" href="{% url "applications:create" %}">{% trans "apps.manage.new_button" %}</a>
+            {% trans "apps.manage_header" %}
+            <a class="button" href="{% url "applications:create" %}">{% trans "apps.new_button" %}</a>
         </h2>
         <div class="admin-block">
             <form hx-post="{% url "applications:reorder" %}" hx-trigger="end" hx-target=".sortable">
@@ -16,12 +16,12 @@
                 <table id="applications-list" class="listing">
                     <thead>
                         <tr>
-                            <th scope="col"><span class="sr-only">{% trans "apps.manage.table.header.sort_handle" %}</span></th>
-                            <th scope="col">{% trans "apps.manage.table.header.name" %}</th>
-                            <th scope="col">{% trans "apps.manage.table.header.url" %}</th>
-                            <th scope="col">{% trans "apps.manage.table.header.visibility" %}</th>
-                            <th scope="col">{% trans "apps.manage.table.header.pinned" %}</th>
-                            <th scope="col"><span class="sr-only">{% trans "apps.manage.table.header.actions" %}</span></th>
+                            <th scope="col"><span class="sr-only">{% trans "global.table.sort_handle" %}</span></th>
+                            <th scope="col">{% trans "global.table.name_header" %}</th>
+                            <th scope="col">{% trans "global.table.url_header" %}</th>
+                            <th scope="col">{% trans "global.table.visibility_header" %}</th>
+                            <th scope="col">{% trans "apps.table.pinned_header" %}</th>
+                            <th scope="col"><span class="sr-only">{% trans "global.table.actions" %}</span></th>
                         </tr>
                     </thead>
                     <tbody class="sortable">
@@ -31,4 +31,4 @@
             </form>
         </div>
     </section>
-{% endblock inner %}
+{% endblock content %}

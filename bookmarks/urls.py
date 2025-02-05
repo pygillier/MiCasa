@@ -11,7 +11,9 @@ urlpatterns = [
     path("category/create/", views.CategoryCreateView.as_view(), name="category_create"),
     path("category/<int:pk>/update/", views.CategoryUpdateView.as_view(), name="category_update"),
     path("category/<int:pk>/delete/", views.CategoryDeleteView.as_view(), name="category_delete"),
+    path("category/reorder/", views.ReorderCategoryView.as_view(), name="category_reorder"),
     path("bookmark/create/", views.BookmarkCreateView.as_view(), name="bookmark_create"),
     path("bookmark/<int:pk>/update/", views.BookmarkUpdateView.as_view(), name="bookmark_update"),
     path("bookmark/<int:pk>/delete/", views.BookmarkDeleteView.as_view(), name="bookmark_delete"),
+    path("bookmarks/reorder/", views.BookmarkReorderView.as_view(), name="bookmark_reorder"),
 ]

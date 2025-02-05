@@ -1,12 +1,7 @@
 {% if weather_enabled %}
-    <aside class="hstack fw-bolder" id="weather">
-        <span>
-            <iconify-icon  class="fs-1" icon="wi:{{ icon }}"></iconify-icon>
-        </span>
-        <div class="vstack">
-            <span>{{ temp }}</span>
-            <hr class="mt-1 mb-1"/>
-            <span>{{ extra }}</span>
-        </div>
-    </aside>
+<aside id="weather">
+    <div id="weather-icon"><iconify-icon icon="wi:{{ icon }}"></iconify-icon></div>
+    <div id="temperature">{{ temp }}</div>
+    <div id="extra">{{ extra }}</div>
+</aside>
 {% endif %}

@@ -1,12 +1,13 @@
 {% load i18n %}
-<div class="grid grid-cols-4">
-    {% for application in applications %}
-        <div class="appbox">
-            <aside><iconify-icon icon="mdi:{{ application.icon }}" observer="false"></iconify-icon></aside>
-            <h3>{{ application.name }}</h3>
-            <p>{{ application.subtitle }}</p>
-        </div>
-    {% empty %}
-        <p>{% trans "applications.none" %}</p>
-    {% endfor %}
-</div>
+{% if request.GET.home is false %}
+<h2><a href="{% url "applications:index" %}">{% trans "applications.title" %}</a></h2>
+{% endif %}
+{% for application in applications %}
+<a class="application" href="{{ application.url }}" target="_blank">
+    <aside><iconify-icon icon="mdi:{{ application.icon }}" observer="false"></iconify-icon></aside>
+    <h3>{{ application.name }}</h3>
+    <p>{{ application.subtitle }}</p>
+</a>
+{% empty %}
+    <p>{% trans "applications.none" %}</p>
+{% endfor %}

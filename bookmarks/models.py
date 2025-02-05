@@ -6,7 +6,7 @@ from django.db import models
 class BookmarkCategory(models.Model):
     name = models.CharField(max_length=250, unique=True, null=False)
     is_public = models.BooleanField(default=False)
-    position = models.IntegerField(unique=True, null=False, default=0)
+    position = models.IntegerField(null=False, default=0)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -40,7 +40,7 @@ class BookmarkCategory(models.Model):
 class Bookmark(models.Model):
     name = models.CharField(max_length=250, unique=False, null=False)
     url = models.URLField(unique=True, null=False)
-    category = models.ForeignKey(BookmarkCategory, on_delete=models.CASCADE, null=False)
+    category = models.ForeignKey(BookmarkCategory, on_delete=models.CASCADE, null=False, related_name="bookmarks")
     icon = models.CharField(max_length=50, null=True, blank=True)
     is_public = models.BooleanField(default=False)
     position = models.IntegerField(unique=False, null=False, default=0)
@@ -74,3 +74,6 @@ class Bookmark(models.Model):
             "is_public": self.is_public,
             "position": self.position,
         }
+
+    def public_icon(self):
+        return self.icon if self.icon else "bookmark"

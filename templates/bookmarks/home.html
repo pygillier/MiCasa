@@ -1,17 +1,21 @@
 {% load i18n %}
-<div class="row" id="bookmarks">
-    {% for category in categories %}
-    <article class="col-sm-3">
-        <h3>{{ category }}</h3>
-        <ul>
-            {% for bookmark in category.bookmark_set.all %}
-                <li>
-                    <iconify-icon icon="mdi:{{ bookmark.icon }}"></iconify-icon>
-                    <a class="link-underline link-underline-opacity-0 link-underline-opacity-50-hover" href="{{ bookmark.url }}" target="_blank">{{ bookmark.name }}</a></li>
-            {% endfor %}
-        </ul>
-    </article>
-    {% empty %}
-        <p>{% trans "bookmarks.none" %}</p>
-    {% endfor %}
-</div>
+{% if request.GET.home is false %}
+<h2><a href="{% url "bookmarks:index" %}">{% trans "bookmarks.title" %}</a></h2>
+{% endif %}
+{% for category in categories %}
+<article class="category">
+    <h3>{{ category }}</h3>
+    <ul>
+        {% for bookmark in category.bookmarks.all %}
+        <li>
+            <a href="{{ bookmark.url }}" target="_blank" class="flex">
+                <iconify-icon class="self-center" icon="mdi:{{ bookmark.public_icon }}"></iconify-icon>
+                {{ bookmark.name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</article>
+{% empty %}
+    <p>{% trans "bookmarks.none" %}</p>
+{% endfor %}

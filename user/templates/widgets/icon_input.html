@@ -1,0 +1,6 @@
+<div class="relative" x-data="iconSelector()">
+    <div class="absolute inset-y-10 start-0 flex items-center pointer-events-none z-20 ps-6">
+        <iconify-icon :icon="mdiIcon" class="size-20 shrink-0"></iconify-icon>
+    </div>
+    {% include "django/forms/widgets/text.html" %}
+</div>

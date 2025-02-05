@@ -1,0 +1,28 @@
+{% extends "manage.html" %}
+{% load i18n %}
+{% block content %}
+    <section id="admin-page-content">
+        <h2>{% trans "theme.update_header" %}</h2>
+        <div class="admin-block admin-block-padded">
+            <form method="post" action="{% url "user:theme" %}" class="container">
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="flex my-4">
+                    <div class="w-1/2">
+
+                        <label class="block" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <span class="text-sm text-gray-500">{{ field.help_text }}</span>
+                    </div>
+                    <div class="w-1/2 text-end">
+                        {{ field }}
+                        {{ field.errors }}
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="w-full text-center mt-6">
+                    <input type="submit" class="button" value="{% trans "forms.buttons.update" %}">
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock content %}

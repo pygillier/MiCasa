@@ -10,6 +10,9 @@
     <li{% if current == "bookmarks" %} class="active"{% endif %}>
         <a href="{% url "bookmarks:manage" %}">{% trans "settings.nav.bookmarks" %}</a>
     </li>
+    <li{% if current == "theme" %} class="active"{% endif %}>
+        <a href="{% url "user:theme" %}">{% trans "settings.nav.theme" %}</a>
+    </li>
     <li{% if current == "weather" %} class="active"{% endif %}>
         <a href="{% url "user:weather" %}">{% trans "settings.nav.weather" %}</a>
     </li>

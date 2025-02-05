@@ -8,14 +8,11 @@
 
         <title>{{ global_preferences.general__site_title }}</title>
         {% include "partials/favicons.html" %}
-        <style type="text/css">
+        <style>
             :root {
-                --body-bg: #242B33;
-                --body-color: #EFFBFF;
-                --accent-color: #6EE2FF;
-
-                /* Extended overrides */
-                --bs-link-color:  #EFFBFF;
+                --body-bg: #{{ global_preferences.theme__background_color }};
+                --body-color: #{{ global_preferences.theme__text_color }};
+                --accent-color: #{{ global_preferences.theme__accent_color }};
             }
         </style>
         <link rel="stylesheet" type="text/css" href="{% static "css/front.css" %}" />

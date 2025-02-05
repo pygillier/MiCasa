@@ -207,27 +207,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Dynamic preferences package
 DYNAMIC_PREFERENCES = {"ENABLE_CACHE": not env("DEBUG"), "REGISTRY_MODULE": "preferences"}
 
-# Constance dynamic settings
-CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
-CONSTANCE_ADDITIONAL_FIELDS = {
-    "temperature": [
-        "django.forms.fields.ChoiceField",
-        {"widget": "django.forms.Select", "choices": (("celsius", "Celsius"), ("farenheit", "Farenheit"))},
-    ],
-    "extra": [
-        "django.forms.fields.ChoiceField",
-        {"widget": "django.forms.Select", "choices": (("cloud", "Cloud coverage"), ("humidity", "Humidity"))},
-    ],
-}
-CONSTANCE_CONFIG = {
-    "WEATHERAPI_KEY": ("", "API Key for weather API"),
-    "WEATHERAPI_LAT": (0.0, "Latitude", float),
-    "WEATHERAPI_LON": (0.0, "Latitude", float),
-    "WEATHERAPI_TEMP": ("celsius", "Temperature format", "temperature"),
-    "WEATHERAPI_COVERAGE": ("cloud", "Additional weather data", "extra"),
-    "PAGE_TITLE": ("MiCasa", "Page title", str),
-    "DATE_FORMAT": ("l, j F Y", "Date format on homepage", str),
-}
 
 # OIDC configuration
 OIDC_ENABLED = env("OIDC_ENABLED")

@@ -100,6 +100,13 @@ select, input[type="number"], input[type="text"], input[type="url"], input[type=
     bg-surface-200 dark:bg-gray-700;
 }
 
+input[aria-invalid="true"] {
+  @apply border-red-500 dark:border-red-500 text-red-500 dark:text-red-500;
+}
+ul.errorlist {
+  @apply text-red-500 dark:text-red-500;
+}
+
 input.icon-input {
   @apply ps-11 block;
 }

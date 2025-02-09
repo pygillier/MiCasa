@@ -31,6 +31,13 @@ body {
   @apply dark:bg-[#242B33] bg-surface-100 text-black dark:text-white h-screen pt-12;
 }
 
+/** Fix FOUC */
+iconify-icon {
+ display: inline-block;
+ width: 1em;
+ height: 1em;
+}
+
 h1 {
     @apply text-6xl dark:text-white text-primary-600;
     font-family: "Amazon Ember Bold", system-ui, sans-serif;

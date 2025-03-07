@@ -522,7 +522,7 @@ msgstr "Couleur du texte"
 
 #: user/preferences.py:97
 msgid "pref.theme.text_color.help"
-msgstr ""
+msgstr "La couleur principale du texte"
 
 #: user/preferences.py:103
 msgid "pref.theme.accent_color.verbose_name"
@@ -530,7 +530,7 @@ msgstr "Couleur d'accent"
 
 #: user/preferences.py:106
 msgid "pref.theme.accent_color.help"
-msgstr ""
+msgstr "la couleur du texte accentué"
 
 #: user/views.py:46
 #, python-format

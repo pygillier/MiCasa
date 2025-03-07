@@ -514,7 +514,7 @@ msgstr "Background color"
 
 #: user/preferences.py:88
 msgid "pref.theme.background_color.help"
-msgstr ""
+msgstr "The color of the background"
 
 #: user/preferences.py:94
 msgid "pref.theme.text_color.verbose_name"
@@ -530,7 +530,7 @@ msgstr "Accented color"
 
 #: user/preferences.py:106
 msgid "pref.theme.accent_color.help"
-msgstr "Accentuation"
+msgstr "Accentuation color"
 
 #: user/views.py:46
 #, python-format

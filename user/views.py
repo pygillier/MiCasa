@@ -1,17 +1,20 @@
-from django.views.generic import FormView, TemplateView, View
+from django.views.generic import FormView, TemplateView, View, RedirectView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import get_language, gettext_lazy as _
-from .forms import SetupForm
+from .forms import SetupForm, DataImportForm
 from applications.models import Application
 from bookmarks.models import BookmarkCategory
-from django.http import HttpResponseNotFound, JsonResponse
+from django.http import HttpResponseNotFound, JsonResponse, HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import os
 import datetime
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class SetupView(FormView):
@@ -36,6 +39,7 @@ class IndexView(LoginRequiredMixin, TemplateView):
         context["current_language"] = get_language()
         context["version"] = os.getenv("VERSION", "develop")
         context["commit_sha"] = os.getenv("COMMIT_SHA", "offtree")
+        context["data_import_form"] = DataImportForm()
         return context
 
 
@@ -92,6 +96,17 @@ class BackupView(LoginRequiredMixin, View):
         response["Content-Disposition"] = 'attachment; filename="micasa-export.json"'
 
         return response
+
+
+class RestoreView(LoginRequiredMixin, RedirectView):
+    pattern_name = "user:index"
+
+    def post(self, request, *args, **kwargs):
+        logger.info("Starting data restore")
+
+        # Redirect to home with message
+        url = self.get_redirect_url(*args, **kwargs)
+        return HttpResponseRedirect(url)
 
 
 class WeatherView(LoginRequiredMixin, SuccessMessageMixin, FormView):

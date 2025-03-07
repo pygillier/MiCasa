@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "micasa"
 version = "0.1.0"
-description = ""
+description = "MiCasa is a personal homepage for a clean and simple start of the day."
 authors = ["Pierre-Yves Gillier <github@pygillier.me>"]
 readme = "README.md"
 package-mode = false
@@ -9,9 +9,9 @@ package-mode = false
 [tool.poetry.dependencies]
 python = "^3.12"
 django = "^5.1"
-django-environ = "^0.11.2"
+django-environ = "^0.12.0"
 django-htmx = "^1.19.0"
-django-debug-toolbar = "^4.4.6"
+django-debug-toolbar = "^5.0.1"
 django-bootstrap-icons = "^0.9.0"
 whitenoise = {extras = ["brotli"], version = "^6.7.0"}
 gunicorn = "^23.0.0"

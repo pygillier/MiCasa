@@ -9,6 +9,7 @@
         {% include "partials/favicons.html" %}
         {% include "partials/manage/styles.html" %}
         {% include "partials/manage/scripts.html" %}
+    <script defer src="{% static 'js/htmx.min.js' %}"></script>
         {% block head_extra %}{% endblock head_extra %}
     </head>
     <body>
@@ -25,7 +26,7 @@
                 </div>
             </section>
         </main>
-        <script defer src="{% static 'js/htmx.min.js' %}"></script>
+
         <script defer src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
         <script defer src="{% static 'js/manage.js' %}"></script>
         <script src="//unpkg.com/alpinejs" defer></script>

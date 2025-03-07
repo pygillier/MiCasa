@@ -33,7 +33,7 @@ class BookmarkCategory(models.Model):
             "name": self.name,
             "is_public": self.is_public,
             "position": self.position,
-            "bookmarks": [bookmark.export() for bookmark in self.bookmark_set.all()],
+            "bookmarks": [bookmark.export() for bookmark in self.bookmarks.all()],
         }
 
 

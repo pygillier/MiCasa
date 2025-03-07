@@ -11,6 +11,7 @@ urlpatterns = [
     path("weather/", views.WeatherView.as_view(), name="weather"),
     path("theme/", views.ThemeView.as_view(), name="theme"),
     path("backup/", views.BackupView.as_view(), name="backup"),
+    path("restore/", views.RestoreView.as_view(), name="restore"),
     path("login/", views.UserLoginView.as_view(), name="login"),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
 ]

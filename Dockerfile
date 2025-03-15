@@ -3,6 +3,7 @@ ARG BRANCH="main"
 ARG COMMIT=""
 ARG VERSION="develop"
 LABEL authors="Pierre-Yves Gillier <github@pygillier.me>"
+LABEL org.opencontainers.image.description="MiCasa, personal dashboard for elegant people."
 LABEL branch=${BRANCH}
 LABEL commit=${COMMIT}
 LABEL version=${VERSION}

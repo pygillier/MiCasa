@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "micasa"
 version = "0.5.1"
-description = " Personal dashboard for elegant people."
+description = "Personal dashboard for elegant people."
 authors = ["Pierre-Yves Gillier <github@pygillier.me>"]
 readme = "README.md"
 package-mode = false

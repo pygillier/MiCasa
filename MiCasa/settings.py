@@ -62,6 +62,10 @@ INSTALLED_APPS = [
     "home.apps.HomeConfig",
     "applications.apps.ApplicationsConfig",
     "mozilla_django_oidc",
+    "health_check",
+    "health_check.db",
+    # "health_check.cache",
+    "health_check.contrib.migrations",
 ]
 
 MIDDLEWARE = [

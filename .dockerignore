@@ -9,3 +9,4 @@ static/css/*.css
 .pre-commit-config.yaml
 .devcontainer/
 .github/
+docs/

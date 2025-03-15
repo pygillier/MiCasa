@@ -1,30 +1,52 @@
 on:
   push:
+    branches:
+      - "main"
     tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'v*.*.*'
+
 
 name: Create Release
 
 jobs:
   release:
-    # Only create release if image is correctly built
-    # needs: docker
+    # Only create release if image is correctly buil
     name: Create Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@master
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
-          draft: false
-          prerelease: false
+      # - name: Create Release
+      #   id: create_release
+      #   uses: actions/create-release@latest
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      #   with:
+      #     tag_name: ${{ github.ref }}
+      #     release_name: Release ${{ github.ref }}
+      #     body: |
+      #       Changes in this Release
+      #       - First Change
+      #       - Second Change
+      #     draft: false
+      #     prerelease: false
+
+  bump-version:
+    # Prepare pyproject.toml for next version
+    needs: release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'  # Only run on main branch
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup python
+        uses: actions/setup-python@v5  # Set up python environment, uses value from .python-version file
+      - name: Install poetry
+        uses: snok/install-poetry@v1
+      - name: Bump pyproject.toml version
+        run: |
+          poetry version patch
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git commit --no-verify -am "Bump version to $(poetry version -s)"
+          git push origin main

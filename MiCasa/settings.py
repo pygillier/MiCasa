@@ -9,6 +9,7 @@ env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
     DATABASE_URL=(str, "sqlite:////data/micasa.db"),
+    CACHE_URL=(str, "filecache:///var/tmp/django_cache"),
     TIMEZONE=(str, "Europe/Paris"),
     APP_URL=(str, None),
     OIDC_ENABLED=(bool, False),
@@ -105,6 +106,9 @@ WSGI_APPLICATION = "MiCasa.wsgi.application"
 DATABASES = {
     "default": env.db(),
 }
+
+# Caching support
+CACHES = {"default": env.cache()}
 
 # Logging config
 LOGGING = {

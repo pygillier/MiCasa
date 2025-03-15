@@ -9,31 +9,57 @@ on:
 name: Create Release
 
 jobs:
-  release:
-    # Only create release if image is correctly buil
-    name: Create Release
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@master
-      # - name: Create Release
-      #   id: create_release
-      #   uses: actions/create-release@latest
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-      #   with:
-      #     tag_name: ${{ github.ref }}
-      #     release_name: Release ${{ github.ref }}
-      #     body: |
-      #       Changes in this Release
-      #       - First Change
-      #       - Second Change
-      #     draft: false
-      #     prerelease: false
+        uses: actions/checkout@v4
+      - name: Setup python
+        uses: actions/setup-python@v5  # Set up python environment, uses value from .python-version file
+      - name: Install poetry
+        uses: snok/install-poetry@v1
+      - name: Get current version from pyproject.toml
+        id: app-version
+        run: |
+          echo "VERSION=$(poetry version -s)" >> $GITHUB_ENV
+      - name: Extract metadata (docker)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ghcr.io/pygillier/micasa
+          flavor:
+            latest=auto
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.') }}
+            type=sha
+      - name: Setup Docker buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Github Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          push: true
+          build-args: |
+            VERSION=${{ steps.app-version.outputs.VERSION }}
+            BRANCH=${{ github.ref_name }}
+            COMMIT=${{ github.sha }}
+
+
+
 
   bump-version:
     # Prepare pyproject.toml for next version
-    needs: release
+    needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'  # Only run on main branch
     steps:

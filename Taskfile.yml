@@ -1,0 +1,9 @@
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - podman build -t micasa:local .
+  run_container:
+    cmds:
+      - podman run -e SECRET_KEY=from_task --name micasa -p 8080:8080 micasa:local

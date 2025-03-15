@@ -5,7 +5,7 @@ staticfiles/
 **/*.mo
 node_modules/
 package-lock.json
-static/css/output.css
+static/css/*.css
 .pre-commit-config.yaml
 .devcontainer/
 .github/

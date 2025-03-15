@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micasa"
-version = "0.6.2"
+version = "0.6.3"
 description = "Personal dashboard for elegant people."
 authors = ["Pierre-Yves Gillier <github@pygillier.me>"]
 readme = "README.md"

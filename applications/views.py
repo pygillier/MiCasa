@@ -7,6 +7,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext as _
 from .models import Application
 from .forms import ApplicationForm
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 
 class IndexView(ListView):
@@ -31,6 +33,10 @@ class HomeView(ListView):
             return qs.filter(is_public=True)
         else:
             return qs
+
+    @method_decorator(cache_page(60 * 60 * 24))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
 
 class ManageAppMixin(ContextMixin):

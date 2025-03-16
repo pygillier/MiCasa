@@ -1,1 +1,9 @@
-site_name: My Docs
+site_name: MiCasa
+site_url: https://micasa.pygillier.dev
+site_description: "MiCasa, a personal dashboard for elegant people."
+theme:
+  name: "material"
+  palette:
+    primary: "deep orange"
+    accent: "light blue"
+    theme: "default"

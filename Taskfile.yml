@@ -7,6 +7,6 @@ tasks:
   run_container:
     cmds:
       - podman run -e SECRET_KEY=from_task --name micasa -p 8080:8080 micasa:local
-  docs:
+  preview-docs:
     cmds:
       - mkdocs serve

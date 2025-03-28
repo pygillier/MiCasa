@@ -12,6 +12,10 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 import os
 import datetime
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class SetupView(FormView):

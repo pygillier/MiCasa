@@ -6,8 +6,6 @@ from django.contrib.messages.views import SuccessMessageMixin
 from . import models, forms
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
 
 
 class ManageBookmarksMixin(ContextMixin):
@@ -43,7 +41,6 @@ class HomeView(ListView):
 
         return qs
 
-    @method_decorator(cache_page(60 * 60 * 24))
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 

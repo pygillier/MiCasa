@@ -1,3 +1,4 @@
+import logging
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView
 from django.views.generic.base import ContextMixin
@@ -7,6 +8,9 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext as _
 from .models import Application
 from .forms import ApplicationForm
+
+
+logger = logging.getLogger(__name__)
 
 
 class IndexView(ListView):
@@ -21,10 +25,11 @@ class HomeView(ListView):
     context_object_name = "applications"
 
     def get_queryset(self):
+        logger.info("Fetching applications")
         qs = super().get_queryset()
 
         if self.request.GET.get("pinned", default="true") == "true":
-            print("Got pinned")
+            logger.warn("Fetching pinned apps only")
             qs = qs.filter(is_pinned=True)
 
         if self.request.user.is_anonymous:

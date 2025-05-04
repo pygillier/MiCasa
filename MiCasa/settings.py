@@ -1,7 +1,9 @@
 from pathlib import Path
 import environ
 import os
+import logging.config
 from django.utils.translation import gettext_lazy as _
+from django.utils.log import DEFAULT_LOGGING
 from django.contrib.messages import constants as messages
 
 
@@ -115,19 +117,52 @@ DATABASES = {
 CACHES = {"default": env.cache()}
 
 # Logging config
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
+LOGGING_CONFIG = None
+LOGLEVEL = env("LOGLEVEL", default="info").upper()
+
+logging.config.dictConfig(
+    {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "default": {
+                # exact format is not important, this is the minimum information
+                "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
+            },
+            "django.server": DEFAULT_LOGGING["formatters"]["django.server"],
         },
-    },
-    "root": {
-        "handlers": ["console"],
-        "level": "WARNING",
-    },
-}
+        "handlers": {
+            # console logs to stderr
+            "console": {
+                "class": "logging.StreamHandler",
+                "formatter": "default",
+            },
+            "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
+        },
+        "loggers": {
+            # default for all undefined Python modules
+            "": {
+                "level": "WARNING",
+                "handlers": ["console"],
+            },
+            # Our application code
+            "applications": {
+                "level": LOGLEVEL,
+                "handlers": ["console"],
+                # Avoid double logging because of root logger
+                "propagate": False,
+            },
+            "user": {
+                "level": LOGLEVEL,
+                "handlers": ["console"],
+                # Avoid double logging because of root logger
+                "propagate": False,
+            },
+            # Default runserver request logging
+            "django.server": DEFAULT_LOGGING["loggers"]["django.server"],
+        },
+    }
+)
 
 AUTHENTICATION_BACKENDS = (
     "mozilla_django_oidc.auth.OIDCAuthenticationBackend",

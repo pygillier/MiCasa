@@ -3,7 +3,6 @@ from dynamic_preferences.registries import global_preferences_registry
 from weatherapi import WeatherPoint
 import json
 
-
 registry = global_preferences_registry.manager()
 
 

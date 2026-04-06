@@ -2,7 +2,6 @@ from dynamic_preferences.preferences import Section
 from dynamic_preferences.registries import global_preferences_registry as registry
 from dynamic_preferences.types import StringPreference
 
-
 general = Section("general")
 
 

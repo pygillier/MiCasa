@@ -2,7 +2,6 @@ from django.views.generic import TemplateView
 from dynamic_preferences.registries import global_preferences_registry
 from .weather import get_weather
 
-
 registry = global_preferences_registry.manager()
 
 

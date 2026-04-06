@@ -1,20 +1,20 @@
 exclude: .*migrations\/.*
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
     -   id: check-yaml
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
 
-- repo: https://github.com/psf/black
-  rev: 25.1.0
+- repo: https://github.com/psf/black-pre-commit-mirror
+  rev: 26.3.1
   hooks:
   - id: black
     language_version: python3.12
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.11.7
+  rev: v0.15.9
   hooks:
     - id: ruff
 
@@ -24,6 +24,6 @@ repos:
     - id: djlint-django
 
 -   repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.10.0.1
+    rev: v0.11.0.1
     hooks:
       - id: shellcheck

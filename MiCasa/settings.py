@@ -6,7 +6,6 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.log import DEFAULT_LOGGING
 from django.contrib.messages import constants as messages
 
-
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),

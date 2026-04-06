@@ -9,7 +9,6 @@ from django.utils.translation import gettext as _
 from .models import Application
 from .forms import ApplicationForm
 
-
 logger = logging.getLogger(__name__)
 
 

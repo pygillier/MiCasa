@@ -1,8 +1,0 @@
-{% extends "layout.html" %}
-{% load i18n %}
-{% block content %}
-    {% include "partials/manage/header.html" with title="applications.title" %}
-    <section id="apps" hx-get="{% url "applications:home" %}?pinned=false&home=false" hx-trigger="revealed">
-        {% trans "front.applications.loading" %}
-    </section>
-{% endblock content %}

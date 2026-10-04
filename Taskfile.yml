@@ -1,9 +1,78 @@
-version: '3'
+version: "3"
+
+dotenv: [".env"]
 
 tasks:
+  setup:
+    desc: Install backend and frontend dependencies
+    cmds:
+      - task: setup:api
+      - task: setup:web
+
+  setup:api:
+    dir: backend
+    cmds:
+      - uv sync
+
+  setup:web:
+    dir: frontend
+    cmds:
+      - npm install
+
+  dev:
+    desc: Run API and web in parallel
+    deps: [dev:api, dev:web]
+
+  dev:api:
+    dir: backend
+    cmds:
+      - mkdir -p data && uv run flask --app app run --debug --no-reload --port 5000
+
+  dev:web:
+    dir: frontend
+    env:
+      API_URL: http://localhost:5000
+    cmds:
+      - npm run dev
+
+  migrate:
+    desc: Apply database migrations
+    dir: backend
+    cmds:
+      - mkdir -p data
+      - SCHEDULER_ENABLED=0 uv run flask --app app db upgrade
+
+  migration:
+    desc: "Create a migration: task migration -- 'message'"
+    dir: backend
+    cmds:
+      - mkdir -p data
+      - SCHEDULER_ENABLED=0 uv run flask --app app db migrate -m "{{.CLI_ARGS}}"
+
+  test:
+    desc: Run backend tests
+    dir: backend
+    cmds:
+      - uv run pytest
+
+  lint:
+    desc: Lint backend and frontend
+    cmds:
+      - cd backend && uv run ruff check .
+      - cd frontend && npm run lint
+
   build:
+    desc: Build the frontend
+    dir: frontend
     cmds:
-      - podman build -t micasa:local .
-  run_container:
+      - npm run build
+
+  up:
+    desc: Start the docker compose stack
     cmds:
-      - podman run -e SECRET_KEY=from_task --name micasa -p 8080:8080 micasa:local
+      - docker compose up -d --build
+
+  down:
+    desc: Stop the docker compose stack
+    cmds:
+      - docker compose down

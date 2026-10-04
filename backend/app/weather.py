@@ -32,6 +32,20 @@ def normalize(current: dict, forecast: dict, city: str) -> dict:
     }
 
 
+def _get(endpoint: str, params: dict, timeout) -> dict:
+    """GET a Google Weather endpoint; errors never include the URL (it carries the API key)."""
+    try:
+        resp = requests.get(f"{BASE}/{endpoint}", params=params, timeout=timeout)
+        resp.raise_for_status()
+        return resp.json()
+    except requests.HTTPError as exc:
+        raise RuntimeError(
+            f"Google Weather {endpoint} returned HTTP {exc.response.status_code}"
+        ) from None
+    except requests.RequestException as exc:
+        raise RuntimeError(f"Google Weather {endpoint} failed: {type(exc).__name__}") from None
+
+
 def refresh() -> dict:
     key = settings.get("google_weather_api_key")
     lat, lon = settings.get("weather_lat"), settings.get("weather_lon")
@@ -39,21 +53,21 @@ def refresh() -> dict:
         raise RuntimeError("Google Weather API key is not configured")
     if not lat or not lon:
         raise RuntimeError("Weather location is not configured")
+    try:
+        lat_f, lon_f = (float(str(v).strip().replace(",", ".")) for v in (lat, lon))
+    except ValueError:
+        raise RuntimeError("Weather location is invalid") from None
     params = {
         "key": key,
-        "location.latitude": lat,
-        "location.longitude": lon,
+        "location.latitude": lat_f,
+        "location.longitude": lon_f,
         "unitsSystem": "METRIC",
         "languageCode": settings.get("weather_language") or "en",
     }
     timeout = current_app.config.get("HTTP_TIMEOUT", 10)
-    cur = requests.get(f"{BASE}/currentConditions:lookup", params=params, timeout=timeout)
-    cur.raise_for_status()
-    fc = requests.get(
-        f"{BASE}/forecast/days:lookup", params={**params, "days": 1}, timeout=timeout
-    )
-    fc.raise_for_status()
-    payload = normalize(cur.json(), fc.json(), settings.get("weather_city"))
+    cur = _get("currentConditions:lookup", params, timeout)
+    fc = _get("forecast/days:lookup", {**params, "days": 1}, timeout)
+    payload = normalize(cur, fc, settings.get("weather_city"))
     row = db.session.get(WeatherCache, 1)
     if row is None:
         db.session.add(WeatherCache(id=1, payload=payload, fetched_at=utcnow()))

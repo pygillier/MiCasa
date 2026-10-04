@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { I18nProvider } from "@/components/I18nProvider";
+import { negotiateLocale } from "@/lib/i18n/messages";
 import "@phosphor-icons/web/regular";
 import "@phosphor-icons/web/light";
 import "./nocturne.css";
@@ -9,10 +12,13 @@ export const metadata: Metadata = {
   description: "Personal startpage",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const locale = negotiateLocale((await headers()).get("accept-language"));
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang={locale}>
+      <body>
+        <I18nProvider locale={locale}>{children}</I18nProvider>
+      </body>
     </html>
   );
 }

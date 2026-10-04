@@ -8,15 +8,18 @@ import CategoriesTab from "@/components/admin/CategoriesTab";
 import LinksTab from "@/components/admin/LinksTab";
 import SettingsTab from "@/components/admin/SettingsTab";
 import { api } from "@/lib/api";
+import { useI18n } from "@/components/I18nProvider";
+import type { MessageKey } from "@/lib/i18n/messages";
 
 const TABS = [
-  { id: "categories", label: "Categories" },
-  { id: "links", label: "Links" },
-  { id: "settings", label: "Settings" },
-] as const;
+  { id: "categories", label: "admin.tab.categories" },
+  { id: "links", label: "admin.tab.links" },
+  { id: "settings", label: "admin.tab.settings" },
+] as const satisfies readonly { id: string; label: MessageKey }[];
 type TabId = (typeof TABS)[number]["id"];
 
 export default function AdminPage() {
+  const { t } = useI18n();
   const [ready, setReady] = useState(false);
   const [tab, setTab] = useState<TabId>("links");
 
@@ -34,19 +37,19 @@ export default function AdminPage() {
     hardNavigate("/");
   }
 
-  if (!ready) return <div className="admin muted">Checking session…</div>;
+  if (!ready) return <div className="admin muted">{t("admin.checking")}</div>;
 
   return (
     <div className="admin">
       <div className="admin-head">
-        <h1><Image src="/logo-dark.svg" alt="MiCasa" width={147} height={44} unoptimized priority className="admin-logo" /> <span className="sr-only">Admin</span></h1>
-        <Link href="/" className="btn btn-ghost"><i className="ph ph-arrow-left" /> Startpage</Link>
-        <button className="btn btn-ghost" onClick={logout}><i className="ph ph-sign-out" /> Log out</button>
+        <h1><Image src="/logo-dark.svg" alt="MiCasa" width={147} height={44} unoptimized priority className="admin-logo" /> <span className="sr-only">{t("admin.title")}</span></h1>
+        <Link href="/" className="btn btn-ghost"><i className="ph ph-arrow-left" /> {t("nav.startpage")}</Link>
+        <button className="btn btn-ghost" onClick={logout}><i className="ph ph-sign-out" /> {t("nav.logout")}</button>
       </div>
       <div className="tabs" role="tablist">
-        {TABS.map((t) => (
-          <button key={t.id} role="tab" aria-selected={tab === t.id} className="tab" onClick={() => setTab(t.id)}>
-            {t.label}
+        {TABS.map((tb) => (
+          <button key={tb.id} role="tab" aria-selected={tab === tb.id} className="tab" onClick={() => setTab(tb.id)}>
+            {t(tb.label)}
           </button>
         ))}
       </div>

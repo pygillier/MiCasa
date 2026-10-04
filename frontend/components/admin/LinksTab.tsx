@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { useI18n } from "@/components/I18nProvider";
 import { api } from "@/lib/api";
 import type { AdminLink, Category, Monitor } from "@/lib/types";
 import Dialog from "./Dialog";
@@ -8,6 +9,7 @@ import Dialog from "./Dialog";
 type Draft = Partial<AdminLink>;
 
 export default function LinksTab() {
+  const { t } = useI18n();
   const [cats, setCats] = useState<Category[]>([]);
   const [links, setLinks] = useState<AdminLink[]>([]);
   const [monitors, setMonitors] = useState<Monitor[]>([]);
@@ -49,7 +51,7 @@ export default function LinksTab() {
   }
 
   async function remove(l: AdminLink) {
-    if (!window.confirm(`Delete "${l.label}"?`)) return;
+    if (!window.confirm(t("links.confirmDelete", { label: l.label }))) return;
     await api(`/admin/links/${l.id}`, { method: "DELETE" }).catch((e) => setError(e.message));
     load();
   }
@@ -67,13 +69,13 @@ export default function LinksTab() {
   return (
     <div className="form-grid">
       <div className="toolbar">
-        <span className="spacer muted">{links.length} links</span>
+        <span className="spacer muted">{t("links.count", { n: links.length })}</span>
         <button className="btn btn-primary" disabled={cats.length === 0}
                 onClick={() => setDraft({ category_id: cats[0]?.id, icon: "ph-link", is_public: false })}>
-          <i className="ph ph-plus" /> New link
+          <i className="ph ph-plus" /> {t("links.new")}
         </button>
       </div>
-      {cats.length === 0 && <div className="muted">Create a category first.</div>}
+      {cats.length === 0 && <div className="muted">{t("links.createCategoryFirst")}</div>}
       {error && <div className="error">{error}</div>}
 
       {cats.map((c) => {
@@ -84,7 +86,7 @@ export default function LinksTab() {
             <div className="table-wrap">
               <table className="table">
                 <thead>
-                  <tr><th /><th>Label</th><th>URL</th><th>Monitor</th><th>Visibility</th><th /></tr>
+                  <tr><th /><th>{t("links.label")}</th><th>{t("links.url")}</th><th>{t("links.monitor")}</th><th>{t("common.visibility")}</th><th /></tr>
                 </thead>
                 <tbody>
                   {group.map((l, i) => (
@@ -95,21 +97,21 @@ export default function LinksTab() {
                       <td className="muted">{monitorName(l.kuma_monitor_id)}</td>
                       <td>
                         <span className={`tag ${l.is_public ? "tag-accent" : "tag-neutral"}`}>
-                          {l.is_public ? "Public" : "Private"}
+                          {l.is_public ? t("common.public") : t("common.private")}
                         </span>
                       </td>
                       <td>
                         <div className="row-actions">
-                          <button className="btn btn-icon small" disabled={i === 0} aria-label="Move up" onClick={() => move(c.id, i, -1)}><i className="ph ph-arrow-up" /></button>
-                          <button className="btn btn-icon small" disabled={i === group.length - 1} aria-label="Move down" onClick={() => move(c.id, i, 1)}><i className="ph ph-arrow-down" /></button>
-                          <button className="btn btn-icon small" aria-label="Edit" onClick={() => setDraft(l)}><i className="ph ph-pencil-simple" /></button>
-                          <button className="btn btn-icon small" aria-label="Delete" onClick={() => remove(l)}><i className="ph ph-trash" /></button>
+                          <button className="btn btn-icon small" disabled={i === 0} aria-label={t("common.moveUp")} onClick={() => move(c.id, i, -1)}><i className="ph ph-arrow-up" /></button>
+                          <button className="btn btn-icon small" disabled={i === group.length - 1} aria-label={t("common.moveDown")} onClick={() => move(c.id, i, 1)}><i className="ph ph-arrow-down" /></button>
+                          <button className="btn btn-icon small" aria-label={t("common.edit")} onClick={() => setDraft(l)}><i className="ph ph-pencil-simple" /></button>
+                          <button className="btn btn-icon small" aria-label={t("common.delete")} onClick={() => remove(l)}><i className="ph ph-trash" /></button>
                         </div>
                       </td>
                     </tr>
                   ))}
                   {group.length === 0 && (
-                    <tr><td colSpan={6} className="muted">No links.</td></tr>
+                    <tr><td colSpan={6} className="muted">{t("links.none")}</td></tr>
                   )}
                 </tbody>
               </table>
@@ -119,16 +121,16 @@ export default function LinksTab() {
       })}
 
       {draft && (
-        <Dialog title={draft.id ? "Edit link" : "New link"} onClose={() => setDraft(null)}>
+        <Dialog title={draft.id ? t("links.edit") : t("links.new")} onClose={() => setDraft(null)}>
           <form className="form-grid" onSubmit={save}>
             <div className="form-2">
               <div className="field">
-                <label htmlFor="l-label">Label</label>
+                <label htmlFor="l-label">{t("links.label")}</label>
                 <input id="l-label" className="input" required maxLength={100} value={draft.label ?? ""}
                        onChange={(e) => setDraft({ ...draft, label: e.target.value })} />
               </div>
               <div className="field">
-                <label htmlFor="l-cat">Category</label>
+                <label htmlFor="l-cat">{t("links.category")}</label>
                 <select id="l-cat" className="input" value={draft.category_id}
                         onChange={(e) => setDraft({ ...draft, category_id: Number(e.target.value) })}>
                   {cats.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
@@ -136,7 +138,7 @@ export default function LinksTab() {
               </div>
             </div>
             <div className="field">
-              <label htmlFor="l-url">URL</label>
+              <label htmlFor="l-url">{t("links.url")}</label>
               <input id="l-url" className="input" type="url" required value={draft.url ?? ""}
                      placeholder="https://"
                      onChange={(e) => setDraft({ ...draft, url: e.target.value })} />
@@ -144,7 +146,7 @@ export default function LinksTab() {
             <div className="form-2">
               <div className="field">
                 <label htmlFor="l-icon">
-                  Icon (<a href="https://phosphoricons.com" target="_blank" rel="noreferrer">Phosphor</a> class)
+                  {t("links.iconLabel", { link: "Phosphor" })}
                 </label>
                 <div style={{ display: "flex", gap: "var(--space-3)", alignItems: "center" }}>
                   <i className={`ph ${draft.icon}`} style={{ fontSize: 20 }} />
@@ -154,16 +156,16 @@ export default function LinksTab() {
                 </div>
               </div>
               <div className="field">
-                <label htmlFor="l-host">Host label (optional)</label>
+                <label htmlFor="l-host">{t("links.hostLabel")}</label>
                 <input id="l-host" className="input" maxLength={100} value={draft.host ?? ""}
                        onChange={(e) => setDraft({ ...draft, host: e.target.value })} />
               </div>
             </div>
             <div className="field">
-              <label htmlFor="l-mon">Uptime Kuma monitor</label>
+              <label htmlFor="l-mon">{t("links.kumaMonitor")}</label>
               <select id="l-mon" className="input" value={draft.kuma_monitor_id ?? ""}
                       onChange={(e) => setDraft({ ...draft, kuma_monitor_id: e.target.value === "" ? null : Number(e.target.value) })}>
-                <option value="">None</option>
+                <option value="">{t("links.none.option")}</option>
                 {draft.kuma_monitor_id != null && !monitors.some((m) => m.id === draft.kuma_monitor_id) && (
                   <option value={draft.kuma_monitor_id}>#{draft.kuma_monitor_id}</option>
                 )}
@@ -174,11 +176,11 @@ export default function LinksTab() {
             <label className="check">
               <input type="checkbox" checked={!!draft.is_public}
                      onChange={(e) => setDraft({ ...draft, is_public: e.target.checked })} />
-              Public (also requires its category to be public)
+              {t("links.publicCheck")}
             </label>
             <div className="dialog-actions">
-              <button type="button" className="btn btn-secondary" onClick={() => setDraft(null)}>Cancel</button>
-              <button type="submit" className="btn btn-primary">Save</button>
+              <button type="button" className="btn btn-secondary" onClick={() => setDraft(null)}>{t("common.cancel")}</button>
+              <button type="submit" className="btn btn-primary">{t("common.save")}</button>
             </div>
           </form>
         </Dialog>

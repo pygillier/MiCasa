@@ -1,21 +1,29 @@
+"use client";
+
+import { useI18n } from "@/components/I18nProvider";
 import type { Group, StartLink } from "@/lib/types";
 
 function StatusDot({ link }: { link: StartLink }) {
+  const { t } = useI18n();
   if (!link.status) return null;
+  const status = ["up", "down", "pending", "maintenance"].includes(link.status)
+    ? t(`status.${link.status}` as "status.up")
+    : link.status;
   const cls =
     link.status === "up" ? "dot-up" : link.status === "down" ? "dot-down" : "dot-idle";
-  const label = `Uptime Kuma — ${link.status}`;
-  const dot = <span className={`dot ${cls}`} title={label} aria-label={`Status: ${link.status}`} />;
+  const label = t("status.label", { status });
+  const dot = <span className={`dot ${cls}`} title={label} aria-label={t("status.aria", { status })} />;
   return link.status_url ? (
     <a href={link.status_url} target="_blank" rel="noreferrer" title={label}
-       aria-label={`Status: ${link.status}, open in Uptime Kuma`} className={`dot ${cls}`} />
+       aria-label={t("status.ariaOpen", { status })} className={`dot ${cls}`} />
   ) : (
     dot
   );
 }
 
 export default function Groups({ groups }: { groups: Group[] }) {
-  if (groups.length === 0) return <p className="empty">Nothing to show yet.</p>;
+  const { t } = useI18n();
+  if (groups.length === 0) return <p className="empty">{t("groups.empty")}</p>;
   return (
     <>
       {groups.map((g) => (

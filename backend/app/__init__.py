@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from sqlalchemy import event
 from sqlalchemy.engine import Engine
@@ -32,7 +34,10 @@ def create_app(config_object=Config) -> Flask:
     app.register_blueprint(routes.bp)
     app.register_blueprint(routes.admin)
 
-    if app.config["SCHEDULER_ENABLED"]:
+    # Under the Werkzeug reloader the app is also created in the watcher parent
+    # process; only the serving child (WERKZEUG_RUN_MAIN) may run the scheduler.
+    reloader_parent = app.debug and os.environ.get("WERKZEUG_RUN_MAIN") != "true"
+    if app.config["SCHEDULER_ENABLED"] and not reloader_parent:
         from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 
         app.config["SCHEDULER_JOBSTORES"] = {

@@ -30,12 +30,17 @@ function useNow() {
 
 function Weather() {
   const [w, setW] = useState<WeatherData | null | undefined>(undefined);
+  const [enabled, setEnabled] = useState(true);
   useEffect(() => {
     let alive = true;
     const load = () =>
       fetch("/api/weather")
         .then((r) => r.json())
-        .then((d) => alive && setW(d.weather))
+        .then((d) => {
+          if (!alive) return;
+          setEnabled(d.enabled !== false);
+          setW(d.weather);
+        })
         .catch(() => alive && setW((prev) => prev ?? null));
     load();
     const id = setInterval(load, WEATHER_POLL_MS);
@@ -44,6 +49,8 @@ function Weather() {
       clearInterval(id);
     };
   }, []);
+
+  if (!enabled) return null;
 
   return (
     <div className="weather">

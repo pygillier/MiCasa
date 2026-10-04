@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>MiCasa</title>
+  <rect width="64" height="64" rx="14" fill="#0E2247"/>
+  <path d="M17 27V49a3 3 0 0 0 3 3H44a3 3 0 0 0 3-3V27" fill="none" stroke="#F7F4EC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10 32L32 13L54 32" fill="none" stroke="#F7F4EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="22.5" y="30" width="9" height="8" rx="1.5" fill="#4A82DA"/>
+  <rect x="33.5" y="30" width="9" height="8" rx="1.5" fill="#F2B230"/>
+  <rect x="22.5" y="41" width="9" height="8" rx="1.5" fill="#2F63BE"/>
+  <rect x="33.5" y="41" width="9" height="8" rx="1.5" fill="#4A82DA"/>
+</svg>

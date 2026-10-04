@@ -85,6 +85,8 @@ a:hover { color: var(--color-accent-300); }
 .admin { max-width: 1100px; margin: 0 auto; padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-6); }
 .admin-head { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
 .admin-head h1 { font-size: 28px; margin: 0; margin-right: auto; }
+.admin-logo { display: block; height: 44px; width: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .tabs { display: flex; gap: var(--space-2); border-bottom: 1px solid var(--color-divider); }
 .tab { background: none; border: 0; border-bottom: 2px solid transparent; color: var(--color-neutral-300); padding: var(--space-3) var(--space-4); font: inherit; font-size: 14px; cursor: pointer; }
 .tab:hover { color: var(--color-text); }

@@ -1,6 +1,7 @@
 "use client";
 
 import { hardNavigate } from "@/lib/nav";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import CategoriesTab from "@/components/admin/CategoriesTab";
@@ -38,7 +39,7 @@ export default function AdminPage() {
   return (
     <div className="admin">
       <div className="admin-head">
-        <h1>Admin</h1>
+        <h1><Image src="/logo-dark.svg" alt="MiCasa" width={147} height={44} unoptimized priority className="admin-logo" /> <span className="sr-only">Admin</span></h1>
         <Link href="/" className="btn btn-ghost"><i className="ph ph-arrow-left" /> Startpage</Link>
         <button className="btn btn-ghost" onClick={logout}><i className="ph ph-sign-out" /> Log out</button>
       </div>

@@ -43,10 +43,12 @@ def startpage():
 
 @bp.get("/weather")
 def get_weather():
+    if not settings.get("google_weather_api_key").strip():
+        return jsonify(enabled=False, weather=None)
     row = db.session.get(WeatherCache, 1)
     if row is None:
-        return jsonify(weather=None)
-    return jsonify(weather=row.payload, fetched_at=row.fetched_at.isoformat() + "Z")
+        return jsonify(enabled=True, weather=None)
+    return jsonify(enabled=True, weather=row.payload, fetched_at=row.fetched_at.isoformat() + "Z")
 
 
 # ---------- admin: categories ----------

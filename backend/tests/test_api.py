@@ -65,8 +65,13 @@ def test_settings_never_expose_api_key(authed):
     assert r.get_json()["google_weather_api_key_configured"] is True
 
 
-def test_weather_endpoint_reads_cache(client):
-    assert client.get("/api/weather").get_json() == {"weather": None}
+def test_weather_disabled_without_api_key(client):
+    assert client.get("/api/weather").get_json() == {"enabled": False, "weather": None}
+
+
+def test_weather_endpoint_reads_cache(client, app):
+    app.config["GOOGLE_WEATHER_API_KEY"] = "k"
+    assert client.get("/api/weather").get_json() == {"enabled": True, "weather": None}
     db.session.add(WeatherCache(id=1, payload={"temp": 20}, fetched_at=utcnow()))
     db.session.commit()
     assert client.get("/api/weather").get_json()["weather"] == {"temp": 20}

@@ -1,8 +1,8 @@
 from urllib.parse import urlparse
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, Response, jsonify, request
 
-from . import jobs, kuma, settings
+from . import jobs, kuma, opml, settings
 from .auth import is_authenticated, login_required
 from .extensions import db
 from .models import Category, JobRun, Link, MonitorStatus, WeatherCache
@@ -252,3 +252,21 @@ def refresh_weather_now():
 def list_jobs():
     runs = JobRun.query.order_by(JobRun.id.desc()).limit(40).all()
     return jsonify([r.to_dict() for r in runs])
+
+
+# ---------- admin: OPML import/export ----------
+@admin.get("/export.opml")
+@login_required
+def export_opml():
+    return Response(opml.export_opml(), mimetype="text/x-opml",
+                    headers={"Content-Disposition": 'attachment; filename="micasa.opml"'})
+
+
+@admin.post("/import")
+@login_required
+def import_opml():
+    try:
+        return jsonify(opml.import_opml(request.get_data(cache=False)))
+    except opml.OpmlError as exc:
+        db.session.rollback()
+        return jsonify(error=str(exc)), 422

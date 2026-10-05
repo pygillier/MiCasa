@@ -89,3 +89,58 @@ def test_theme_is_public_validated_and_persisted(client, authed):
 def test_theme_change_requires_auth(app):
     anon = app.test_client()
     assert anon.put("/api/admin/settings", headers=H, json={"theme": "home"}).status_code in (401, 403)
+
+
+OPML = b"""<?xml version="1.0"?>
+<opml version="2.0"><head/><body>
+  <outline text="Public" isPublic="true">
+    <outline type="link" text="Open" url="https://a.test"/>
+    <outline type="link" text="Fresh" url="https://new.test" icon="ph-house" isPublic="true" kumaMonitorId="7"/>
+    <outline type="link" text="Bad" url="javascript:alert(1)"/>
+  </outline>
+  <outline text="Brand new"><outline text="Feed" xmlUrl="https://feed.test/rss"/></outline>
+  <outline text="Loose bookmark" htmlUrl="https://loose.test"/>
+</body></opml>"""
+
+
+def test_opml_requires_auth(client):
+    assert client.get("/api/admin/export.opml").status_code == 401
+    assert client.post("/api/admin/import", data=OPML, headers=H).status_code == 401
+
+
+def test_opml_import_requires_header(authed):
+    assert authed.post("/api/admin/import", data=OPML).status_code == 400
+
+
+def test_opml_export(authed):
+    r = authed.get("/api/admin/export.opml")
+    assert r.status_code == 200 and "attachment" in r.headers["Content-Disposition"]
+    assert b'text="Public"' in r.data and b'url="https://c.test"' in r.data
+    assert b'isPublic="true"' in r.data
+
+
+def test_opml_import_merges_and_skips(authed):
+    r = authed.post("/api/admin/import", data=OPML, headers=H)
+    assert r.get_json() == {"categories_created": 2, "links_created": 3, "skipped": 2}
+    cats = {c["name"]: c for c in authed.get("/api/admin/categories").get_json()}
+    assert set(cats) == {"Public", "Private", "Brand new", "Imported"}
+    assert cats["Public"]["is_public"] is True  # existing category untouched
+    assert cats["Brand new"]["is_public"] is False
+    fresh = next(link for link in authed.get("/api/admin/links").get_json() if link["label"] == "Fresh")
+    assert (fresh["icon"], fresh["is_public"], fresh["kuma_monitor_id"]) == ("ph-house", True, 7)
+    # idempotent
+    r = authed.post("/api/admin/import", data=OPML, headers=H)
+    assert r.get_json()["links_created"] == 0
+
+
+def test_opml_roundtrip(authed):
+    exported = authed.get("/api/admin/export.opml").data
+    assert authed.post("/api/admin/import", data=exported, headers=H).get_json() == {
+        "categories_created": 0, "links_created": 0, "skipped": 3}
+
+
+def test_opml_import_rejects_garbage_and_entities(authed):
+    assert authed.post("/api/admin/import", data=b"nope", headers=H).status_code == 422
+    assert authed.post("/api/admin/import", data=b"<html/>", headers=H).status_code == 422
+    bomb = b'<?xml version="1.0"?><!DOCTYPE x [<!ENTITY a "aaa">]><opml><body>&a;</body></opml>'
+    assert authed.post("/api/admin/import", data=bomb, headers=H).status_code == 422

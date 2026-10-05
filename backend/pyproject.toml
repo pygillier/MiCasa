@@ -12,6 +12,7 @@ dependencies = [
   "uptime-kuma-api2",
   "gunicorn>=23",
   "loguru>=0.7.3",
+  "defusedxml>=0.7.1",
 ]
 
 [dependency-groups]

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import CategoriesTab from "@/components/admin/CategoriesTab";
 import LinksTab from "@/components/admin/LinksTab";
 import SettingsTab from "@/components/admin/SettingsTab";
+import TransferTab from "@/components/admin/TransferTab";
 import { api } from "@/lib/api";
 import { useI18n } from "@/components/I18nProvider";
 import type { MessageKey } from "@/lib/i18n/messages";
@@ -14,6 +15,7 @@ import type { MessageKey } from "@/lib/i18n/messages";
 const TABS = [
   { id: "links", label: "admin.tab.links" },
   { id: "categories", label: "admin.tab.categories" },
+  { id: "transfer", label: "admin.tab.transfer" },
   { id: "settings", label: "admin.tab.settings" },
 ] as const satisfies readonly { id: string; label: MessageKey }[];
 type TabId = (typeof TABS)[number]["id"];
@@ -55,6 +57,7 @@ export default function AdminPage() {
       </div>
       {tab === "categories" && <CategoriesTab />}
       {tab === "links" && <LinksTab />}
+      {tab === "transfer" && <TransferTab />}
       {tab === "settings" && <SettingsTab />}
     </div>
   );

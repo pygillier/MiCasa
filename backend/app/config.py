@@ -33,6 +33,7 @@ class TestConfig(Config):
     SECRET_KEY = "test"
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     SCHEDULER_ENABLED = False
+    GOOGLE_WEATHER_API_KEY = ""
     OIDC_ISSUER = "https://id.example.test"
     OIDC_CLIENT_ID = "cid"
     OIDC_CLIENT_SECRET = "secret"

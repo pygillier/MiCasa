@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { useI18n } from "@/components/I18nProvider";
+import { THEMES, parseTheme } from "@/lib/themes";
 import { api } from "@/lib/api";
 import type { JobRun, Settings } from "@/lib/types";
 import type { MessageKey } from "@/lib/i18n/messages";
@@ -35,9 +36,12 @@ export default function SettingsTab() {
         weather_language: s.weather_language,
         weather_refresh_minutes: s.weather_refresh_minutes,
         kuma_base_url: s.kuma_base_url,
+        theme: s.theme,
         google_weather_api_key: apiKey,
       };
-      setS(await api<Settings>("/admin/settings", { method: "PUT", body }));
+      const saved = await api<Settings>("/admin/settings", { method: "PUT", body });
+      setS(saved);
+      document.documentElement.dataset.theme = parseTheme(saved.theme);
       setApiKey("");
       setMsg({ ok: true, text: t("settings.saved") });
     } catch (err) {
@@ -58,6 +62,17 @@ export default function SettingsTab() {
   return (
     <div className="form-grid">
       <form className="form-grid" onSubmit={save}>
+        <h3 className="section-title">{t("settings.appearanceTitle")}</h3>
+        <div className="field">
+          <label htmlFor="s-theme">{t("settings.theme")}</label>
+          <select id="s-theme" className="input" value={parseTheme(s.theme)}
+                  onChange={(e) => {
+                    set("theme", e.target.value);
+                    document.documentElement.dataset.theme = parseTheme(e.target.value);
+                  }}>
+            {THEMES.map((th) => <option key={th.id} value={th.id}>{th.name}</option>)}
+          </select>
+        </div>
         <h3 className="section-title">{t("settings.weatherTitle")}</h3>
         <div className="field">
           <label htmlFor="s-key">

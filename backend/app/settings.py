@@ -12,8 +12,11 @@ DEFAULTS = {
     "weather_language": "en",
     "weather_refresh_minutes": "60",
     "kuma_base_url": "",
+    "theme": "nocturne",
     "google_weather_api_key": "",
 }
+# Keep in sync with frontend/lib/themes.ts.
+THEMES = {"nocturne", "home"}
 # Never serialized back to clients.
 SECRET_KEYS = {"google_weather_api_key"}
 
@@ -24,6 +27,8 @@ def get(key: str) -> str:
         return row.value
     if key == "google_weather_api_key":
         return current_app.config.get("GOOGLE_WEATHER_API_KEY", "")
+    if key == "theme" and (row is None or row.value not in THEMES):
+        return DEFAULTS["theme"]
     if key == "kuma_base_url":
         return current_app.config.get("KUMA_URL", "")
     return DEFAULTS.get(key, "")
@@ -50,6 +55,8 @@ def update(data: dict) -> None:
         if key not in DEFAULTS:
             continue
         value = "" if value is None else str(value).strip()
+        if key == "theme" and value not in THEMES:
+            continue
         # An empty secret means "keep the current one".
         if key in SECRET_KEYS and value == "":
             continue

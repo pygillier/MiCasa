@@ -75,3 +75,17 @@ def test_weather_endpoint_reads_cache(client, app):
     db.session.add(WeatherCache(id=1, payload={"temp": 20}, fetched_at=utcnow()))
     db.session.commit()
     assert client.get("/api/weather").get_json()["weather"] == {"temp": 20}
+
+
+def test_theme_is_public_validated_and_persisted(client, authed):
+    assert client.get("/api/theme").get_json() == {"theme": "nocturne"}
+    authed.put("/api/admin/settings", headers=H, json={"theme": "home"})
+    assert client.get("/api/theme").get_json() == {"theme": "home"}
+    # unknown themes are ignored
+    authed.put("/api/admin/settings", headers=H, json={"theme": "<script>"})
+    assert client.get("/api/theme").get_json() == {"theme": "home"}
+
+
+def test_theme_change_requires_auth(app):
+    anon = app.test_client()
+    assert anon.put("/api/admin/settings", headers=H, json={"theme": "home"}).status_code in (401, 403)

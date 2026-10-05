@@ -1,0 +1,49 @@
+/* Themes — each one overrides the Nocturne tokens (nocturne.css) under
+   :root[data-theme="<id>"]. The default theme (nocturne) is the bare :root
+   in nocturne.css and needs no block here. Register new ones in lib/themes.ts. */
+
+/* home — palette of the previous startpage (home.pygillier.me):
+   #242B33 ground, #EFFBFF text, #6EE2FF cyan accent, #b06d60 terracotta. */
+:root[data-theme="home"] {
+  --color-bg: #242b33;
+  --color-surface: #2d363f;
+  --color-text: #effbff;
+  --color-accent: #6ee2ff;
+  --color-accent-2: #d08b7e;
+  --color-divider: color-mix(in srgb, #effbff 16%, transparent);
+  --color-side-start: #29313a;
+
+  --color-neutral-100: #f2f8fb;
+  --color-neutral-200: #e0e8ee;
+  --color-neutral-300: #c8d1d9;
+  --color-neutral-400: #aab4be;
+  --color-neutral-500: #8993a0;
+  --color-neutral-600: #6b7580;
+  --color-neutral-700: #515a64;
+  --color-neutral-800: #3a424b;
+  --color-neutral-900: #292f37;
+
+  --color-accent-100: #effcff;
+  --color-accent-200: #d0f6ff;
+  --color-accent-300: #a6eeff;
+  --color-accent-400: #8fe8ff;
+  --color-accent-500: #62d3ee;
+  --color-accent-600: #44a9c0;
+  --color-accent-700: #327f90;
+  --color-accent-800: #235864;
+  --color-accent-900: #19383f;
+
+  --color-accent-2-100: #fdf4f2;
+  --color-accent-2-200: #f6e0db;
+  --color-accent-2-300: #ebc2b9;
+  --color-accent-2-400: #d9a094;
+  --color-accent-2-500: #c4857a;
+  --color-accent-2-600: #b06d60;
+  --color-accent-2-700: #8a5348;
+  --color-accent-2-800: #623b33;
+  --color-accent-2-900: #3d2621;
+
+  --shadow-sm: 0 0 0 1px var(--color-neutral-800);
+  --shadow-md: 0 0 0 1px var(--color-neutral-700), 0 6px 18px rgba(0,0,0,0.45);
+  --shadow-lg: 0 0 0 1px var(--color-neutral-500), 0 16px 40px rgba(0,0,0,0.55);
+}

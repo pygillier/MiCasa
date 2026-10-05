@@ -36,7 +36,7 @@ export default function Groups({ groups }: { groups: Group[] }) {
           <div className="links">
             {g.items.map((it) => (
               <div className="link" key={it.id}>
-                <a className="link-a" href={it.url}>
+                <a className="link-a" href={it.url} target="_blank" rel="noreferrer">
                   <span className="link-icon">
                     <i className={`ph ${it.icon}`} />
                   </span>

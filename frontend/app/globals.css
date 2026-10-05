@@ -15,7 +15,7 @@ a:hover { color: var(--color-accent-300); }
   flex: 1 1 300px; max-width: 340px; min-width: 280px;
   padding: max(10vh, var(--space-8)) var(--space-8) var(--space-8);
   display: flex; flex-direction: column; gap: var(--space-8);
-  background: linear-gradient(180deg, #1b1d2b, var(--color-bg));
+  background: linear-gradient(180deg, var(--color-side-start), var(--color-bg));
   border-right: 1px solid var(--color-divider);
 }
 .kicker { font-size: 10px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--color-accent); }

@@ -12,8 +12,8 @@ import { useI18n } from "@/components/I18nProvider";
 import type { MessageKey } from "@/lib/i18n/messages";
 
 const TABS = [
-  { id: "categories", label: "admin.tab.categories" },
   { id: "links", label: "admin.tab.links" },
+  { id: "categories", label: "admin.tab.categories" },
   { id: "settings", label: "admin.tab.settings" },
 ] as const satisfies readonly { id: string; label: MessageKey }[];
 type TabId = (typeof TABS)[number]["id"];

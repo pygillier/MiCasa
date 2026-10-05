@@ -12,6 +12,11 @@ admin = Blueprint("admin", __name__, url_prefix="/api/admin")
 
 
 # ---------- public ----------
+@bp.get("/theme")
+def theme():
+    return jsonify(theme=settings.get("theme"))
+
+
 @bp.get("/startpage")
 def startpage():
     authed = is_authenticated()

@@ -1,0 +1,29 @@
+[project]
+name = "micasa-api"
+version = "2.0.0"
+requires-python = ">=3.13"
+dependencies = [
+  "flask>=3.1",
+  "flask-sqlalchemy>=3.1",
+  "flask-migrate>=4.1",
+  "flask-apscheduler>=1.13",
+  "authlib>=1.6",
+  "requests>=2.32",
+  "uptime-kuma-api2",
+  "gunicorn>=23",
+  "loguru>=0.7.3",
+  "defusedxml>=0.7.1",
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.8", "responses>=0.25"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["migrations"]

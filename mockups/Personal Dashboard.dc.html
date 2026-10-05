@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/nocturne-916ce8a1-fc89-47ca-9269-b7f239d3b838/styles.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+<script src="_ds/nocturne-916ce8a1-fc89-47ca-9269-b7f239d3b838/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#0e0f18;font-family:"Inter",system-ui,sans-serif}
+a{color:#9184d9}a:hover{color:#d2cefd}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(255,255,255,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#e9e9ed;color:#161826;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 "Inter",system-ui,sans-serif;color:#e9e9ed}
+.dv-opts{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(255,255,255,.1);color:#e9e9ed;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 "Inter",system-ui,sans-serif;color:rgba(233,233,237,.55)}
+.dv-card{max-width:100%;background:#161826;border:1px solid rgba(255,255,255,.09);border-radius:10px;overflow:hidden}
+.dv-opt:target .dv-oid{background:#9184d9;color:#161826}
+.dv-next{margin:24px 0 0;font:12px/1.6 "Inter",system-ui,sans-serif;color:rgba(233,233,237,.5)}
+</style></helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Startpage — three layouts over the same 18 links</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Left rail, icon+label rows — closest to the sketch</div>
+<div class="dv-card" style="width:1120px">
+<div style="display:grid;grid-template-columns:300px 1fr;min-height:620px">
+
+<aside style="padding:34px 28px;display:flex;flex-direction:column;gap:30px;background:linear-gradient(180deg,#1b1d2b,#161826);border-right:1px solid rgba(255,255,255,.07)">
+<div>
+<div style="font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#9184d9;margin-bottom:10px">Saturday, 6 September</div>
+<h1 style="margin:0;font-size:38px;letter-spacing:-.02em;font-weight:500">Good evening</h1>
+</div>
+<div style="display:flex;align-items:baseline;gap:10px">
+<div style="font-size:58px;line-height:1;font-weight:500;letter-spacing:-.03em">20:42</div>
+<div style="font-size:12px;color:rgba(233,233,237,.45)">CEST</div>
+</div>
+<div style="padding:18px;border-radius:8px;background:#232532;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+<div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9184d9">Weather</div>
+<div style="font-size:11px;color:rgba(233,233,237,.5)">Nantes</div>
+</div>
+<div style="display:flex;align-items:center;gap:16px">
+<i class="ph-light ph-sun" style="font-size:44px;color:#b5abfc"></i>
+<div>
+<div style="font-size:34px;line-height:1;font-weight:500;letter-spacing:-.02em">26,3&thinsp;°C</div>
+<div style="font-size:12px;color:rgba(233,233,237,.6);margin-top:5px">Clear · feels 27,1&thinsp;°C</div>
+</div>
+</div>
+<div style="display:flex;gap:16px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.07);font-size:12px;color:rgba(233,233,237,.65)">
+<span>↑ 28°</span><span>↓ 17°</span><span>10&thinsp;% rain</span><span>12&thinsp;km/h</span>
+</div>
+</div>
+<div style="margin-top:auto;display:flex;align-items:center;gap:8px">
+<input class="input" placeholder="Search or paste a URL" style="font-size:13px">
+<button class="btn btn-primary btn-icon" aria-label="Go"><i class="ph ph-arrow-right" style="font-size:15px"></i></button>
+</div>
+</aside>
+
+<main style="padding:34px 32px;display:flex;flex-direction:column;gap:28px">
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+<div>
+<span style="display:block;width:20px;height:2px;background:#9184d9;margin-bottom:11px"></span>
+<div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px">
+<div style="font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:rgba(233,233,237,.72)">{{ g.name }}</div>
+<div style="font-size:11px;color:#b2b6ca">{{ g.note }}</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 26px">
+<sc-for list="{{ g.items }}" as="it" hint-placeholder-count="6">
+<a href="#1a" style="display:flex;align-items:center;gap:11px;padding:7px 8px;border-radius:8px;text-decoration:none;color:#e9e9ed" style-hover="background:rgba(145,132,217,.14)">
+<span style="width:30px;height:30px;flex:none;display:grid;place-items:center;border-radius:6px;background:#232532;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);font-size:16px;color:#b5abfc"><i class="ph {{ it.ic }}"></i></span>
+<span style="flex:1;font-size:14px">{{ it.label }}</span>
+<span style="font-size:11px;color:#b2b6ca">{{ it.host }}</span>
+</a>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</main>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Dense index — three columns, weather inline in the header, no icon chips</div>
+<div class="dv-card" style="width:1000px">
+<div style="padding:30px 34px 34px">
+<header style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding-bottom:20px;background:linear-gradient(to right,transparent,rgba(233,233,237,.16) 48px,rgba(233,233,237,.16) calc(100% - 48px),transparent) no-repeat bottom/100% 1px">
+<div>
+<h1 style="margin:0;font-size:30px;font-weight:500;letter-spacing:-.02em">Home</h1>
+<div style="font-size:12px;color:rgba(233,233,237,.5);margin-top:4px">Saturday, 6 September · 20:42</div>
+</div>
+<div style="display:flex;align-items:center;gap:14px">
+<i class="ph-light ph-sun" style="font-size:26px;color:#b5abfc"></i>
+<div style="font-size:26px;font-weight:500;letter-spacing:-.02em">26,3&thinsp;°C</div>
+<div style="font-size:11px;line-height:1.35;color:rgba(233,233,237,.5)">Clear, Nantes<br>↑28° ↓17°</div>
+</div>
+</header>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px;margin-top:26px">
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+<div>
+<div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#9184d9;margin-bottom:8px">{{ g.name }}</div>
+<sc-for list="{{ g.items }}" as="it" hint-placeholder-count="6">
+<a href="#1b" style="display:grid;grid-template-columns:24px 1fr;align-items:baseline;gap:10px;padding:8px 0;text-decoration:none;color:#e9e9ed;border-bottom:1px solid rgba(255,255,255,.07)" style-hover="color:#d2cefd">
+<span style="font-size:11px;font-family:ui-monospace,Menlo,monospace;color:#b2b6ca">{{ it.n }}</span>
+<span><span style="font-size:14px">{{ it.label }}</span><br><span style="font-size:11px;color:#b2b6ca">{{ it.host }}</span></span>
+</a>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Tiles — weather as a lit hero band, links as square tiles</div>
+<div class="dv-card" style="width:1120px">
+<div style="padding:0 0 34px">
+<div style="padding:32px 36px 30px;background:radial-gradient(120% 160% at 12% 0%,#262a60 0%,#1c1e33 48%,#161826 100%)">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:30px">
+<div>
+<div style="font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#b5abfc">Saturday, 6 September</div>
+<div style="font-size:64px;line-height:1;font-weight:500;letter-spacing:-.035em;margin-top:12px">20:42</div>
+<div style="font-size:14px;color:rgba(233,233,237,.6);margin-top:8px">18 links, three groups</div>
+</div>
+<div style="display:flex;align-items:center;gap:20px;padding:18px 24px;border-radius:14px;background:rgba(22,24,38,.55);box-shadow:inset 0 0 0 1px rgba(181,171,252,.28)">
+<i class="ph-light ph-sun" style="font-size:52px;color:#d2cefd"></i>
+<div>
+<div style="font-size:40px;line-height:1;font-weight:500;letter-spacing:-.03em">26,3&thinsp;°C</div>
+<div style="font-size:12px;color:rgba(233,233,237,.65);margin-top:6px">Clear · Nantes · ↑28° ↓17°</div>
+</div>
+<div style="display:flex;gap:14px;padding-left:22px;margin-left:4px;border-left:1px solid rgba(255,255,255,.12)">
+<sc-for list="{{ forecast }}" as="f" hint-placeholder-count="4">
+<div style="text-align:center">
+<div style="font-size:10px;color:rgba(233,233,237,.5);letter-spacing:.06em">{{ f.h }}</div>
+<i class="ph-light {{ f.ic }}" style="font-size:19px;color:#b5abfc;margin:6px 0;display:block"></i>
+<div style="font-size:12px">{{ f.t }}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+<div style="padding:30px 36px 0;display:flex;flex-direction:column;gap:26px">
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+<div>
+<div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px">
+<div style="font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:rgba(233,233,237,.72)">{{ g.name }}</div>
+<div style="font-size:11px;color:#b2b6ca">{{ g.note }}</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px">
+<sc-for list="{{ g.items }}" as="it" hint-placeholder-count="6">
+<a href="#1c" style="display:flex;flex-direction:column;gap:14px;padding:14px;border-radius:8px;background:#1c1e2b;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);text-decoration:none;color:#e9e9ed" style-hover="background:#232532;box-shadow:inset 0 0 0 1px #9184d9">
+<i class="ph {{ it.ic }}" style="font-size:22px;color:#b5abfc"></i>
+<span><span style="font-size:13px;display:block">{{ it.label }}</span><span style="font-size:10.5px;color:#b2b6ca">{{ it.host }}</span></span>
+</a>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+
+<div class="dv-opt" id="1d">
+<div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Mobile — <a class="dv-oid" href="#1a">1a</a> stacked, weather condensed to a strip</div>
+<div class="dv-card" style="width:390px">
+<div style="padding:26px 20px 30px;display:flex;flex-direction:column;gap:22px">
+<div>
+<div style="font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#9184d9">Sat 6 Sept</div>
+<div style="display:flex;align-items:baseline;gap:10px;margin-top:8px">
+<div style="font-size:44px;line-height:1;font-weight:500;letter-spacing:-.03em">20:42</div>
+<div style="font-size:11px;color:rgba(233,233,237,.45)">CEST</div>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:8px;background:#232532;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)">
+<i class="ph-light ph-sun" style="font-size:26px;color:#b5abfc"></i>
+<div style="font-size:22px;font-weight:500;letter-spacing:-.02em">26,3&thinsp;°C</div>
+<div style="margin-left:auto;text-align:right;font-size:11px;color:rgba(233,233,237,.55);line-height:1.35">Clear, Nantes<br>↑28° ↓17°</div>
+</div>
+<input class="input" placeholder="Search or paste a URL" style="font-size:13px">
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+<div>
+<span style="display:block;width:20px;height:2px;background:#9184d9;margin-bottom:10px"></span>
+<div style="font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:rgba(233,233,237,.72);margin-bottom:6px">{{ g.name }}</div>
+<div style="display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{ g.items }}" as="it" hint-placeholder-count="6">
+<a href="#1d" style="display:flex;align-items:center;gap:12px;padding:9px 6px;border-radius:8px;text-decoration:none;color:#e9e9ed;min-height:44px" style-hover="background:rgba(145,132,217,.14)">
+<span style="width:32px;height:32px;flex:none;display:grid;place-items:center;border-radius:6px;background:#232532;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07);font-size:17px;color:#b5abfc"><i class="ph {{ it.ic }}"></i></span>
+<span style="flex:1;font-size:14px">{{ it.label }}</span>
+<span style="font-size:11px;color:#b2b6ca">{{ it.host }}</span>
+</a>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "keep <a class="dv-oid" href="#1a">1a</a> but use the tiles from <a class="dv-oid" href="#1c">1c</a> for Apps only" · "swap in my real links and hosts" · "make <a class="dv-oid" href="#1b">1b</a> even denser — drop the hostnames"</p>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const groups = [
+      { name: 'Applications', note: 'self-hosted', items: [
+        { label: 'Home Assistant', host: ':8123', ic: 'ph-house-line' },
+        { label: 'Grafana', host: ':3000', ic: 'ph-chart-line' },
+        { label: 'Vaultwarden', host: ':8080', ic: 'ph-shield-check' },
+        { label: 'Portainer', host: ':9443', ic: 'ph-cube' },
+        { label: 'Immich', host: ':2283', ic: 'ph-images' },
+        { label: 'Paperless', host: ':8000', ic: 'ph-files' },
+      ]},
+      { name: 'Resources', note: 'reference', items: [
+        { label: 'Documentation', host: 'docs.local', ic: 'ph-book-open' },
+        { label: 'Wiki', host: 'wiki.local', ic: 'ph-notebook' },
+        { label: 'Bookmarks', host: 'linkding', ic: 'ph-bookmark-simple' },
+        { label: 'Feeds', host: 'miniflux', ic: 'ph-rss' },
+        { label: 'Notes', host: 'obsidian', ic: 'ph-note' },
+        { label: 'Cheatsheets', host: 'gist', ic: 'ph-list-checks' },
+      ]},
+      { name: 'Apps', note: 'daily', items: [
+        { label: 'Mail', host: 'fastmail', ic: 'ph-envelope-simple' },
+        { label: 'Calendar', host: 'cal', ic: 'ph-calendar-dots' },
+        { label: 'Music', host: 'navidrome', ic: 'ph-music-notes' },
+        { label: 'Chat', host: 'matrix', ic: 'ph-chat-circle' },
+        { label: 'Repositories', host: 'github', ic: 'ph-git-branch' },
+        { label: 'Maps', host: 'osm', ic: 'ph-map-trifold' },
+      ]},
+    ];
+    let n = 0;
+    groups.forEach(g => g.items.forEach(it => { n += 1; it.n = String(n).padStart(2, '0'); }));
+    return {
+      groups,
+      forecast: [
+        { h: '21h', t: '24°', ic: 'ph-moon' },
+        { h: '22h', t: '22°', ic: 'ph-moon' },
+        { h: '23h', t: '20°', ic: 'ph-cloud-moon' },
+        { h: '00h', t: '19°', ic: 'ph-cloud-moon' },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

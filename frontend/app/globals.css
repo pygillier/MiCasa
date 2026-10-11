@@ -3,6 +3,7 @@
   --status-up: #7fbf9a;
   --status-down: #e08585;
   --status-idle: var(--color-neutral-600);
+  --color-navbar: var(--color-neutral-900); /* admin navbar (mobile) */
 }
 a { color: var(--color-accent); }
 a:hover { color: var(--color-accent-300); }
@@ -18,6 +19,8 @@ a:hover { color: var(--color-accent-300); }
   background: linear-gradient(180deg, var(--color-side-start), var(--color-bg));
   border-right: 1px solid var(--color-divider);
 }
+.topbar { display: none; }
+.admin-head .admin-burger { display: none; }
 .kicker { font-size: 0.625rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--color-accent); }
 .side .kicker { margin-bottom: var(--space-3); }
 .greeting { margin: 0; font-size: 2.375rem; letter-spacing: -0.02em; }
@@ -113,3 +116,52 @@ a:hover { color: var(--color-accent-300); }
 .section-title { font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin: 0 0 var(--space-3); }
 .dialog { max-height: 90vh; overflow-y: auto; }
 select.input { appearance: auto; }
+
+/* mobile: fixed top navbar (burger menu) replaces the sidebar; weather sits below it */
+@media (max-width: 48rem) {
+  :root { --topbar-h: 3.5rem; }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    position: fixed; inset: 0 0 auto 0; z-index: 50; height: var(--topbar-h);
+    padding: 0 var(--space-4);
+    background: var(--color-bg); border-bottom: 1px solid var(--color-divider);
+  }
+  .topbar-info { display: flex; align-items: baseline; gap: var(--space-3); min-width: 0; }
+  .topbar-time { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; }
+  .topbar-greet { font-size: 0.75rem; color: var(--color-neutral-300); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .btn-icon { font-size: 1.25rem; }
+  .topbar-menu {
+    position: absolute; top: 100%; right: var(--space-4); min-width: 12rem;
+    display: flex; flex-direction: column; padding: var(--space-2);
+    background: var(--color-surface); border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md); box-shadow: var(--shadow-md);
+  }
+  .topbar-menu a, .topbar-menu button {
+    display: flex; align-items: center; gap: var(--space-3);
+    padding: var(--space-3); min-height: 2.75rem;
+    background: none; border: 0; border-radius: var(--radius-sm);
+    color: var(--color-text); font: inherit; font-size: 0.875rem; text-decoration: none; cursor: pointer;
+  }
+  .topbar-menu a:hover, .topbar-menu button:hover { background: color-mix(in srgb, var(--color-accent) 14%, transparent); }
+
+  .side {
+    flex: 1 1 100%; max-width: none; min-width: 0;
+    padding: calc(var(--topbar-h) + var(--space-4)) var(--space-4) 0;
+    background: none; border-right: 0;
+  }
+  /* admin: header becomes a fixed black navbar */
+  .admin { padding: calc(var(--topbar-h) + var(--space-4)) var(--space-4) var(--space-4); }
+  .admin-head {
+    position: fixed; inset: 0 0 auto 0; z-index: 50; height: var(--topbar-h);
+    padding: 0 var(--space-4); flex-wrap: nowrap; gap: var(--space-2);
+    background: var(--color-navbar); border-bottom: 1px solid var(--color-divider);
+  }
+  .admin-head .admin-logo { height: 1.75rem; }
+  .admin-head .admin-link { display: none; }
+  .admin-head .admin-burger { display: inline-flex; font-size: 1.25rem; }
+  .dialog-backdrop { padding-top: calc(var(--topbar-h) + var(--space-4)); }
+  .dialog { max-height: calc(100dvh - var(--topbar-h) - var(--space-8)); }
+  .tab-transfer, .col-visibility, .col-url { display: none; }
+  .side-intro, .clock-row, .side-foot { display: none; }
+  .main { flex-basis: 100%; padding: var(--space-6) var(--space-4); }
+}

@@ -3,7 +3,7 @@
 import { hardNavigate } from "@/lib/nav";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CategoriesTab from "@/components/admin/CategoriesTab";
 import JobsTab from "@/components/admin/JobsTab";
 import LinksTab from "@/components/admin/LinksTab";
@@ -26,6 +26,22 @@ export default function AdminPage() {
   const { t } = useI18n();
   const [ready, setReady] = useState(false);
   const [tab, setTab] = useState<TabId>("links");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const headRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onDown = (e: MouseEvent) => {
+      if (!headRef.current?.contains(e.target as Node)) setMenuOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     api<{ authenticated: boolean }>("/me").then((me) => {
@@ -40,15 +56,30 @@ export default function AdminPage() {
 
   return (
     <div className="admin">
-      <div className="admin-head">
+      <div className="admin-head" ref={headRef}>
         <h1><Image src="/logo.svg" alt="MiCasa" width={147} height={44} unoptimized priority className="admin-logo logo-light" />
           <Image src="/logo-dark.svg" alt="MiCasa" width={147} height={44} unoptimized priority className="admin-logo logo-dark" /> <span className="sr-only">{t("admin.title")}</span></h1>
-        <Link href="/" className="btn btn-ghost"><i className="ph-bold ph-arrow-left" /> {t("nav.startpage")}</Link>
-        <button className="btn btn-ghost" onClick={logout}><i className="ph-bold ph-sign-out" /> {t("nav.logout")}</button>
+        <Link href="/" className="btn btn-ghost admin-link"><i className="ph-bold ph-arrow-left" /> {t("nav.startpage")}</Link>
+        <button className="btn btn-ghost admin-link" onClick={logout}><i className="ph-bold ph-sign-out" /> {t("nav.logout")}</button>
+        <button
+          className="btn btn-ghost btn-icon admin-burger"
+          aria-label={t("nav.menu")}
+          aria-expanded={menuOpen}
+          aria-controls="admin-menu"
+          onClick={() => setMenuOpen((o) => !o)}
+        >
+          <i className={`ph-bold ${menuOpen ? "ph-x" : "ph-list"}`} />
+        </button>
+        {menuOpen && (
+          <nav id="admin-menu" className="topbar-menu">
+            <Link href="/"><i className="ph-bold ph-arrow-left" /> {t("nav.startpage")}</Link>
+            <button onClick={logout}><i className="ph-bold ph-sign-out" /> {t("nav.logout")}</button>
+          </nav>
+        )}
       </div>
       <div className="tabs" role="tablist">
         {TABS.map((tb) => (
-          <button key={tb.id} role="tab" aria-selected={tab === tb.id} className="tab" onClick={() => setTab(tb.id)}>
+          <button key={tb.id} role="tab" aria-selected={tab === tb.id} className={`tab tab-${tb.id}`} onClick={() => setTab(tb.id)}>
             {t(tb.label)}
           </button>
         ))}

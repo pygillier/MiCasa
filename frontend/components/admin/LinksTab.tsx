@@ -63,14 +63,14 @@ export default function LinksTab() {
             <div className="table-wrap">
               <table className="table">
                 <thead>
-                  <tr><th /><th>{t("links.label")}</th><th>{t("links.url")}</th><th>{t("links.monitor")}</th><th>{t("common.visibility")}</th><th /></tr>
+                  <tr><th /><th>{t("links.label")}</th><th className="col-url">{t("links.url")}</th><th>{t("links.monitor")}</th><th className="col-visibility">{t("common.visibility")}</th><th /></tr>
                 </thead>
                 <tbody>
                   {group.map((l, i) => (
                     <tr key={l.id}>
                       <td><i className={`ph-bold ${l.icon} list-icon`} /></td>
                       <td>{l.label}</td>
-                      <td className="muted">{l.url}</td>
+                      <td className="muted col-url">{l.url}</td>
                       <td>
                         {l.kuma_monitor_id !== null && (
                           <span style={{ display: "inline-flex", gap: "var(--space-2)", alignItems: "center" }}>
@@ -81,7 +81,7 @@ export default function LinksTab() {
                           </span>
                         )}
                       </td>
-                      <td><VisibilityTag isPublic={l.is_public} /></td>
+                      <td className="col-visibility"><VisibilityTag isPublic={l.is_public} /></td>
                       <td>
                         <RowActions index={i} count={group.length} onMove={(d) => move(c.id, i, d)}
                                     onEdit={() => setDraft(l)}

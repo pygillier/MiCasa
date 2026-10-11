@@ -2,6 +2,7 @@
 
 from flask import Blueprint, jsonify
 from sqlalchemy import text
+from sqlalchemy.exc import SQLAlchemyError
 
 from .. import settings
 from ..auth import is_authenticated
@@ -16,7 +17,7 @@ def health():
     """Liveness + DB reachability, for the frontend ``/healthz`` aggregate."""
     try:
         db.session.execute(text("SELECT 1"))
-    except Exception:
+    except SQLAlchemyError:
         return jsonify(status="error"), 503
     return jsonify(status="ok")
 

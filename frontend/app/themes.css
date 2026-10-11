@@ -60,6 +60,8 @@
   --color-accent-2: #b06d60;
   --color-divider: color-mix(in srgb, #1b2530 16%, transparent);
   --color-side-start: #e2ecf1;
+  --logo-light-display: block;
+  --logo-dark-display: none;
 
   --color-neutral-100: #1b2530;
   --color-neutral-200: #2c3742;

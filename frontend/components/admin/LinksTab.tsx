@@ -49,7 +49,7 @@ export default function LinksTab() {
                 onClick={() => setDraft({
                   category_id: cats[0]?.id, icon: "ph-link", is_public: false, kuma_monitor_id: null,
                 })}>
-          <i className="ph ph-plus" /> {t("links.new")}
+          <i className="ph-bold ph-plus" /> {t("links.new")}
         </button>
       </div>
       {cats.length === 0 && <div className="muted">{t("links.createCategoryFirst")}</div>}
@@ -68,7 +68,7 @@ export default function LinksTab() {
                 <tbody>
                   {group.map((l, i) => (
                     <tr key={l.id}>
-                      <td><i className={`ph ${l.icon}`} /></td>
+                      <td><i className={`ph-bold ${l.icon} list-icon`} /></td>
                       <td>{l.label}</td>
                       <td className="muted">{l.url}</td>
                       <td>
@@ -117,7 +117,7 @@ export default function LinksTab() {
           <div className="form-2">
             <Field id="l-icon" label={t("links.iconLabel", { link: "Phosphor" })}>
               <div style={{ display: "flex", gap: "var(--space-3)", alignItems: "center" }}>
-                <i className={`ph ${draft.icon}`} style={{ fontSize: "1.25rem" }} />
+                <i className={`ph-bold ${draft.icon}`} style={{ fontSize: "1.25rem" }} />
                 <input id="l-icon" className="input" pattern="ph-[a-z0-9-]+" placeholder="ph-house-line"
                        value={draft.icon ?? ""} onChange={(e) => setDraft({ ...draft, icon: e.target.value })} />
               </div>

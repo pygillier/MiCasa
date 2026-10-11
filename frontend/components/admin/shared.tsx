@@ -51,7 +51,7 @@ export function RowActions({
   const { t } = useI18n();
   const btn = (icon: string, label: string, onClick: () => void, disabled = false) => (
     <button className="btn btn-icon small" disabled={disabled} aria-label={label} onClick={onClick}>
-      <i className={`ph ${icon}`} />
+      <i className={`ph-bold ${icon}`} />
     </button>
   );
   return (

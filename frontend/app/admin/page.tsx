@@ -41,9 +41,10 @@ export default function AdminPage() {
   return (
     <div className="admin">
       <div className="admin-head">
-        <h1><Image src="/logo-dark.svg" alt="MiCasa" width={147} height={44} unoptimized priority className="admin-logo" /> <span className="sr-only">{t("admin.title")}</span></h1>
-        <Link href="/" className="btn btn-ghost"><i className="ph ph-arrow-left" /> {t("nav.startpage")}</Link>
-        <button className="btn btn-ghost" onClick={logout}><i className="ph ph-sign-out" /> {t("nav.logout")}</button>
+        <h1><Image src="/logo.svg" alt="MiCasa" width={147} height={44} unoptimized priority className="admin-logo logo-light" />
+          <Image src="/logo-dark.svg" alt="MiCasa" width={147} height={44} unoptimized priority className="admin-logo logo-dark" /> <span className="sr-only">{t("admin.title")}</span></h1>
+        <Link href="/" className="btn btn-ghost"><i className="ph-bold ph-arrow-left" /> {t("nav.startpage")}</Link>
+        <button className="btn btn-ghost" onClick={logout}><i className="ph-bold ph-sign-out" /> {t("nav.logout")}</button>
       </div>
       <div className="tabs" role="tablist">
         {TABS.map((tb) => (

@@ -25,7 +25,7 @@ export default function CategoriesTab() {
       <div className="toolbar">
         <span className="spacer muted">{t("categories.count", { n: items.length })}</span>
         <button className="btn btn-primary" onClick={() => setDraft({ is_public: false })}>
-          <i className="ph ph-plus" /> {t("categories.new")}
+          <i className="ph-bold ph-plus" /> {t("categories.new")}
         </button>
       </div>
       {error && <div className="error">{error}</div>}

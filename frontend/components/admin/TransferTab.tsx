@@ -39,7 +39,7 @@ export default function TransferTab() {
       <p className="muted">{t("transfer.exportHelp")}</p>
       <div className="toolbar">
         <a className="btn btn-secondary" href="/api/admin/export.opml" download="micasa.opml">
-          <i className="ph ph-download-simple" /> {t("transfer.exportBtn")}
+          <i className="ph-bold ph-download-simple" /> {t("transfer.exportBtn")}
         </a>
       </div>
 
@@ -48,7 +48,7 @@ export default function TransferTab() {
       <div className="toolbar">
         <input ref={fileRef} type="file" accept=".opml,.xml,text/xml,text/x-opml" hidden onChange={onFile} />
         <button type="button" className="btn btn-secondary" onClick={() => fileRef.current?.click()}>
-          <i className="ph ph-upload-simple" /> {t("transfer.importBtn")}
+          <i className="ph-bold ph-upload-simple" /> {t("transfer.importBtn")}
         </button>
         <Notice msg={msg} />
       </div>

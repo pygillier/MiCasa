@@ -56,7 +56,7 @@ export default function Weather() {
       {w ? (
         <>
           <div className="weather-body">
-            <i className={`ph-light ${weatherIcon(w.condition_type, w.is_daytime)} weather-icon`} />
+            <i className={`ph-bold ${weatherIcon(w.condition_type, w.is_daytime)} weather-icon`} />
             <div>
               <div className="weather-temp">{num(w.temp)} °C</div>
               <div className="weather-desc">

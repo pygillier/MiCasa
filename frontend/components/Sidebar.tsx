@@ -51,15 +51,15 @@ export default function Sidebar({ authenticated }: { authenticated: boolean }) {
         {authenticated ? (
           <>
             <a href="/admin" className="btn btn-ghost">
-              <i className="ph ph-gear" /> {t("nav.admin")}
+              <i className="ph-bold ph-gear" /> {t("nav.admin")}
             </a>
             <button className="btn btn-ghost" onClick={logout}>
-              <i className="ph ph-sign-out" /> {t("nav.logout")}
+              <i className="ph-bold ph-sign-out" /> {t("nav.logout")}
             </button>
           </>
         ) : (
           <a href="/api/auth/login" className="btn btn-ghost">
-            <i className="ph ph-sign-in" /> {t("nav.login")}
+            <i className="ph-bold ph-sign-in" /> {t("nav.login")}
           </a>
         )}
       </div>

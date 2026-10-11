@@ -37,7 +37,7 @@ export default function Groups({ groups }: { groups: Group[] }) {
               <div className="link" key={it.id}>
                 <a className="link-a" href={it.url} target="_blank" rel="noreferrer">
                   <span className="link-icon">
-                    <i className={`ph ${it.icon}`} />
+                    <i className={`ph-bold ${it.icon}`} />
                   </span>
                   <span className="link-label">{it.label}</span>
                 </a>

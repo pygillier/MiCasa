@@ -96,7 +96,7 @@ export default function SettingsTab() {
         <div className="toolbar">
           <button type="submit" className="btn btn-primary">{t("settings.save")}</button>
           <button type="button" className="btn btn-secondary" onClick={refresh}>
-            <i className="ph ph-arrows-clockwise" /> {t("settings.refreshNow")}
+            <i className="ph-bold ph-arrows-clockwise" /> {t("settings.refreshNow")}
           </button>
           <Notice msg={msg} />
         </div>

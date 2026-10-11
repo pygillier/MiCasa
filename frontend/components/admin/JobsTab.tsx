@@ -45,12 +45,12 @@ export default function JobsTab() {
         <div className="toolbar">
           <button type="button" className="btn btn-secondary" disabled={current === 0}
                   onClick={() => setPage(current - 1)}>
-            <i className="ph ph-caret-left" /> {t("settings.prev")}
+            <i className="ph-bold ph-caret-left" /> {t("settings.prev")}
           </button>
           <span className="muted">{t("settings.page", { page: current + 1, pages })}</span>
           <button type="button" className="btn btn-secondary" disabled={current >= pages - 1}
                   onClick={() => setPage(current + 1)}>
-            {t("settings.next")} <i className="ph ph-caret-right" />
+            {t("settings.next")} <i className="ph-bold ph-caret-right" />
           </button>
         </div>
       )}

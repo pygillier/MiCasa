@@ -34,5 +34,13 @@ git push --follow-tags
 cp .env.example .env   # fill in
 task up                # docker compose; data in ./data
 ```
+### Single image
+The root `Dockerfile` bundles the frontend and the API in one image, run by supervisord (web on port 3000, API on loopback):
+```bash
+task up:single         # or: docker compose -f docker-compose.single.yml up -d --build
+task docker:build      # build all images (api, web, single)
+```
+Both variants use `./data` for the SQLite database.
+
 Register an OIDC client in PocketID with redirect URI `${PUBLIC_URL}/api/auth/callback` (authorization code + PKCE).
-Put a TLS reverse proxy in front of the `web` service (port 3000) and set `PUBLIC_URL` to the https URL.
+Put a TLS reverse proxy in front of the `web` service (port 3000; the `micasa` container in single-image mode) and set `PUBLIC_URL` to the https URL.

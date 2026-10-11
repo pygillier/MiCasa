@@ -67,6 +67,28 @@ tasks:
     cmds:
       - npm run build
 
+  docker:build:
+    desc: Build all docker images (api, web, single)
+    cmds:
+      - task: docker:build:api
+      - task: docker:build:web
+      - task: docker:build:single
+
+  docker:build:api:
+    desc: Build the backend image (micasa-api)
+    cmds:
+      - docker build -t micasa-api ./backend
+
+  docker:build:web:
+    desc: Build the frontend image (micasa-web)
+    cmds:
+      - docker build -t micasa-web ./frontend
+
+  docker:build:single:
+    desc: Build the single image (micasa)
+    cmds:
+      - docker build -t micasa .
+
   up:
     desc: Start the docker compose stack
     cmds:
@@ -89,3 +111,13 @@ tasks:
         msg: "usage: task release -- patch|minor|major|X.Y.Z [--dry-run]"
     cmds:
       - scripts/release.sh {{.CLI_ARGS}}
+
+  up:single:
+    desc: Start the single-image (supervisord) stack
+    cmds:
+      - docker compose -f docker-compose.single.yml up -d --build
+
+  down:single:
+    desc: Stop the single-image stack
+    cmds:
+      - docker compose -f docker-compose.single.yml down

@@ -1,0 +1,11 @@
+# Single-container variant (supervisord runs API + web in one image).
+# Usage: docker compose -f docker-compose.single.yml up -d --build
+services:
+  micasa:
+    build: .
+    env_file: .env
+    volumes:
+      - ./data:/data
+    ports:
+      - "3000:3000"
+    restart: unless-stopped

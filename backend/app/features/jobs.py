@@ -11,10 +11,11 @@ from loguru import logger
 
 from .. import settings
 from ..extensions import db, scheduler
-from ..models import JobRun, WeatherCache, utcnow
+from ..models import JobRun, MonitorStatus, WeatherCache, utcnow
 from . import kuma, weather
 
 KEEP_RUNS = 10
+KUMA_HEARTBEAT = timedelta(hours=1)
 MIN_WEATHER_MINUTES = 5
 DEFAULT_WEATHER_MINUTES = 60
 _app = None
@@ -32,8 +33,9 @@ def _prune_runs(job_id: str) -> None:
 def tracked(job_id: str):
     """Decorator: run the job inside the app context and record a ``JobRun``.
 
-    The job's return value becomes the run message. Exceptions are logged and recorded as
-    ``error`` runs rather than propagated, so the scheduler keeps running.
+    The job's return value becomes the run message; returning ``None`` means "nothing worth
+    recording" and no run is stored. Exceptions are logged and recorded as ``error`` runs rather
+    than propagated, so the scheduler keeps running.
     """
 
     def deco(fn):
@@ -42,7 +44,10 @@ def tracked(job_id: str):
             with _app.app_context():
                 started, status, message = utcnow(), "ok", ""
                 try:
-                    message = str(fn() or "")
+                    result = fn()
+                    if result is None:
+                        return
+                    message = str(result)
                 except Exception as exc:  # noqa: BLE001 - recorded; the scheduler must survive
                     logger.exception("job {} failed", job_id)
                     db.session.rollback()
@@ -68,8 +73,18 @@ def refresh_weather():
 
 @tracked("refresh_kuma")
 def refresh_kuma():
-    """Sync monitor states from Uptime Kuma into ``MonitorStatus``."""
-    return f"{kuma.sync()} monitors"
+    """Sync monitor states from Uptime Kuma into ``MonitorStatus``.
+
+    Only state changes are recorded, plus a heartbeat run when the last one is older than
+    ``KUMA_HEARTBEAT``.
+    """
+    changes = kuma.sync()
+    if changes:
+        return "; ".join(changes)
+    last = (JobRun.query.filter_by(job_id="refresh_kuma").order_by(JobRun.id.desc()).first())
+    if last is None or utcnow() - last.finished_at >= KUMA_HEARTBEAT:
+        return f"{MonitorStatus.query.count()} monitors, no change"
+    return None
 
 
 def register(app) -> None:

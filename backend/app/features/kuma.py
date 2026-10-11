@@ -37,15 +37,16 @@ def list_monitors() -> list[dict]:
         return [{"id": m["id"], "name": m["name"]} for m in api.get_monitors()]
 
 
-def sync() -> int:
+def sync() -> list[str]:
     """Mirror Kuma monitor states into ``MonitorStatus``; drops rows of deleted monitors.
 
-    Returns the number of monitors synced.
+    Returns a description of each change since the previous sync (new, removed or re-stated
+    monitors); empty when nothing changed.
     """
     with _session() as api:
         monitors = api.get_monitors()
         beats = api.get_heartbeats()
-    seen = set()
+    seen, changes = set(), []
     for m in monitors:
         mid = m["id"]
         seen.add(mid)
@@ -54,8 +55,12 @@ def sync() -> int:
         if row is None:
             row = MonitorStatus(monitor_id=mid)
             db.session.add(row)
+            changes.append(f"{m['name']}: new ({status})")
+        elif row.status != status:
+            changes.append(f"{m['name']}: {row.status} -> {status}")
         row.name, row.status, row.updated_at = m["name"], status, utcnow()
     for row in MonitorStatus.query.filter(MonitorStatus.monitor_id.notin_(seen or {-1})):
+        changes.append(f"{row.name}: removed")
         db.session.delete(row)
     db.session.commit()
-    return len(monitors)
+    return changes

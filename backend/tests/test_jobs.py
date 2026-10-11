@@ -64,3 +64,32 @@ def test_kuma_sync(app, monkeypatch):
     jobs.refresh_kuma()
     got = {m.monitor_id: m.status for m in MonitorStatus.query}
     assert got == {1: "up", 2: "down", 3: "paused"}
+    run = JobRun.query.filter_by(job_id="refresh_kuma").one()
+    assert run.status == "ok" and "A: new (up)" in run.message
+
+
+def test_kuma_unchanged_is_not_logged(app, monkeypatch):
+    monkeypatch.setattr(kuma, "UptimeKumaApi", FakeApi)
+    jobs.refresh_kuma()
+    jobs.refresh_kuma()
+    assert JobRun.query.filter_by(job_id="refresh_kuma").count() == 1
+
+
+def test_kuma_state_change_is_logged(app, monkeypatch):
+    monkeypatch.setattr(kuma, "UptimeKumaApi", FakeApi)
+    jobs.refresh_kuma()
+    monkeypatch.setattr(FakeApi, "get_heartbeats", lambda self: {1: [{"status": 0}], 2: [{"status": 0}]})
+    jobs.refresh_kuma()
+    last = JobRun.query.filter_by(job_id="refresh_kuma").order_by(JobRun.id.desc()).first()
+    assert last.message == "A: up -> down"
+
+
+def test_kuma_heartbeat_when_last_run_is_old(app, monkeypatch):
+    monkeypatch.setattr(kuma, "UptimeKumaApi", FakeApi)
+    jobs.refresh_kuma()
+    last = JobRun.query.filter_by(job_id="refresh_kuma").one()
+    last.finished_at = last.finished_at - jobs.KUMA_HEARTBEAT
+    db.session.commit()
+    jobs.refresh_kuma()
+    newest = JobRun.query.filter_by(job_id="refresh_kuma").order_by(JobRun.id.desc()).first()
+    assert newest.message == "3 monitors, no change"

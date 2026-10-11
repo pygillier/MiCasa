@@ -2,6 +2,8 @@
 
 import { useRef, useState, type ChangeEvent } from "react";
 import { useI18n } from "@/components/I18nProvider";
+import { api } from "@/lib/api";
+import { Notice, type Msg } from "./shared";
 
 interface ImportResult {
   categories_created: number;
@@ -12,21 +14,16 @@ interface ImportResult {
 export default function TransferTab() {
   const { t } = useI18n();
   const fileRef = useRef<HTMLInputElement>(null);
-  const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
+  const [msg, setMsg] = useState<Msg | null>(null);
 
   async function onFile(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
     try {
-      const res = await fetch("/api/admin/import", {
-        method: "POST",
-        headers: { "Content-Type": "text/x-opml", "X-Requested-With": "micasa" },
-        body: file,
+      const r = await api<ImportResult>("/admin/import", {
+        method: "POST", body: file, contentType: "text/x-opml",
       });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error ?? res.statusText);
-      const r = data as ImportResult;
       setMsg({
         ok: true,
         text: t("transfer.result", { cats: r.categories_created, links: r.links_created, skipped: r.skipped }),
@@ -53,7 +50,7 @@ export default function TransferTab() {
         <button type="button" className="btn btn-secondary" onClick={() => fileRef.current?.click()}>
           <i className="ph ph-upload-simple" /> {t("transfer.importBtn")}
         </button>
-        {msg && <span className={msg.ok ? "ok" : "error"}>{msg.text}</span>}
+        <Notice msg={msg} />
       </div>
     </div>
   );

@@ -5,24 +5,36 @@ import { useI18n } from "@/components/I18nProvider";
 import { THEMES, parseTheme } from "@/lib/themes";
 import { api } from "@/lib/api";
 import type { Settings } from "@/lib/types";
+import { Field, Notice, TextField, type Msg } from "./shared";
+
+const applyTheme = (theme: string) => {
+  document.documentElement.dataset.theme = parseTheme(theme);
+};
 
 export default function SettingsTab() {
   const { t } = useI18n();
   const [s, setS] = useState<Settings | null>(null);
   const [apiKey, setApiKey] = useState("");
-  const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
+  const [msg, setMsg] = useState<Msg | null>(null);
 
   useEffect(() => {
     api<Settings>("/admin/settings").then(setS).catch((e) => setMsg({ ok: false, text: e.message }));
   }, []);
 
   if (!s) return <div className="muted">{t("common.loading")}</div>;
-  const set = (k: keyof Settings, v: string) => setS({ ...s, [k]: v });
+  const set = (k: keyof Settings) => (v: string) => setS({ ...s, [k]: v });
 
-  async function save(e: FormEvent) {
-    e.preventDefault();
-    if (!s) return;
+  async function run(action: () => Promise<string>) {
     try {
+      setMsg({ ok: true, text: await action() });
+    } catch (err) {
+      setMsg({ ok: false, text: (err as Error).message });
+    }
+  }
+
+  const save = (e: FormEvent) => {
+    e.preventDefault();
+    return run(async () => {
       const body = {
         weather_city: s.weather_city,
         weather_lat: s.weather_lat,
@@ -35,80 +47,52 @@ export default function SettingsTab() {
       };
       const saved = await api<Settings>("/admin/settings", { method: "PUT", body });
       setS(saved);
-      document.documentElement.dataset.theme = parseTheme(saved.theme);
+      applyTheme(saved.theme);
       setApiKey("");
-      setMsg({ ok: true, text: t("settings.saved") });
-    } catch (err) {
-      setMsg({ ok: false, text: (err as Error).message });
-    }
-  }
+      return t("settings.saved");
+    });
+  };
 
-  async function refresh() {
-    try {
+  const refresh = () =>
+    run(async () => {
       await api("/admin/weather/refresh", { method: "POST" });
-      setMsg({ ok: true, text: t("settings.refreshed") });
-    } catch (err) {
-      setMsg({ ok: false, text: (err as Error).message });
-    }
-  }
+      return t("settings.refreshed");
+    });
 
   return (
     <div className="form-grid">
       <form className="form-grid" onSubmit={save}>
         <h3 className="section-title">{t("settings.appearanceTitle")}</h3>
-        <div className="field">
-          <label htmlFor="s-theme">{t("settings.theme")}</label>
+        <Field id="s-theme" label={t("settings.theme")}>
           <select id="s-theme" className="input" value={parseTheme(s.theme)}
                   onChange={(e) => {
-                    set("theme", e.target.value);
-                    document.documentElement.dataset.theme = parseTheme(e.target.value);
+                    set("theme")(e.target.value);
+                    applyTheme(e.target.value);
                   }}>
             {THEMES.map((th) => <option key={th.id} value={th.id}>{th.name}</option>)}
           </select>
-        </div>
+        </Field>
         <h3 className="section-title">{t("settings.weatherTitle")}</h3>
-        <div className="field">
-          <label htmlFor="s-key">
-            {t("settings.apiKey")} {s.google_weather_api_key_configured && t("settings.apiKeyConfigured", { tail: s.google_weather_api_key_tail })}
-          </label>
-          <input id="s-key" className="input" type="password" autoComplete="off" value={apiKey}
-                 placeholder={s.google_weather_api_key_configured ? t("settings.apiKeyKeep") : t("settings.apiKeyPaste")}
-                 onChange={(e) => setApiKey(e.target.value)} />
-        </div>
+        <TextField id="s-key" type="password" autoComplete="off" value={apiKey} onChange={setApiKey}
+                   label={<>{t("settings.apiKey")} {s.google_weather_api_key_configured && t("settings.apiKeyConfigured", { tail: s.google_weather_api_key_tail })}</>}
+                   placeholder={s.google_weather_api_key_configured ? t("settings.apiKeyKeep") : t("settings.apiKeyPaste")} />
         <div className="form-2">
-          <div className="field">
-            <label htmlFor="s-city">{t("settings.city")}</label>
-            <input id="s-city" className="input" value={s.weather_city} onChange={(e) => set("weather_city", e.target.value)} />
-          </div>
-          <div className="field">
-            <label htmlFor="s-lat">{t("settings.lat")}</label>
-            <input id="s-lat" className="input" inputMode="decimal" value={s.weather_lat} onChange={(e) => set("weather_lat", e.target.value)} />
-          </div>
-          <div className="field">
-            <label htmlFor="s-lon">{t("settings.lon")}</label>
-            <input id="s-lon" className="input" inputMode="decimal" value={s.weather_lon} onChange={(e) => set("weather_lon", e.target.value)} />
-          </div>
-          <div className="field">
-            <label htmlFor="s-lang">{t("settings.lang")}</label>
-            <input id="s-lang" className="input" value={s.weather_language} onChange={(e) => set("weather_language", e.target.value)} />
-          </div>
-          <div className="field">
-            <label htmlFor="s-min">{t("settings.refreshEvery")}</label>
-            <input id="s-min" className="input" type="number" min={5} value={s.weather_refresh_minutes} onChange={(e) => set("weather_refresh_minutes", e.target.value)} />
-          </div>
+          <TextField id="s-city" label={t("settings.city")} value={s.weather_city} onChange={set("weather_city")} />
+          <TextField id="s-lat" label={t("settings.lat")} inputMode="decimal" value={s.weather_lat} onChange={set("weather_lat")} />
+          <TextField id="s-lon" label={t("settings.lon")} inputMode="decimal" value={s.weather_lon} onChange={set("weather_lon")} />
+          <TextField id="s-lang" label={t("settings.lang")} value={s.weather_language} onChange={set("weather_language")} />
+          <TextField id="s-min" label={t("settings.refreshEvery")} type="number" min={5}
+                     value={s.weather_refresh_minutes} onChange={set("weather_refresh_minutes")} />
         </div>
         <h3 className="section-title">{t("settings.kumaTitle")}</h3>
-        <div className="field">
-          <label htmlFor="s-kuma">{t("settings.kumaUrl")}</label>
-          <input id="s-kuma" className="input" type="url" value={s.kuma_base_url} placeholder="https://kuma.example.com"
-                 onChange={(e) => set("kuma_base_url", e.target.value)} />
-        </div>
+        <TextField id="s-kuma" label={t("settings.kumaUrl")} type="url" placeholder="https://kuma.example.com"
+                   value={s.kuma_base_url} onChange={set("kuma_base_url")} />
         <div className="toolbar">
           <button type="submit" className="btn btn-primary">{t("settings.save")}</button>
           <button type="button" className="btn btn-secondary" onClick={refresh}>
             <i className="ph ph-arrows-clockwise" /> {t("settings.refreshNow")}
           </button>
-          {msg && <span className={msg.ok ? "ok" : "error"}>{msg.text}</span>}
+          <Notice msg={msg} />
         </div>
       </form>
     </div>

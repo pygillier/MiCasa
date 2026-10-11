@@ -11,13 +11,12 @@ function StatusDot({ link }: { link: StartLink }) {
     : link.status;
   const cls =
     link.status === "up" ? "dot-up" : link.status === "down" ? "dot-down" : "dot-idle";
-  const label = t("status.label", { status });
-  const dot = <span className={`dot ${cls}`} title={label} aria-label={t("status.aria", { status })} />;
+  const common = { className: `dot ${cls}`, title: t("status.label", { status }) };
   return link.status_url ? (
-    <a href={link.status_url} target="_blank" rel="noreferrer" title={label}
-       aria-label={t("status.ariaOpen", { status })} className={`dot ${cls}`} />
+    <a {...common} href={link.status_url} target="_blank" rel="noreferrer"
+       aria-label={t("status.ariaOpen", { status })} />
   ) : (
-    dot
+    <span {...common} aria-label={t("status.aria", { status })} />
   );
 }
 

@@ -9,17 +9,17 @@ import JobsTab from "@/components/admin/JobsTab";
 import LinksTab from "@/components/admin/LinksTab";
 import SettingsTab from "@/components/admin/SettingsTab";
 import TransferTab from "@/components/admin/TransferTab";
-import { api } from "@/lib/api";
+import { api, logout } from "@/lib/api";
 import { useI18n } from "@/components/I18nProvider";
 import type { MessageKey } from "@/lib/i18n/messages";
 
 const TABS = [
-  { id: "links", label: "admin.tab.links" },
-  { id: "categories", label: "admin.tab.categories" },
-  { id: "transfer", label: "admin.tab.transfer" },
-  { id: "settings", label: "admin.tab.settings" },
-  { id: "jobs", label: "admin.tab.jobs" },
-] as const satisfies readonly { id: string; label: MessageKey }[];
+  { id: "links", label: "admin.tab.links", Panel: LinksTab },
+  { id: "categories", label: "admin.tab.categories", Panel: CategoriesTab },
+  { id: "transfer", label: "admin.tab.transfer", Panel: TransferTab },
+  { id: "settings", label: "admin.tab.settings", Panel: SettingsTab },
+  { id: "jobs", label: "admin.tab.jobs", Panel: JobsTab },
+] as const satisfies readonly { id: string; label: MessageKey; Panel: () => React.ReactNode }[];
 type TabId = (typeof TABS)[number]["id"];
 
 export default function AdminPage() {
@@ -28,20 +28,15 @@ export default function AdminPage() {
   const [tab, setTab] = useState<TabId>("links");
 
   useEffect(() => {
-    fetch("/api/me")
-      .then((r) => r.json())
-      .then((me) => {
-        if (me.authenticated) setReady(true);
-        else hardNavigate("/api/auth/login?next=admin");
-      });
+    api<{ authenticated: boolean }>("/me").then((me) => {
+      if (me.authenticated) setReady(true);
+      else hardNavigate("/api/auth/login?next=admin");
+    });
   }, []);
 
-  async function logout() {
-    await api("/auth/logout", { method: "POST" });
-    hardNavigate("/");
-  }
-
   if (!ready) return <div className="admin muted">{t("admin.checking")}</div>;
+
+  const { Panel } = TABS.find((tb) => tb.id === tab)!;
 
   return (
     <div className="admin">
@@ -57,11 +52,7 @@ export default function AdminPage() {
           </button>
         ))}
       </div>
-      {tab === "categories" && <CategoriesTab />}
-      {tab === "links" && <LinksTab />}
-      {tab === "transfer" && <TransferTab />}
-      {tab === "settings" && <SettingsTab />}
-      {tab === "jobs" && <JobsTab />}
+      <Panel />
     </div>
   );
 }

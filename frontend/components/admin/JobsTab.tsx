@@ -14,9 +14,8 @@ export default function JobsTab() {
   const [runs, setRuns] = useState<JobRun[]>([]);
   const [page, setPage] = useState(0);
 
-  const loadRuns = () => api<JobRun[]>("/admin/jobs").then(setRuns).catch(() => {});
   useEffect(() => {
-    loadRuns();
+    api<JobRun[]>("/admin/jobs").then(setRuns).catch(() => {});
   }, []);
 
   const pages = Math.max(1, Math.ceil(runs.length / PAGE_SIZE));

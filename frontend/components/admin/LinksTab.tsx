@@ -1,12 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/I18nProvider";
 import { api } from "@/lib/api";
 import type { AdminLink, Category, Monitor } from "@/lib/types";
 import Dialog from "./Dialog";
-
-type Draft = Partial<AdminLink>;
+import { Field, RowActions, TextField, VisibilityTag, swap } from "./shared";
+import { useAdminCrud } from "./useAdminCrud";
 
 export default function LinksTab() {
   const { t } = useI18n();
@@ -14,64 +14,41 @@ export default function LinksTab() {
   const [links, setLinks] = useState<AdminLink[]>([]);
   const [monitors, setMonitors] = useState<Monitor[]>([]);
   const [monitorError, setMonitorError] = useState("");
-  const [draft, setDraft] = useState<Draft | null>(null);
-  const [error, setError] = useState("");
 
   const load = useCallback(
     () =>
-      Promise.all([api<Category[]>("/admin/categories"), api<AdminLink[]>("/admin/links")])
-        .then(([c, l]) => {
+      Promise.all([api<Category[]>("/admin/categories"), api<AdminLink[]>("/admin/links")]).then(
+        ([c, l]) => {
           setCats(c);
           setLinks(l);
-        })
-        .catch((e) => setError(e.message)),
+        },
+      ),
     [],
   );
+  const { draft, setDraft, error, save, remove, reorder } = useAdminCrud<Partial<AdminLink>>("links", load);
 
   useEffect(() => {
-    load();
     api<Monitor[]>("/admin/kuma/monitors")
       .then(setMonitors)
       .catch((e) => setMonitorError(e.message));
-  }, [load]);
+  }, []);
 
-  async function save(e: FormEvent) {
-    e.preventDefault();
-    if (!draft) return;
-    const body = { ...draft, kuma_monitor_id: draft.kuma_monitor_id ?? null };
-    try {
-      if (draft.id) await api(`/admin/links/${draft.id}`, { method: "PUT", body });
-      else await api("/admin/links", { method: "POST", body });
-      setDraft(null);
-      setError("");
-      load();
-    } catch (err) {
-      setError((err as Error).message);
-    }
-  }
-
-  async function remove(l: AdminLink) {
-    if (!window.confirm(t("links.confirmDelete", { label: l.label }))) return;
-    await api(`/admin/links/${l.id}`, { method: "DELETE" }).catch((e) => setError(e.message));
-    load();
-  }
-
-  async function move(catId: number, i: number, d: -1 | 1) {
-    const group = links.filter((l) => l.category_id === catId);
-    [group[i], group[i + d]] = [group[i + d], group[i]];
+  function move(catId: number, i: number, d: -1 | 1) {
+    const group = swap(links.filter((l) => l.category_id === catId), i, d);
     setLinks([...links.filter((l) => l.category_id !== catId), ...group]);
-    await api("/admin/links/reorder", { method: "PUT", body: { ids: group.map((l) => l.id) } });
+    reorder(group.map((l) => l.id));
   }
 
-  const monitorName = (id: number | null) =>
-    id === null ? "" : (monitors.find((m) => m.id === id)?.name ?? `#${id}`);
+  const monitorName = (id: number) => monitors.find((m) => m.id === id)?.name ?? `#${id}`;
 
   return (
     <div className="form-grid">
       <div className="toolbar">
         <span className="spacer muted">{t("links.count", { n: links.length })}</span>
         <button className="btn btn-primary" disabled={cats.length === 0}
-                onClick={() => setDraft({ category_id: cats[0]?.id, icon: "ph-link", is_public: false })}>
+                onClick={() => setDraft({
+                  category_id: cats[0]?.id, icon: "ph-link", is_public: false, kuma_monitor_id: null,
+                })}>
           <i className="ph ph-plus" /> {t("links.new")}
         </button>
       </div>
@@ -104,18 +81,11 @@ export default function LinksTab() {
                           </span>
                         )}
                       </td>
+                      <td><VisibilityTag isPublic={l.is_public} /></td>
                       <td>
-                        <span className={`tag ${l.is_public ? "tag-accent" : "tag-neutral"}`}>
-                          {l.is_public ? t("common.public") : t("common.private")}
-                        </span>
-                      </td>
-                      <td>
-                        <div className="row-actions">
-                          <button className="btn btn-icon small" disabled={i === 0} aria-label={t("common.moveUp")} onClick={() => move(c.id, i, -1)}><i className="ph ph-arrow-up" /></button>
-                          <button className="btn btn-icon small" disabled={i === group.length - 1} aria-label={t("common.moveDown")} onClick={() => move(c.id, i, 1)}><i className="ph ph-arrow-down" /></button>
-                          <button className="btn btn-icon small" aria-label={t("common.edit")} onClick={() => setDraft(l)}><i className="ph ph-pencil-simple" /></button>
-                          <button className="btn btn-icon small" aria-label={t("common.delete")} onClick={() => remove(l)}><i className="ph ph-trash" /></button>
-                        </div>
+                        <RowActions index={i} count={group.length} onMove={(d) => move(c.id, i, d)}
+                                    onEdit={() => setDraft(l)}
+                                    onDelete={() => remove(l.id, "links.confirmDelete", { label: l.label })} />
                       </td>
                     </tr>
                   ))}
@@ -130,68 +100,47 @@ export default function LinksTab() {
       })}
 
       {draft && (
-        <Dialog title={draft.id ? t("links.edit") : t("links.new")} onClose={() => setDraft(null)}>
-          <form className="form-grid" onSubmit={save}>
-            <div className="form-2">
-              <div className="field">
-                <label htmlFor="l-label">{t("links.label")}</label>
-                <input id="l-label" className="input" required maxLength={100} value={draft.label ?? ""}
-                       onChange={(e) => setDraft({ ...draft, label: e.target.value })} />
-              </div>
-              <div className="field">
-                <label htmlFor="l-cat">{t("links.category")}</label>
-                <select id="l-cat" className="input" value={draft.category_id}
-                        onChange={(e) => setDraft({ ...draft, category_id: Number(e.target.value) })}>
-                  {cats.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
-                </select>
-              </div>
-            </div>
-            <div className="field">
-              <label htmlFor="l-url">{t("links.url")}</label>
-              <input id="l-url" className="input" type="url" required value={draft.url ?? ""}
-                     placeholder="https://"
-                     onChange={(e) => setDraft({ ...draft, url: e.target.value })} />
-            </div>
-            <div className="form-2">
-              <div className="field">
-                <label htmlFor="l-icon">
-                  {t("links.iconLabel", { link: "Phosphor" })}
-                </label>
-                <div style={{ display: "flex", gap: "var(--space-3)", alignItems: "center" }}>
-                  <i className={`ph ${draft.icon}`} style={{ fontSize: "1.25rem" }} />
-                  <input id="l-icon" className="input" pattern="ph-[a-z0-9-]+" value={draft.icon ?? ""}
-                         placeholder="ph-house-line"
-                         onChange={(e) => setDraft({ ...draft, icon: e.target.value })} />
-                </div>
-              </div>
-              <div className="field">
-                <label htmlFor="l-host">{t("links.hostLabel")}</label>
-                <input id="l-host" className="input" maxLength={100} value={draft.host ?? ""}
-                       onChange={(e) => setDraft({ ...draft, host: e.target.value })} />
-              </div>
-            </div>
-            <div className="field">
-              <label htmlFor="l-mon">{t("links.kumaMonitor")}</label>
-              <select id="l-mon" className="input" value={draft.kuma_monitor_id ?? ""}
-                      onChange={(e) => setDraft({ ...draft, kuma_monitor_id: e.target.value === "" ? null : Number(e.target.value) })}>
-                <option value="">{t("links.none.option")}</option>
-                {draft.kuma_monitor_id != null && !monitors.some((m) => m.id === draft.kuma_monitor_id) && (
-                  <option value={draft.kuma_monitor_id}>#{draft.kuma_monitor_id}</option>
-                )}
-                {monitors.map((m) => <option key={m.id} value={m.id}>{m.name}</option>)}
+        <Dialog title={draft.id ? t("links.edit") : t("links.new")}
+                onClose={() => setDraft(null)} onSubmit={save}>
+          <div className="form-2">
+            <TextField id="l-label" label={t("links.label")} required maxLength={100}
+                       value={draft.label ?? ""} onChange={(label) => setDraft({ ...draft, label })} />
+            <Field id="l-cat" label={t("links.category")}>
+              <select id="l-cat" className="input" value={draft.category_id}
+                      onChange={(e) => setDraft({ ...draft, category_id: Number(e.target.value) })}>
+                {cats.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
-              {monitorError && <div className="error">{monitorError}</div>}
-            </div>
-            <label className="check">
-              <input type="checkbox" checked={!!draft.is_public}
-                     onChange={(e) => setDraft({ ...draft, is_public: e.target.checked })} />
-              {t("links.publicCheck")}
-            </label>
-            <div className="dialog-actions">
-              <button type="button" className="btn btn-secondary" onClick={() => setDraft(null)}>{t("common.cancel")}</button>
-              <button type="submit" className="btn btn-primary">{t("common.save")}</button>
-            </div>
-          </form>
+            </Field>
+          </div>
+          <TextField id="l-url" label={t("links.url")} type="url" required placeholder="https://"
+                     value={draft.url ?? ""} onChange={(url) => setDraft({ ...draft, url })} />
+          <div className="form-2">
+            <Field id="l-icon" label={t("links.iconLabel", { link: "Phosphor" })}>
+              <div style={{ display: "flex", gap: "var(--space-3)", alignItems: "center" }}>
+                <i className={`ph ${draft.icon}`} style={{ fontSize: "1.25rem" }} />
+                <input id="l-icon" className="input" pattern="ph-[a-z0-9-]+" placeholder="ph-house-line"
+                       value={draft.icon ?? ""} onChange={(e) => setDraft({ ...draft, icon: e.target.value })} />
+              </div>
+            </Field>
+            <TextField id="l-host" label={t("links.hostLabel")} maxLength={100}
+                       value={draft.host ?? ""} onChange={(host) => setDraft({ ...draft, host })} />
+          </div>
+          <Field id="l-mon" label={t("links.kumaMonitor")}>
+            <select id="l-mon" className="input" value={draft.kuma_monitor_id ?? ""}
+                    onChange={(e) => setDraft({ ...draft, kuma_monitor_id: e.target.value === "" ? null : Number(e.target.value) })}>
+              <option value="">{t("links.none.option")}</option>
+              {draft.kuma_monitor_id != null && !monitors.some((m) => m.id === draft.kuma_monitor_id) && (
+                <option value={draft.kuma_monitor_id}>#{draft.kuma_monitor_id}</option>
+              )}
+              {monitors.map((m) => <option key={m.id} value={m.id}>{m.name}</option>)}
+            </select>
+            {monitorError && <div className="error">{monitorError}</div>}
+          </Field>
+          <label className="check">
+            <input type="checkbox" checked={!!draft.is_public}
+                   onChange={(e) => setDraft({ ...draft, is_public: e.target.checked })} />
+            {t("links.publicCheck")}
+          </label>
         </Dialog>
       )}
     </div>

@@ -93,6 +93,9 @@ const en = {
   "settings.status": "Status",
   "settings.message": "Message",
   "settings.noRuns": "No runs yet.",
+  "settings.prev": "Previous",
+  "settings.next": "Next",
+  "settings.page": "Page {page} / {pages}",
   "settings.job.refresh_weather": "Weather refresh",
   "settings.job.refresh_kuma": "Uptime Kuma sync",
 } as const;
@@ -191,6 +194,9 @@ const fr: Messages = {
   "settings.status": "État",
   "settings.message": "Message",
   "settings.noRuns": "Aucune exécution pour l'instant.",
+  "settings.prev": "Précédent",
+  "settings.next": "Suivant",
+  "settings.page": "Page {page} / {pages}",
   "settings.job.refresh_weather": "Actualisation météo",
   "settings.job.refresh_kuma": "Synchronisation Uptime Kuma",
 };
@@ -286,6 +292,9 @@ const de: Messages = {
   "settings.status": "Status",
   "settings.message": "Meldung",
   "settings.noRuns": "Noch keine Ausführungen.",
+  "settings.prev": "Zurück",
+  "settings.next": "Weiter",
+  "settings.page": "Seite {page} / {pages}",
   "settings.job.refresh_weather": "Wetteraktualisierung",
   "settings.job.refresh_kuma": "Uptime-Kuma-Synchronisierung",
 };

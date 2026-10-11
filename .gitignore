@@ -1,8 +1,49 @@
+# env / data
 .env
 data/
+
+# python
 __pycache__/
 .venv/
 .pytest_cache/
 .ruff_cache/
+
+# dependencies
 node_modules/
+frontend/.pnp
+frontend/.pnp.*
+frontend/.yarn/*
+!frontend/.yarn/patches
+!frontend/.yarn/plugins
+!frontend/.yarn/releases
+!frontend/.yarn/versions
+
+# testing
+frontend/coverage/
+
+# next.js
 .next/
+frontend/out/
+
+# production
+frontend/build/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# frontend env files (can opt-in for committing if needed)
+frontend/.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

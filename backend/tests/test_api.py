@@ -164,3 +164,8 @@ def test_site_title_defaults_and_is_configurable(client, authed):
     assert client.get("/api/site").get_json() == {"title": "Chez nous"}
     authed.put("/api/admin/settings", headers=H, json={"site_title": "  "})
     assert client.get("/api/site").get_json() == {"title": "MiCasa"}
+
+
+def test_health_is_anonymous(client):
+    r = client.get("/api/health")
+    assert r.status_code == 200 and r.get_json() == {"status": "ok"}

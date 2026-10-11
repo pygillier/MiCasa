@@ -1,6 +1,7 @@
 """Public (anonymous-readable) API endpoints under ``/api``."""
 
 from flask import Blueprint, jsonify
+from sqlalchemy import text
 
 from .. import settings
 from ..auth import is_authenticated
@@ -8,6 +9,16 @@ from ..extensions import db
 from ..models import Category, Link, MonitorStatus, WeatherCache, iso_z
 
 bp = Blueprint("api", __name__, url_prefix="/api")
+
+
+@bp.get("/health")
+def health():
+    """Liveness + DB reachability, for the frontend ``/healthz`` aggregate."""
+    try:
+        db.session.execute(text("SELECT 1"))
+    except Exception:
+        return jsonify(status="error"), 503
+    return jsonify(status="ok")
 
 
 @bp.get("/theme")

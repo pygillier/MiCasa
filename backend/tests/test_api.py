@@ -156,3 +156,11 @@ def test_about_returns_version(authed):
     r = authed.get("/api/admin/about")
     assert r.status_code == 200
     assert r.get_json()["version"] not in ("", "unknown")
+
+
+def test_site_title_defaults_and_is_configurable(client, authed):
+    assert client.get("/api/site").get_json() == {"title": "MiCasa"}
+    authed.put("/api/admin/settings", headers=H, json={"site_title": "Chez nous"})
+    assert client.get("/api/site").get_json() == {"title": "Chez nous"}
+    authed.put("/api/admin/settings", headers=H, json={"site_title": "  "})
+    assert client.get("/api/site").get_json() == {"title": "MiCasa"}

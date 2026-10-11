@@ -38,6 +38,7 @@ export default function SettingsTab() {
         weather_language: s.weather_language,
         weather_refresh_minutes: s.weather_refresh_minutes,
         kuma_base_url: s.kuma_base_url,
+        site_title: s.site_title,
         theme: s.theme,
         theme_day: s.theme_day,
         google_weather_api_key: apiKey,
@@ -60,6 +61,8 @@ export default function SettingsTab() {
     <div className="form-grid">
       <form className="form-grid" onSubmit={save}>
         <h3 className="section-title">{t("settings.appearanceTitle")}</h3>
+        <TextField id="s-title" label={t("settings.siteTitle")} placeholder="MiCasa"
+                   value={s.site_title} onChange={set("site_title")} />
         <Field id="s-theme" label={t("settings.themeNight")}>
           <select id="s-theme" className="input" value={parseTheme(s.theme)}
                   onChange={(e) => {

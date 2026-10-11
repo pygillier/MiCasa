@@ -16,6 +16,12 @@ def theme():
     return jsonify(theme=settings.get("theme"), theme_day=settings.get("theme_day"))
 
 
+@bp.get("/site")
+def site():
+    """Homepage title (falls back to the default when unset)."""
+    return jsonify(title=settings.get("site_title") or settings.DEFAULTS["site_title"])
+
+
 def _startpage_item(link: Link, authed: bool, statuses: dict, kuma_base: str) -> dict:
     """Serialize one link; status fields are only ever added for authenticated users."""
     item = {"id": link.id, "label": link.label, "url": link.url,

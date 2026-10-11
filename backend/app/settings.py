@@ -10,6 +10,7 @@ from .extensions import db
 from .models import Setting
 
 DEFAULTS = {
+    "site_title": "MiCasa",  # homepage / browser tab title; blank falls back to this
     "weather_city": "",
     "weather_lat": "",
     "weather_lon": "",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { I18nProvider } from "@/components/I18nProvider";
 import { negotiateLocale } from "@/lib/i18n/messages";
-import { getThemes } from "@/lib/server";
+import { getSiteTitle, getThemes } from "@/lib/server";
 import { THEME_SCRIPT } from "@/lib/themes";
 import "@fontsource/open-sans/latin-400.css";
 import "@fontsource/open-sans/latin-500.css";
@@ -13,10 +13,9 @@ import "./nocturne.css";
 import "./themes.css";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "MiCasa",
-  description: "Personal startpage",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: await getSiteTitle(), description: "Personal startpage" };
+}
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const locale = negotiateLocale((await headers()).get("accept-language"));

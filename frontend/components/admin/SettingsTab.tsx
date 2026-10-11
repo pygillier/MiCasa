@@ -2,14 +2,10 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { useI18n } from "@/components/I18nProvider";
-import { THEMES, parseTheme } from "@/lib/themes";
+import { THEMES, applyThemes, parseTheme } from "@/lib/themes";
 import { api } from "@/lib/api";
 import type { Settings } from "@/lib/types";
 import { Field, Notice, TextField, type Msg } from "./shared";
-
-const applyTheme = (theme: string) => {
-  document.documentElement.dataset.theme = parseTheme(theme);
-};
 
 export default function SettingsTab() {
   const { t } = useI18n();
@@ -43,11 +39,12 @@ export default function SettingsTab() {
         weather_refresh_minutes: s.weather_refresh_minutes,
         kuma_base_url: s.kuma_base_url,
         theme: s.theme,
+        theme_day: s.theme_day,
         google_weather_api_key: apiKey,
       };
       const saved = await api<Settings>("/admin/settings", { method: "PUT", body });
       setS(saved);
-      applyTheme(saved.theme);
+      applyThemes(saved.theme, saved.theme_day);
       setApiKey("");
       return t("settings.saved");
     });
@@ -63,11 +60,20 @@ export default function SettingsTab() {
     <div className="form-grid">
       <form className="form-grid" onSubmit={save}>
         <h3 className="section-title">{t("settings.appearanceTitle")}</h3>
-        <Field id="s-theme" label={t("settings.theme")}>
+        <Field id="s-theme" label={t("settings.themeNight")}>
           <select id="s-theme" className="input" value={parseTheme(s.theme)}
                   onChange={(e) => {
                     set("theme")(e.target.value);
-                    applyTheme(e.target.value);
+                    applyThemes(e.target.value, s.theme_day);
+                  }}>
+            {THEMES.map((th) => <option key={th.id} value={th.id}>{th.name}</option>)}
+          </select>
+        </Field>
+        <Field id="s-theme-day" label={t("settings.themeDay")}>
+          <select id="s-theme-day" className="input" value={parseTheme(s.theme_day)}
+                  onChange={(e) => {
+                    set("theme_day")(e.target.value);
+                    applyThemes(s.theme, e.target.value);
                   }}>
             {THEMES.map((th) => <option key={th.id} value={th.id}>{th.name}</option>)}
           </select>

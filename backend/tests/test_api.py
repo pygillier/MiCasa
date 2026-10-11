@@ -78,12 +78,14 @@ def test_weather_endpoint_reads_cache(client, app):
 
 
 def test_theme_is_public_validated_and_persisted(client, authed):
-    assert client.get("/api/theme").get_json() == {"theme": "nocturne"}
+    assert client.get("/api/theme").get_json() == {"theme": "nocturne", "theme_day": "home-day"}
     authed.put("/api/admin/settings", headers=H, json={"theme": "home"})
-    assert client.get("/api/theme").get_json() == {"theme": "home"}
+    assert client.get("/api/theme").get_json()["theme"] == "home"
+    authed.put("/api/admin/settings", headers=H, json={"theme_day": "nocturne"})
+    assert client.get("/api/theme").get_json()["theme_day"] == "nocturne"
     # unknown themes are ignored
-    authed.put("/api/admin/settings", headers=H, json={"theme": "<script>"})
-    assert client.get("/api/theme").get_json() == {"theme": "home"}
+    authed.put("/api/admin/settings", headers=H, json={"theme": "<script>", "theme_day": "<script>"})
+    assert client.get("/api/theme").get_json() == {"theme": "home", "theme_day": "nocturne"}
 
 
 def test_theme_change_requires_auth(app):

@@ -1,6 +1,6 @@
 import "server-only";
 import { cookies } from "next/headers";
-import { DEFAULT_THEME, parseTheme, type ThemeId } from "./themes";
+import { DEFAULT_THEME, DEFAULT_THEME_DAY, parseTheme, type ThemeId } from "./themes";
 import type { Startpage } from "./types";
 
 const API_URL = process.env.API_URL ?? "http://localhost:5000";
@@ -15,10 +15,13 @@ export async function getStartpage(): Promise<Startpage> {
   return res.json();
 }
 
-export async function getTheme(): Promise<ThemeId> {
+export async function getThemes(): Promise<{ night: ThemeId; day: ThemeId }> {
   try {
     const res = await fetch(`${API_URL}/api/theme`, { cache: "no-store" });
-    if (res.ok) return parseTheme((await res.json()).theme);
+    if (res.ok) {
+      const body = await res.json();
+      return { night: parseTheme(body.theme), day: parseTheme(body.theme_day) };
+    }
   } catch {}
-  return DEFAULT_THEME;
+  return { night: DEFAULT_THEME, day: DEFAULT_THEME_DAY };
 }

@@ -12,8 +12,8 @@ bp = Blueprint("api", __name__, url_prefix="/api")
 
 @bp.get("/theme")
 def theme():
-    """Active UI theme name."""
-    return jsonify(theme=settings.get("theme"))
+    """Active UI themes: ``theme`` for dark / night, ``theme_day`` for light / day."""
+    return jsonify(theme=settings.get("theme"), theme_day=settings.get("theme_day"))
 
 
 def _startpage_item(link: Link, authed: bool, statuses: dict, kuma_base: str) -> dict:

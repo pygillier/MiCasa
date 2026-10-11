@@ -69,6 +69,7 @@ export interface Settings {
   weather_refresh_minutes: string;
   kuma_base_url: string;
   theme: string;
+  theme_day: string;
   google_weather_api_key_configured: boolean;
   google_weather_api_key_tail: string;
 }

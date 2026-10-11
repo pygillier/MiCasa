@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { I18nProvider } from "@/components/I18nProvider";
 import { negotiateLocale } from "@/lib/i18n/messages";
-import { getTheme } from "@/lib/server";
+import { getThemes } from "@/lib/server";
+import { THEME_SCRIPT } from "@/lib/themes";
 import "@fontsource/open-sans/latin-400.css";
 import "@fontsource/open-sans/latin-500.css";
 import "@fontsource/open-sans/latin-600.css";
@@ -20,9 +21,12 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const locale = negotiateLocale((await headers()).get("accept-language"));
-  const theme = await getTheme();
+  const { night, day } = await getThemes();
   return (
-    <html lang={locale} data-theme={theme}>
+    <html lang={locale} data-theme={night} data-theme-night={night} data-theme-day={day} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body>
         <I18nProvider locale={locale}>{children}</I18nProvider>
       </body>

@@ -20,7 +20,7 @@ DEFAULTS = {
     "google_weather_api_key": "",
 }
 # Keep in sync with frontend/lib/themes.ts.
-THEMES = {"nocturne", "home"}
+THEMES = {"nocturne", "home", "home-day"}
 # Never serialized back to clients.
 SECRET_KEYS = {"google_weather_api_key"}
 # Setting key -> app.config key used when the DB has no value.

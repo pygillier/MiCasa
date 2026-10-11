@@ -1,6 +1,7 @@
 export const THEMES = [
   { id: "nocturne", name: "Nocturne" },
   { id: "home", name: "Home" },
+  { id: "home-day", name: "Home (daylight)" },
 ] as const;
 export type ThemeId = (typeof THEMES)[number]["id"];
 export const DEFAULT_THEME: ThemeId = "nocturne";

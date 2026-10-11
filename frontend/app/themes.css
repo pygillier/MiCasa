@@ -47,3 +47,51 @@
   --shadow-md: 0 0 0 1px var(--color-neutral-700), 0 6px 18px rgba(0,0,0,0.45);
   --shadow-lg: 0 0 0 1px var(--color-neutral-500), 0 16px 40px rgba(0,0,0,0.55);
 }
+
+/* home-day — daylight variant of home: same cyan / terracotta identity on a
+   cool paper ground. Ramps are inverted (100 = darkest, 900 = lightest) so
+   components that pair "text on dark" tokens keep their contrast. Accents
+   are deepened so links and icons hold contrast on a light ground. */
+:root[data-theme="home-day"] {
+  --color-bg: #eef4f7;
+  --color-surface: #ffffff;
+  --color-text: #1b2530;
+  --color-accent: #0b7c97;
+  --color-accent-2: #b06d60;
+  --color-divider: color-mix(in srgb, #1b2530 16%, transparent);
+  --color-side-start: #e2ecf1;
+
+  --color-neutral-100: #1b2530;
+  --color-neutral-200: #2c3742;
+  --color-neutral-300: #44505b;
+  --color-neutral-400: #5d6975;
+  --color-neutral-500: #7a8590;
+  --color-neutral-600: #98a2ab;
+  --color-neutral-700: #b6bec6;
+  --color-neutral-800: #d3d9de;
+  --color-neutral-900: #e8ecef;
+
+  --color-accent-100: #0a3f4d;
+  --color-accent-200: #0b5b6e;
+  --color-accent-300: #0b7c97;
+  --color-accent-400: #1a97b3;
+  --color-accent-500: #3cb2cb;
+  --color-accent-600: #74cbdd;
+  --color-accent-700: #a6dfeb;
+  --color-accent-800: #cdeef5;
+  --color-accent-900: #e6f7fb;
+
+  --color-accent-2-100: #3d2621;
+  --color-accent-2-200: #623b33;
+  --color-accent-2-300: #8a5348;
+  --color-accent-2-400: #b06d60;
+  --color-accent-2-500: #c4857a;
+  --color-accent-2-600: #d9a094;
+  --color-accent-2-700: #ebc2b9;
+  --color-accent-2-800: #f6e0db;
+  --color-accent-2-900: #fdf4f2;
+
+  --shadow-sm: 0 0 0 1px var(--color-neutral-800);
+  --shadow-md: 0 0 0 1px var(--color-neutral-700), 0 6px 18px rgba(27,37,48,0.12);
+  --shadow-lg: 0 0 0 1px var(--color-neutral-600), 0 16px 40px rgba(27,37,48,0.18);
+}

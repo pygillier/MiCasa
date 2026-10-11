@@ -146,3 +146,13 @@ def test_opml_import_rejects_garbage_and_entities(authed):
     assert authed.post("/api/admin/import", data=b"<html/>", headers=H).status_code == 422
     bomb = b'<?xml version="1.0"?><!DOCTYPE x [<!ENTITY a "aaa">]><opml><body>&a;</body></opml>'
     assert authed.post("/api/admin/import", data=bomb, headers=H).status_code == 422
+
+
+def test_about_requires_auth(client):
+    assert client.get("/api/admin/about").status_code == 401
+
+
+def test_about_returns_version(authed):
+    r = authed.get("/api/admin/about")
+    assert r.status_code == 200
+    assert r.get_json()["version"] not in ("", "unknown")

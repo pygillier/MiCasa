@@ -7,7 +7,7 @@ from flask import Blueprint, Response, jsonify, request
 from .. import settings
 from ..auth import login_required
 from ..extensions import db
-from ..features import jobs, kuma, opml
+from ..features import about, jobs, kuma, opml
 from ..models import Category, JobRun, Link, MonitorStatus, next_position
 from ..validation import is_http_url, is_phosphor_icon
 
@@ -225,6 +225,13 @@ def list_jobs():
     """Most recent job runs across all jobs, newest first."""
     runs = JobRun.query.order_by(JobRun.id.desc()).limit(40).all()
     return jsonify([r.to_dict() for r in runs])
+
+
+# ---------- admin: about ----------
+@bp.get("/about")
+@login_required
+def get_about():
+    return jsonify(version=about.backend_version())
 
 
 # ---------- admin: OPML import/export ----------

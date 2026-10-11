@@ -4,6 +4,7 @@ import { hardNavigate } from "@/lib/nav";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import AboutTab from "@/components/admin/AboutTab";
 import CategoriesTab from "@/components/admin/CategoriesTab";
 import JobsTab from "@/components/admin/JobsTab";
 import LinksTab from "@/components/admin/LinksTab";
@@ -19,6 +20,7 @@ const TABS = [
   { id: "transfer", label: "admin.tab.transfer", Panel: TransferTab },
   { id: "settings", label: "admin.tab.settings", Panel: SettingsTab },
   { id: "jobs", label: "admin.tab.jobs", Panel: JobsTab },
+  { id: "about", label: "admin.tab.about", Panel: AboutTab },
 ] as const satisfies readonly { id: string; label: MessageKey; Panel: () => React.ReactNode }[];
 type TabId = (typeof TABS)[number]["id"];
 

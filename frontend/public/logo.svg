@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" role="img" aria-labelledby="t">
+  <title id="t">MiCasa</title>
+  <g transform="translate(22 22) scale(0.5156)">
+    <rect width="512" height="512" rx="112" fill="#0E2247"/>
+    <path d="M144 212V396a16 16 0 0 0 16 16H352a16 16 0 0 0 16-16V212" fill="none" stroke="#F7F4EC" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M76 256L256 106L436 256" fill="none" stroke="#F7F4EC" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="164" y="236" width="84" height="68" rx="10" fill="#4A82DA"/>
+    <rect x="264" y="236" width="84" height="68" rx="10" fill="#F2B230"/>
+    <rect x="164" y="320" width="84" height="68" rx="10" fill="#2F63BE"/>
+    <rect x="264" y="320" width="84" height="68" rx="10" fill="#4A82DA"/>
+  </g>
+  <text x="330" y="186" font-family="'Avenir Next', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="128" letter-spacing="-2" fill="#0E2247"><tspan font-weight="300">Mi</tspan><tspan font-weight="700">Casa</tspan></text>
+</svg>

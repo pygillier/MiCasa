@@ -1,0 +1,167 @@
+/* Layout and components built on the Nocturne tokens (nocturne.css). */
+:root {
+  --status-up: #7fbf9a;
+  --status-down: #e08585;
+  --status-idle: var(--color-neutral-600);
+  --color-navbar: var(--color-neutral-900); /* admin navbar (mobile) */
+}
+a { color: var(--color-accent); }
+a:hover { color: var(--color-accent-300); }
+
+.shell {
+  display: flex; flex-wrap: wrap; align-items: stretch;
+  min-height: 100vh; max-width: 1920px; margin: 0 auto;
+}
+.side {
+  flex: 1 1 18.75rem; max-width: 21.25rem; min-width: min(17.5rem, 100%);
+  padding: max(10vh, var(--space-8)) var(--space-8) var(--space-8);
+  display: flex; flex-direction: column; gap: var(--space-8);
+  background: linear-gradient(180deg, var(--color-side-start), var(--color-bg));
+  border-right: 1px solid var(--color-divider);
+}
+.topbar { display: none; }
+.admin-head .admin-burger { display: none; }
+.kicker { font-size: 0.625rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--color-accent); }
+.side .kicker { margin-bottom: var(--space-3); }
+.greeting { margin: 0; font-size: 2.375rem; letter-spacing: -0.02em; }
+.clock-row { display: flex; align-items: baseline; gap: var(--space-3); min-height: 3.6rem; }
+.clock { font-size: 3.625rem; line-height: 1; font-weight: 500; letter-spacing: -0.03em; }
+.tz { font-size: 0.75rem; color: var(--color-neutral-400); }
+
+.weather {
+  padding: var(--space-6); border-radius: var(--radius-md);
+  background: var(--color-surface); box-shadow: var(--shadow-sm);
+}
+.weather-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-4); }
+.weather-city { font-size: 0.6875rem; color: var(--color-neutral-400); }
+.weather-body { display: flex; align-items: center; gap: var(--space-6); }
+.weather-icon { font-size: 2.75rem; color: var(--color-accent-400); }
+.weather-temp { font-size: 2.125rem; line-height: 1; font-weight: 500; letter-spacing: -0.02em; }
+.weather-desc { font-size: 0.75rem; color: var(--color-neutral-300); margin-top: var(--space-2); }
+.weather-stats {
+  display: flex; flex-wrap: wrap; gap: var(--space-4);
+  margin-top: var(--space-6); padding-top: var(--space-4);
+  border-top: 1px solid var(--color-divider); font-size: 0.75rem; color: var(--color-neutral-300);
+}
+.weather-empty { font-size: 0.75rem; color: var(--color-neutral-400); }
+
+.side-foot { margin-top: auto; display: flex; gap: var(--space-4); align-items: center; font-size: 0.75rem; }
+.side-foot a, .side-foot button { font-size: 0.75rem; }
+
+.main {
+  flex: 1 1 23rem; min-width: 14rem;
+  padding: max(10vh, var(--space-8)) var(--space-8) var(--space-8);
+  display: flex; flex-direction: column; gap: var(--space-8);
+}
+.group-mark { display: block; width: 1.25rem; height: 2px; background: var(--color-accent); margin-bottom: var(--space-3); }
+.group-head { display: flex; align-items: baseline; gap: var(--space-3); margin-bottom: var(--space-3); }
+.group-name { font-size: 1.2em; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--color-neutral-200); }
+.group-note { font-size: 0.6875rem; color: var(--color-neutral-400); }
+.links { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15.6rem), calc((100% - 6em) / 4))); gap: 1em 2em; max-width: 77.5rem; }
+.link {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-2) var(--space-3); min-height: 2.75rem;
+  border-radius: var(--radius-md); color: var(--color-text);
+}
+.link:hover { background: color-mix(in srgb, var(--color-accent) 14%, transparent); }
+.link-a {
+  display: flex; align-items: center; gap: var(--space-4); flex: 1; min-width: 0;
+  text-decoration: none; color: var(--color-text);
+}
+.link-a:active { color: var(--color-accent-300); }
+.link-icon {
+  width: 2.28rem; height: 2.28rem; flex: none; display: grid; place-items: center;
+  border-radius: var(--radius-sm); background: var(--color-surface); box-shadow: var(--shadow-sm);
+  font-size: 1.2rem; color: var(--color-accent-400);
+}
+.link-label { font-size: 0.875rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.link-host { font-size: 0.6875rem; color: var(--color-neutral-400); flex: none; }
+.dot { flex: none; width: 0.55rem; height: 0.55rem; border-radius: 50%; display: block; }
+.dot-up { background: var(--status-up); box-shadow: 0 0 0 3px color-mix(in srgb, var(--status-up) 18%, transparent); }
+.dot-up:hover { box-shadow: 0 0 0 4px color-mix(in srgb, var(--status-up) 32%, transparent); }
+.dot-down { background: var(--status-down); box-shadow: 0 0 0 3px color-mix(in srgb, var(--status-down) 22%, transparent); }
+.dot-down:hover { box-shadow: 0 0 0 4px color-mix(in srgb, var(--status-down) 36%, transparent); }
+.dot-idle { background: var(--status-idle); }
+.empty { color: var(--color-neutral-400); font-size: 0.8125rem; }
+
+/* admin */
+.admin { max-width: 68.75rem; margin: 0 auto; padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-6); }
+.admin-head { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+.admin-head h1 { font-size: 1.75rem; margin: 0; margin-right: auto; }
+.admin-logo { display: block; height: 2.2rem; width: auto; }
+/* Logo variant per theme: light-ground themes set --logo-light-display / --logo-dark-display in themes.css. */
+.admin-logo.logo-light { display: var(--logo-light-display, none); }
+.admin-logo.logo-dark { display: var(--logo-dark-display, block); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.tabs { display: flex; gap: var(--space-2); border-bottom: 1px solid var(--color-divider); }
+.tab { background: none; border: 0; border-bottom: 2px solid transparent; color: var(--color-neutral-300); padding: var(--space-3) var(--space-4); font: inherit; font-size: 0.875rem; cursor: pointer; }
+.tab:hover { color: var(--color-text); }
+.tab[aria-selected="true"] { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+.toolbar { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+.toolbar .spacer { margin-right: auto; }
+.table-wrap { overflow-x: auto; }
+.list-icon { font-size: 1.14rem; }
+.row-actions { display: flex; gap: var(--space-1); justify-content: flex-end; }
+.btn-icon.small { width: 1.9rem; height: 1.9rem; }
+.form-grid { display: grid; gap: var(--space-4); }
+.form-2 { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(11.25rem, 1fr)); }
+.check { display: inline-flex; align-items: center; gap: var(--space-3); font-size: 0.875rem; cursor: pointer; }
+.check input { accent-color: var(--color-accent); width: 1rem; height: 1rem; }
+.tag-status-up { background: color-mix(in srgb, var(--status-up) 20%, transparent); color: var(--status-up); }
+.tag-status-down { background: color-mix(in srgb, var(--status-down) 20%, transparent); color: var(--status-down); }
+.tag-status-pending, .tag-status-paused, .tag-status-maintenance { background: var(--color-neutral-800); color: var(--color-neutral-100); }
+.error { color: var(--status-down); font-size: 0.8125rem; }
+.ok { color: var(--status-up); font-size: 0.8125rem; }
+.muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); font-size: 0.75rem; }
+.section-title { font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin: 0 0 var(--space-3); }
+.dialog { max-height: 90vh; overflow-y: auto; }
+select.input { appearance: auto; }
+
+/* mobile: fixed top navbar (burger menu) replaces the sidebar; weather sits below it */
+@media (max-width: 48rem) {
+  :root { --topbar-h: 3.5rem; }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    position: fixed; inset: 0 0 auto 0; z-index: 50; height: var(--topbar-h);
+    padding: 0 var(--space-4);
+    background: var(--color-bg); border-bottom: 1px solid var(--color-divider);
+  }
+  .topbar-info { display: flex; align-items: baseline; gap: var(--space-3); min-width: 0; }
+  .topbar-time { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; }
+  .topbar-greet { font-size: 0.75rem; color: var(--color-neutral-300); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .btn-icon { font-size: 1.25rem; }
+  .topbar-menu {
+    position: absolute; top: 100%; right: var(--space-4); min-width: 12rem;
+    display: flex; flex-direction: column; padding: var(--space-2);
+    background: var(--color-surface); border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md); box-shadow: var(--shadow-md);
+  }
+  .topbar-menu a, .topbar-menu button {
+    display: flex; align-items: center; gap: var(--space-3);
+    padding: var(--space-3); min-height: 2.75rem;
+    background: none; border: 0; border-radius: var(--radius-sm);
+    color: var(--color-text); font: inherit; font-size: 0.875rem; text-decoration: none; cursor: pointer;
+  }
+  .topbar-menu a:hover, .topbar-menu button:hover { background: color-mix(in srgb, var(--color-accent) 14%, transparent); }
+
+  .side {
+    flex: 1 1 100%; max-width: none; min-width: 0;
+    padding: calc(var(--topbar-h) + var(--space-4)) var(--space-4) 0;
+    background: none; border-right: 0;
+  }
+  /* admin: header becomes a fixed black navbar */
+  .admin { padding: calc(var(--topbar-h) + var(--space-4)) var(--space-4) var(--space-4); }
+  .admin-head {
+    position: fixed; inset: 0 0 auto 0; z-index: 50; height: var(--topbar-h);
+    padding: 0 var(--space-4); flex-wrap: nowrap; gap: var(--space-2);
+    background: var(--color-navbar); border-bottom: 1px solid var(--color-divider);
+  }
+  .admin-head .admin-logo { height: 1.75rem; }
+  .admin-head .admin-link { display: none; }
+  .admin-head .admin-burger { display: inline-flex; font-size: 1.25rem; }
+  .dialog-backdrop { padding-top: calc(var(--topbar-h) + var(--space-4)); }
+  .dialog { max-height: calc(100dvh - var(--topbar-h) - var(--space-8)); }
+  .tab-transfer, .col-visibility, .col-url { display: none; }
+  .side-intro, .clock-row, .side-foot { display: none; }
+  .main { flex-basis: 100%; padding: var(--space-6) var(--space-4); }
+}

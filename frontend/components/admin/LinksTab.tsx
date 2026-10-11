@@ -94,7 +94,16 @@ export default function LinksTab() {
                       <td><i className={`ph ${l.icon}`} /></td>
                       <td>{l.label}</td>
                       <td className="muted">{l.url}</td>
-                      <td className="muted">{monitorName(l.kuma_monitor_id)}</td>
+                      <td>
+                        {l.kuma_monitor_id !== null && (
+                          <span style={{ display: "inline-flex", gap: "var(--space-2)", alignItems: "center" }}>
+                            <span className={`tag tag-status-${l.monitor_status ?? "pending"}`}>
+                              {t(`status.${l.monitor_status ?? "pending"}` as "status.up")}
+                            </span>
+                            <span className="muted">{monitorName(l.kuma_monitor_id)}</span>
+                          </span>
+                        )}
+                      </td>
                       <td>
                         <span className={`tag ${l.is_public ? "tag-accent" : "tag-neutral"}`}>
                           {l.is_public ? t("common.public") : t("common.private")}

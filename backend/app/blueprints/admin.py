@@ -8,7 +8,7 @@ from .. import settings
 from ..auth import login_required
 from ..extensions import db
 from ..features import jobs, kuma, opml
-from ..models import Category, JobRun, Link, next_position
+from ..models import Category, JobRun, Link, MonitorStatus, next_position
 from ..validation import is_http_url, is_phosphor_icon
 
 bp = Blueprint("admin", __name__, url_prefix="/api/admin")
@@ -136,7 +136,15 @@ def _apply_link(link: Link, d: dict) -> str | None:
 @login_required
 def list_links():
     links = Link.query.order_by(Link.category_id, Link.position, Link.id).all()
-    return jsonify([link.to_dict() for link in links])
+    statuses = {m.monitor_id: m.status for m in MonitorStatus.query.all()}
+    return jsonify(
+        [
+            {**link.to_dict(), "monitor_status": statuses.get(link.kuma_monitor_id, "pending")}
+            if link.kuma_monitor_id is not None
+            else link.to_dict()
+            for link in links
+        ]
+    )
 
 
 @bp.post("/links")

@@ -53,6 +53,7 @@ export interface AdminLink {
   position: number;
   is_public: boolean;
   kuma_monitor_id: number | null;
+  monitor_status?: Status;
 }
 
 export interface Monitor {

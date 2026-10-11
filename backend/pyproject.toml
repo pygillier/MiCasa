@@ -1,6 +1,6 @@
 [project]
 name = "micasa-api"
-version = "1.2.1"
+version = "1.2.2"
 requires-python = ">=3.13"
 dependencies = [
   "flask>=3.1",

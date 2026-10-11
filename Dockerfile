@@ -11,6 +11,9 @@ ENV API_URL=http://127.0.0.1:5000
 RUN npm run build
 
 FROM python:3.13-slim
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 # Node runtime for the Next.js standalone server (no npm needed).
 COPY --from=web-build /usr/local/bin/node /usr/local/bin/node

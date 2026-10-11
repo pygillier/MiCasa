@@ -4,30 +4,19 @@ import { useEffect, useState, type FormEvent } from "react";
 import { useI18n } from "@/components/I18nProvider";
 import { THEMES, parseTheme } from "@/lib/themes";
 import { api } from "@/lib/api";
-import type { JobRun, Settings } from "@/lib/types";
-import type { MessageKey } from "@/lib/i18n/messages";
-
-const JOB_IDS = ["refresh_weather", "refresh_kuma"];
-const PAGE_SIZE = 10;
+import type { Settings } from "@/lib/types";
 
 export default function SettingsTab() {
-  const { t, locale } = useI18n();
+  const { t } = useI18n();
   const [s, setS] = useState<Settings | null>(null);
   const [apiKey, setApiKey] = useState("");
-  const [runs, setRuns] = useState<JobRun[]>([]);
-  const [page, setPage] = useState(0);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
 
-  const loadRuns = () => api<JobRun[]>("/admin/jobs").then(setRuns).catch(() => {});
   useEffect(() => {
     api<Settings>("/admin/settings").then(setS).catch((e) => setMsg({ ok: false, text: e.message }));
-    loadRuns();
   }, []);
 
   if (!s) return <div className="muted">{t("common.loading")}</div>;
-  const pages = Math.max(1, Math.ceil(runs.length / PAGE_SIZE));
-  const current = Math.min(page, pages - 1);
-  const visible = runs.slice(current * PAGE_SIZE, (current + 1) * PAGE_SIZE);
   const set = (k: keyof Settings, v: string) => setS({ ...s, [k]: v });
 
   async function save(e: FormEvent) {
@@ -61,7 +50,6 @@ export default function SettingsTab() {
     } catch (err) {
       setMsg({ ok: false, text: (err as Error).message });
     }
-    loadRuns();
   }
 
   return (
@@ -123,39 +111,6 @@ export default function SettingsTab() {
           {msg && <span className={msg.ok ? "ok" : "error"}>{msg.text}</span>}
         </div>
       </form>
-
-      <div>
-        <h3 className="section-title">{t("settings.runs")}</h3>
-        <div className="table-wrap">
-          <table className="table">
-            <thead><tr><th>{t("settings.job")}</th><th>{t("settings.when")}</th><th>{t("settings.status")}</th><th>{t("settings.message")}</th></tr></thead>
-            <tbody>
-              {visible.map((r) => (
-                <tr key={r.id}>
-                  <td>{JOB_IDS.includes(r.job_id) ? t(`settings.job.${r.job_id}` as MessageKey) : r.job_id}</td>
-                  <td className="muted">{new Date(r.started_at).toLocaleString(locale)}</td>
-                  <td><span className={`tag ${r.status === "ok" ? "tag-accent" : "tag-neutral"}`}>{r.status}</span></td>
-                  <td className="muted">{r.message}</td>
-                </tr>
-              ))}
-              {runs.length === 0 && <tr><td colSpan={4} className="muted">{t("settings.noRuns")}</td></tr>}
-            </tbody>
-          </table>
-        </div>
-        {runs.length > PAGE_SIZE && (
-          <div className="toolbar">
-            <button type="button" className="btn btn-secondary" disabled={current === 0}
-                    onClick={() => setPage(current - 1)}>
-              <i className="ph ph-caret-left" /> {t("settings.prev")}
-            </button>
-            <span className="muted">{t("settings.page", { page: current + 1, pages })}</span>
-            <button type="button" className="btn btn-secondary" disabled={current >= pages - 1}
-                    onClick={() => setPage(current + 1)}>
-              {t("settings.next")} <i className="ph ph-caret-right" />
-            </button>
-          </div>
-        )}
-      </div>
     </div>
   );
 }

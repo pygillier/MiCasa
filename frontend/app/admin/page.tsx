@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import CategoriesTab from "@/components/admin/CategoriesTab";
+import JobsTab from "@/components/admin/JobsTab";
 import LinksTab from "@/components/admin/LinksTab";
 import SettingsTab from "@/components/admin/SettingsTab";
 import TransferTab from "@/components/admin/TransferTab";
@@ -17,6 +18,7 @@ const TABS = [
   { id: "categories", label: "admin.tab.categories" },
   { id: "transfer", label: "admin.tab.transfer" },
   { id: "settings", label: "admin.tab.settings" },
+  { id: "jobs", label: "admin.tab.jobs" },
 ] as const satisfies readonly { id: string; label: MessageKey }[];
 type TabId = (typeof TABS)[number]["id"];
 
@@ -59,6 +61,7 @@ export default function AdminPage() {
       {tab === "links" && <LinksTab />}
       {tab === "transfer" && <TransferTab />}
       {tab === "settings" && <SettingsTab />}
+      {tab === "jobs" && <JobsTab />}
     </div>
   );
 }

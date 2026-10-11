@@ -3,18 +3,20 @@
 import requests
 from flask import current_app
 
-from . import settings
-from .extensions import db
-from .models import WeatherCache, utcnow
+from .. import settings
+from ..extensions import db
+from ..models import WeatherCache, utcnow
 
 BASE = "https://weather.googleapis.com/v1"
 
 
 def _deg(node) -> float | None:
+    """Temperature value from a ``{"degrees": ...}`` node, or ``None``."""
     return node.get("degrees") if isinstance(node, dict) else None
 
 
 def normalize(current: dict, forecast: dict, city: str) -> dict:
+    """Reduce Google's current-conditions and 1-day forecast responses to the flat payload the UI reads."""
     cond = current.get("weatherCondition", {})
     day = (forecast.get("forecastDays") or [{}])[0]
     precip = current.get("precipitation", {}).get("probability", {}).get("percent")
@@ -46,21 +48,30 @@ def _get(endpoint: str, params: dict, timeout) -> dict:
         raise RuntimeError(f"Google Weather {endpoint} failed: {type(exc).__name__}") from None
 
 
-def refresh() -> dict:
-    key = settings.get("google_weather_api_key")
+def _location() -> tuple[float, float]:
+    """Configured (latitude, longitude); accepts decimal commas. Raises ``RuntimeError`` if unusable."""
     lat, lon = settings.get("weather_lat"), settings.get("weather_lon")
-    if not key:
-        raise RuntimeError("Google Weather API key is not configured")
     if not lat or not lon:
         raise RuntimeError("Weather location is not configured")
     try:
-        lat_f, lon_f = (float(str(v).strip().replace(",", ".")) for v in (lat, lon))
+        return tuple(float(v.strip().replace(",", ".")) for v in (lat, lon))
     except ValueError:
         raise RuntimeError("Weather location is invalid") from None
+
+
+def refresh() -> dict:
+    """Fetch current conditions and today's forecast, store them in ``WeatherCache`` and return the payload.
+
+    Raises ``RuntimeError`` (never carrying the API key) when unconfigured or Google fails.
+    """
+    key = settings.get("google_weather_api_key")
+    if not key:
+        raise RuntimeError("Google Weather API key is not configured")
+    lat, lon = _location()
     params = {
         "key": key,
-        "location.latitude": lat_f,
-        "location.longitude": lon_f,
+        "location.latitude": lat,
+        "location.longitude": lon,
         "unitsSystem": "METRIC",
         "languageCode": settings.get("weather_language") or "en",
     }

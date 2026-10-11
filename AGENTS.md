@@ -8,6 +8,13 @@ Visual reference: `mockups/Startpage.dc.html` (Nocturne design system in `mockup
 - `frontend/` — Next.js (App Router, TypeScript). Proxies `/api/*` to Flask (same origin).
 - Tooling: `mise` (versions, see `mise.toml`) and `task` (see `Taskfile.yml`). Run `task --list`.
 
+## Backend layout (`backend/app/`)
+The root holds technical plumbing only; functional code lives in `features/`.
+- Root (tech): `__init__.py` (`create_app`), `config.py`, `extensions.py`, `logs.py`, `models.py` (shared schema), `settings.py` (DB-backed settings), `auth.py` (OIDC client, `login_required`), `validation.py`.
+- `blueprints/` — HTTP layer, one module per concern exposing `bp`: `auth.py` (`/api/auth`, `/api/me`), `public.py` (`/api/*`, anonymous-readable), `admin.py` (`/api/admin/*`). Register new ones in `blueprints/__init__.py`. Keep them thin; logic belongs in `features/`.
+- `features/` — functional modules, no HTTP concerns: `opml.py` (import/export), `kuma.py` (Uptime Kuma sync), `weather.py` (Google Weather), `jobs.py` (scheduled jobs, `JobRun` tracking). Jobs are persisted by textual path (`app.features.jobs:<name>`): keep the path stable or let `register()` replace them.
+- Dependency direction: `blueprints` → `features` → root. Root modules must not import from `features` or `blueprints` (except `create_app` wiring).
+
 ## Commands
 - `task setup` install deps · `task dev` run api+web · `task test` · `task lint` · `task migrate` · `task up` docker compose
 

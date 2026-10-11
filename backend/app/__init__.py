@@ -1,3 +1,5 @@
+"""MiCasa Flask application factory."""
+
 import os
 
 from flask import Flask
@@ -11,6 +13,7 @@ from .logs import setup_logging
 
 @event.listens_for(Engine, "connect")
 def _sqlite_pragmas(dbapi_conn, _):
+    """Enable foreign keys and WAL on every new SQLite connection."""
     if dbapi_conn.__class__.__module__.startswith("sqlite3"):
         cur = dbapi_conn.cursor()
         cur.execute("PRAGMA foreign_keys=ON")
@@ -19,6 +22,7 @@ def _sqlite_pragmas(dbapi_conn, _):
 
 
 def create_app(config_object=Config) -> Flask:
+    """Build the app: logging, DB, auth, blueprints and (if enabled) the job scheduler."""
     app = Flask(__name__)
     app.config.from_object(config_object)
     setup_logging(app.config["LOG_LEVEL"], app.config["LOG_JSON"])
@@ -27,12 +31,12 @@ def create_app(config_object=Config) -> Flask:
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from . import auth, jobs, models, routes  # noqa: F401
+    from . import auth, models  # noqa: F401
+    from .blueprints import register_blueprints
+    from .features import jobs
 
     auth.init_oauth(app)
-    app.register_blueprint(auth.bp)
-    app.register_blueprint(routes.bp)
-    app.register_blueprint(routes.admin)
+    register_blueprints(app)
 
     # Under the Werkzeug reloader the app is also created in the watcher parent
     # process; only the serving child (WERKZEUG_RUN_MAIN) may run the scheduler.

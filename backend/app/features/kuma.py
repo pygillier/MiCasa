@@ -1,49 +1,55 @@
 """Uptime Kuma sync. Only called from the scheduler / admin."""
 
+from contextlib import contextmanager
+
 from flask import current_app
 from uptime_kuma_api import UptimeKumaApi
 
-from .extensions import db
-from .models import MonitorStatus, utcnow
+from ..extensions import db
+from ..models import MonitorStatus, utcnow
 
 STATUS_NAMES = {0: "down", 1: "up", 2: "pending", 3: "maintenance"}
 
 
-def _connect():
+@contextmanager
+def _session():
+    """Logged-in Kuma API connection, closed on exit (also when login fails)."""
     cfg = current_app.config
     if not cfg["KUMA_URL"]:
         raise RuntimeError("KUMA_URL is not configured")
-    return UptimeKumaApi(cfg["KUMA_URL"], timeout=15)
+    with UptimeKumaApi(cfg["KUMA_URL"], timeout=15) as api:
+        api.login(cfg["KUMA_USERNAME"], cfg["KUMA_PASSWORD"])
+        yield api
 
 
-def _login(api) -> None:
-    cfg = current_app.config
-    api.login(cfg["KUMA_USERNAME"], cfg["KUMA_PASSWORD"])
+def _status(monitor: dict, history: list[dict]) -> str:
+    """Dot status for a monitor: ``paused`` if inactive, else its latest heartbeat, else ``pending``."""
+    if not monitor.get("active", True):
+        return "paused"
+    if history:
+        return STATUS_NAMES.get(int(history[-1]["status"]), "pending")
+    return "pending"
 
 
 def list_monitors() -> list[dict]:
-    with _connect() as api:
-        _login(api)
+    """``{id, name}`` for every monitor, fetched live from Kuma."""
+    with _session() as api:
         return [{"id": m["id"], "name": m["name"]} for m in api.get_monitors()]
 
 
 def sync() -> int:
-    with _connect() as api:
-        _login(api)
+    """Mirror Kuma monitor states into ``MonitorStatus``; drops rows of deleted monitors.
+
+    Returns the number of monitors synced.
+    """
+    with _session() as api:
         monitors = api.get_monitors()
         beats = api.get_heartbeats()
     seen = set()
     for m in monitors:
         mid = m["id"]
         seen.add(mid)
-        history = beats.get(mid) or []
-        if not m.get("active", True):
-            status = "paused"
-        elif history:
-            raw = history[-1]["status"]
-            status = STATUS_NAMES.get(int(raw), "pending")
-        else:
-            status = "pending"
+        status = _status(m, beats.get(mid) or [])
         row = db.session.get(MonitorStatus, mid)
         if row is None:
             row = MonitorStatus(monitor_id=mid)

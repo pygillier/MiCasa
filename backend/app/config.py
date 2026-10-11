@@ -1,3 +1,5 @@
+"""Application configuration, read from environment variables at import time."""
+
 import os
 from pathlib import Path
 
@@ -5,6 +7,8 @@ _DEFAULT_DB = Path(__file__).resolve().parent.parent / "data" / "micasa.db"
 
 
 class Config:
+    """Production/dev settings; ``SECRET_KEY`` must be overridden outside development."""
+
     SECRET_KEY = os.environ.get("SECRET_KEY", "dev-insecure-change-me")
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", f"sqlite:///{_DEFAULT_DB}")
     SESSION_COOKIE_HTTPONLY = True
@@ -29,6 +33,8 @@ class Config:
 
 
 class TestConfig(Config):
+    """In-memory DB, no scheduler, fake OIDC/Kuma endpoints (all external services are mocked)."""
+
     TESTING = True
     SECRET_KEY = "test"
     SQLALCHEMY_DATABASE_URI = "sqlite://"

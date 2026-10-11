@@ -7,6 +7,8 @@ from loguru import logger
 
 
 class InterceptHandler(logging.Handler):
+    """``logging`` handler that forwards records to Loguru, preserving level and caller frame."""
+
     def emit(self, record: logging.LogRecord) -> None:
         try:
             level: str | int = logger.level(record.levelname).name
@@ -19,6 +21,7 @@ class InterceptHandler(logging.Handler):
 
 
 def setup_logging(level: str = "INFO", json: bool = False) -> None:
+    """Send Loguru (and, via ``InterceptHandler``, all stdlib logging) to stderr, optionally as JSON lines."""
     logger.remove()
     logger.add(sys.stderr, level=level.upper(), serialize=json, backtrace=False, diagnose=False)
     logging.basicConfig(handlers=[InterceptHandler()], level=0, force=True)

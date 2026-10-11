@@ -1,7 +1,7 @@
 import responses
 
-from app import jobs, kuma, weather
 from app.extensions import db
+from app.features import jobs, kuma, weather
 from app.models import JobRun, MonitorStatus, WeatherCache
 
 CUR = {

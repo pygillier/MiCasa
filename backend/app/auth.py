@@ -1,14 +1,16 @@
+"""OIDC client setup and session helpers. The HTTP routes live in ``blueprints/auth.py``."""
+
 from functools import wraps
 
 from authlib.integrations.flask_client import OAuth
-from flask import Blueprint, current_app, jsonify, redirect, request, session
+from flask import current_app, jsonify, request, session
 from loguru import logger
 
-bp = Blueprint("auth", __name__, url_prefix="/api")
 oauth = OAuth()
 
 
 def init_oauth(app) -> None:
+    """Register the ``pocketid`` OAuth client when ``OIDC_ISSUER`` is configured."""
     oauth.init_app(app)
     if app.config["OIDC_ISSUER"]:
         oauth.register(
@@ -31,56 +33,26 @@ def redirect_uri() -> str:
 
 
 def is_authenticated() -> bool:
+    """True when the session holds a logged-in user."""
     return bool(session.get("user"))
 
 
+def missing_xhr_header():
+    """400 response when the CSRF-guard ``X-Requested-With`` header is absent, else ``None``."""
+    if not request.headers.get("X-Requested-With"):
+        return jsonify(error="missing X-Requested-With header"), 400
+    return None
+
+
 def login_required(fn):
+    """Require an authenticated session; state-changing methods also need ``X-Requested-With``."""
+
     @wraps(fn)
     def wrapper(*args, **kwargs):
         if not is_authenticated():
             return jsonify(error="unauthorized"), 401
-        if request.method not in ("GET", "HEAD", "OPTIONS") and not request.headers.get(
-            "X-Requested-With"
-        ):
-            return jsonify(error="missing X-Requested-With header"), 400
+        if request.method not in ("GET", "HEAD", "OPTIONS") and (err := missing_xhr_header()):
+            return err
         return fn(*args, **kwargs)
 
     return wrapper
-
-
-@bp.get("/me")
-def me():
-    user = session.get("user")
-    return jsonify(authenticated=bool(user), user=user)
-
-
-@bp.get("/auth/login")
-def login():
-    client = oauth.create_client("pocketid")
-    if client is None:
-        return jsonify(error="OIDC not configured"), 503
-    session["next"] = "/admin" if request.args.get("next") == "admin" else "/"
-    return client.authorize_redirect(redirect_uri())
-
-
-@bp.get("/auth/callback")
-def callback():
-    client = oauth.create_client("pocketid")
-    if client is None:
-        return jsonify(error="OIDC not configured"), 503
-    token = client.authorize_access_token()
-    userinfo = token.get("userinfo") or client.userinfo(token=token)
-    nxt = session.pop("next", "/")
-    session.clear()
-    session["user"] = {"sub": userinfo.get("sub"), "email": userinfo.get("email"),
-                       "name": userinfo.get("name")}
-    session.permanent = True
-    return redirect(current_app.config["PUBLIC_URL"].rstrip("/") + nxt)
-
-
-@bp.post("/auth/logout")
-def logout():
-    if not request.headers.get("X-Requested-With"):
-        return jsonify(error="missing X-Requested-With header"), 400
-    session.clear()
-    return jsonify(ok=True)

@@ -26,6 +26,7 @@ The root holds technical plumbing only; functional code lives in `features/`.
 - State-changing API calls require the `X-Requested-With` header and an authenticated session.
 - Scheduler runs in a single gunicorn worker. `JobRun` keeps the 10 most recent runs per job.
 - UI: use Nocturne tokens (`var(--color-*)`, `--space-*`, ...) and Phosphor icons only; no hard-coded colors except the status dots (`#7fbf9a` up, `#e08585` down).
+- UI sizing: lengths (font sizes, spacing, widths, heights) are in `rem`, never `px`, except hairlines (borders, outlines, shadows), radii and gradient ramps. The whole UI scales from one knob: `html { font-size }` in `frontend/app/nocturne.css` (currently `115%`, so 1rem = 18.4px). Inline styles in TSX use `rem` too.
 - Any schema change needs a migration (`task migrate`).
 
 ## Testing

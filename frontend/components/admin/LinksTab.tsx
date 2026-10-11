@@ -158,7 +158,7 @@ export default function LinksTab() {
                   {t("links.iconLabel", { link: "Phosphor" })}
                 </label>
                 <div style={{ display: "flex", gap: "var(--space-3)", alignItems: "center" }}>
-                  <i className={`ph ${draft.icon}`} style={{ fontSize: 20 }} />
+                  <i className={`ph ${draft.icon}`} style={{ fontSize: "1.25rem" }} />
                   <input id="l-icon" className="input" pattern="ph-[a-z0-9-]+" value={draft.icon ?? ""}
                          placeholder="ph-house-line"
                          onChange={(e) => setDraft({ ...draft, icon: e.target.value })} />

@@ -20,6 +20,15 @@ task dev              # api :5000, web :3000 (proxies /api)
 task test && task lint
 ```
 
+## Versioning
+[Semantic Versioning](https://semver.org); git tags `vX.Y.Z` are the source of truth.
+```bash
+task version                    # current version
+task release -- patch           # or minor | major | X.Y.Z (add --dry-run to preview)
+git push --follow-tags
+```
+`release` requires a clean tree, bumps `backend/pyproject.toml` and `frontend/package.json`, commits and tags.
+
 ## Deploy
 ```bash
 cp .env.example .env   # fill in

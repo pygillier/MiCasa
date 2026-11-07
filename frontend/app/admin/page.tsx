@@ -59,8 +59,10 @@ export default function AdminPage() {
   return (
     <div className="admin">
       <div className="admin-head" ref={headRef}>
-        <h1><Image src="/logo.svg" alt="MiCasa" width={147} height={44} unoptimized priority className="admin-logo logo-light" />
-          <Image src="/logo-dark.svg" alt="MiCasa" width={147} height={44} unoptimized priority className="admin-logo logo-dark" /> <span className="sr-only">{t("admin.title")}</span></h1>
+        <h1><Link href="/admin" onClick={() => setTab("links")}>
+          <Image src="/logo.svg" alt="MiCasa" width={147} height={44} unoptimized priority className="admin-logo logo-light" />
+          <Image src="/logo-dark.svg" alt="MiCasa" width={147} height={44} unoptimized priority className="admin-logo logo-dark" />
+        </Link> <span className="sr-only">{t("admin.title")}</span></h1>
         <Link href="/" className="btn btn-ghost admin-link"><i className="ph-bold ph-arrow-left" /> {t("nav.startpage")}</Link>
         <button className="btn btn-ghost admin-link" onClick={logout}><i className="ph-bold ph-sign-out" /> {t("nav.logout")}</button>
         <button
